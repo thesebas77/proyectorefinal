@@ -11,10 +11,10 @@
 	$row = $sel -> num_rows();
 
 	if ($row != 0){
-		echo "<label style='color:green'> El propietario esta registrado (D.N.I) </label>
+		echo "<label style='color:red'> El propietario esta registrado (D.N.I) </label>
 		";
 	}else{
-		echo "<label style='color:red'> El propietario no esta registrado (D.N.I)
+		echo "<label style='color:green'> El propietario no esta registrado (D.N.I)
 			</label>
 			";
 	}

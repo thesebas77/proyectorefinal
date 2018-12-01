@@ -26,13 +26,16 @@
 			 ?>
 	  <div class="row">
 	    <div class="col s12 m12 l12 xl12">
-	      <div class="card orange darken-1">
-	        <div class="card-content white-text">
+	      <div class="card">
+	        <div class="card-content">
 	          <span class="card-title">Vehiculos(Total: <?php echo $row ?>)</span>
+	         </div>
+	 	  </div>
+
 	          <?php if ($row != 0): ?>
-	          <table class="responsive-table">
+	          <table class="highlight">
 	          	<?php else: ?>
-	          <table>
+	          <table class="highlight">
 	          	<?php endif; ?>
 	          	<thead>
 	          		<tr class="cabecera">
@@ -57,9 +60,24 @@
 	          		<td><?php echo $tipo; ?></td>
 	          		<td><?php echo $ano; ?></td>
 	          		<td><?php echo $falta; ?></td>
-	          		<td><?php echo $pro; ?></td>
+	          		<td><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
 	          		<td><?php echo $base; ?></td>
-	          		<td><?php echo 'modificar' ?></td>
+
+	          		<td> 
+	          			<a href="#" class="btn-floating blue" onclick="
+	          				swal({
+							  title: 'Desea modificar el vehiculo?',
+							  text: 'Al modificarlo se van a reemplazar los datos anteriories!',
+							  type: 'question',
+							  showCancelButton: true,
+							  confirmButtonColor: '#3085d6',
+							  cancelButtonColor: '#d33',
+							  confirmButtonText: 'Si, Modificar!'
+							}).then(function () {
+									location.href='modificar_vehiculo.php?dom=<?php echo $dom; ?>';		      
+							})
+	          			"><i class="material-icons">autorenew</i></a> 
+	          		</td>
 
 					<td> 
 	          			<a href="#" class="btn-floating red" onclick="
@@ -81,8 +99,6 @@
 	          	$sel -> close();
 	          	 ?>
 	         </table>
-	       </div>
-	 	  </div>
 	    </div>
 	  </div>
 

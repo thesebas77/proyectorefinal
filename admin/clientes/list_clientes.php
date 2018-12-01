@@ -25,14 +25,17 @@
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">
-	    <div class="col s12 m12">
-	      <div class="card orange darken-1">
-	        <div class="card-content white-text">
+	    <div class="col s12 m12 l12 xl12">
+	      <div class="card">
+	        <div class="card-content">
 	          <span class="card-title">Propietarios(Total: <?php echo $row ?>)</span>
+	          </div>
+	 	  </div>
+
 	          <?php if ($row != 0): ?>
-	          <table class="responsive-table">
+	          <table class="highlight">
 	          	<?php else: ?>
-	          <table>
+	          <table class="highlight">
 	          	<?php endif; ?>
 	          	<thead>
 	          		<tr class="cabecera">
@@ -58,7 +61,7 @@
 	          		<td> 
 	          			<a href="#" class="btn-floating blue" onclick="
 	          				swal({
-							  title: 'Desea modificar el usuario?',
+							  title: 'Desea modificar el propietario?',
 							  text: 'Al modificarlo se van a reemplazar los datos anteriories!',
 							  type: 'question',
 							  showCancelButton: true,
@@ -74,7 +77,7 @@
 					<td> 
 	          			<a href="#" class="btn-floating red" onclick="
 	          				swal({
-							  title: 'Estas seguro que desea eliminar al usuario?',
+							  title: 'Estas seguro que desea eliminar al propietario?',
 							  text: 'Al eliminarlo se borraran todos los vehiculos asociados y no podra recuperarlos!',
 							  type: 'warning',
 							  showCancelButton: true,
@@ -92,8 +95,6 @@
 	          	$sel -> close();
 	          	 ?>
 	         </table>
-	       </div>
-	 	  </div>
 	    </div>
 	  </div>
 

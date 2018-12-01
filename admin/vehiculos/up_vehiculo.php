@@ -1,8 +1,9 @@
 <?php include '../conexion/conexion.php'; 
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		$dni = htmlentities($_POST['dni']);
-		$cuil = htmlentities($_POST['cuil']);
+		
+		$cod = htmlentities($_POST['cod']);
+		$num = htmlentities($_POST['num']);
 		$dom = htmlentities($_POST['dom']);
 		$marca = htmlentities($_POST['marca']);
 		$modelo = htmlentities($_POST['modelo']);
@@ -12,23 +13,18 @@
 		$falta = htmlentities($_POST['falta']);
 
 
-		$ins = $con -> prepare("INSERT INTO vehiculo VALUES (?,?,?,?,?,?,?,?) ");
-		if ($dni == 0){
-			$ins -> bind_param('ssssisid',$dom,$marca,$modelo,$tipo,$ano,$falta,$cuil,$base);
-		}else{
-			$ins -> bind_param('ssssisid',$dom,$marca,$modelo,$tipo,$ano,$falta,$dni,$base);	
-		}
-		
+		$ins = $con -> prepare("UPDATE vehiculo SET dominio=?, marca=?, modelo=?, tipo=?, ano=?, falta=?, propietario=?, baseimponible=? WHERE dominio = ?");
+		$ins -> bind_param('ssssisids',$dom,$marca,$modelo,$tipo,$ano,$falta,$num,$base,$cod);
 		$ins -> execute();
 		$ins -> close();
 
 		if($ins){
-			header('location:../extend/alerta.php?msj=Se ha registrado el vehiculo con exito&c=ve&p=in&t=success');
+			header('location:../extend/alerta.php?msj=Se ha actualizado el vehiculo con exito&c=ve&p=liv&t=success');
 			//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 
 			
 		}else{
 
-			header('location:../extend/alerta.php?msj=No se ha podido registrar el vehiculo&c=ve&p=in&t=error');
+			header('location:../extend/alerta.php?msj=No se ha podido actualizar el vehiculo&c=ve&p=liv&t=error');
 
 		}
 

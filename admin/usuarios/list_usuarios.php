@@ -9,6 +9,24 @@
 	
 </head>
 <body>
+
+		<br>
+
+		<div class="row">
+		<div class="col s6 m8">
+			<nav class="blue darken-3">
+				<div class="nav-wrapper">
+					<div class="input-field">
+						<input type="search" id="buscar" autocomplete="off">
+						<label for="buscar"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+
 	<?php 
 
 		$sel = $con -> prepare("SELECT id_user,user,nom,ape,tipo FROM usuario ");
@@ -19,16 +37,18 @@
 		$row = $sel -> num_rows();
 	?>
 	  <div class="row">
-	    <div class="col s12 m12">
-	      <div class="card orange darken-1">
-	        <div class="card-content white-text">
-	          <span class="card-title">Usuarios (total: <?php echo $row ?>)</span>
+	    <div class="col s12 m12 l12 xl12">
+	       <div class="card">
+	        <div class="card-content">
+	        		<span class="card-title">Usuarios (total: <?php echo $row ?>)</span>
+	        	</div>	
+			</div>          
 
 
 	          <h5 class="red-text">Administrador</h5>
 	          <div class="divider"></div>
 
-	          <table>
+	          <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
 		          		<th>Usuario</th>
@@ -88,10 +108,10 @@
 		$row = $sel -> num_rows();
 	?>
 
-          <h5 class="yellow-text">Encargado</h5>
+          <h5 class="orange-text">Encargado</h5>
           <div class="divider"></div>
 
-          <table>
+          <table class="highlight" >
           	<thead>
           		<tr class="cabecera">
 	          		<th>Usuario</th>
@@ -155,7 +175,7 @@
 			<h5 class="blue-text">Empleado</h5>
 	          <div class="divider"></div>
 
-	          <table>
+	          <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
 		          		<th>Usuario</th>
@@ -204,8 +224,6 @@
 
 	          </table>	          
 
-	        </div>
-	      </div>
 	    </div>
 	  </div>
 	  

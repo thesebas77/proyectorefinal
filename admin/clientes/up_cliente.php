@@ -1,6 +1,7 @@
 <?php include '../conexion/conexion.php'; 
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		
 		$nume = htmlentities($_POST['nume']);
 		$dni = htmlentities($_POST['dni']);
 		$cuil = htmlentities($_POST['cuil']);
@@ -16,11 +17,11 @@
 		}
 
 
-		$ins = $con -> prepare("UPDATE propietario VALUES (?,?,?,?,?,?) WHERE num = ?");
+		$ins = $con -> prepare("UPDATE propietario SET num=?, tipo=?, nom=?, ape=?, domicilio=?, localidad=? WHERE num = ?");
 		if ($dni == 0){
-			$ins -> bind_param('iisssss',$nume,$cuil,$tipo,$nom,$ape,$dire,$ciu);
+			$ins -> bind_param('isssssi',$cuil,$tipo,$nom,$ape,$dire,$ciu,$nume);
 		}else{
-			$ins -> bind_param('iisssss',$nume,$dni,$tipo,$nom,$ape,$dire,$ciu);	
+			$ins -> bind_param('isssssi',$dni,$tipo,$nom,$ape,$dire,$ciu,$nume);	
 		}
 		
 		$ins -> execute();

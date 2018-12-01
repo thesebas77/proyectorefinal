@@ -21,18 +21,18 @@
 							<div class="card-content">
 								<span class="card-title">Actualizacion de usuario</span>	
 
-									<form class="form" action="../clientes/up_cliente.php" method="post" enctype="multipart/form-data">
+									<form class="form" action="../clientes/up_cliente.php" method="post" >
 
 									<!-- Persona humano o persona juridica -->
 
 									  <p>
 									  	<label for="nume">D.N.I/CUIL:</label>
-									  	<input type="number" value="<?php echo $cod ?>" name="nume" readonly disabled>	
+									  	<input type="number" value="<?php echo $cod ?>" name="nume" readonly>	
 									  </p>
 
 									  <p>
 									  	<label for="tp">Tipo:</label>
-									  	<input type="text" value="Persona <?php echo $tipo ?>" name="tp" readonly disabled>	
+									  	<input type="text" value="Persona <?php echo $tipo ?>" name="tp" readonly>	
 									  </p>
 
 									  <p class="red-text">
@@ -130,7 +130,7 @@
 									
 									<!-- Input boton -->
 
-									  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar">Registrar
+									  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar">Modificar
 									    <i class="material-icons right">send</i>
 									  </button>
 
