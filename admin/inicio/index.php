@@ -26,6 +26,8 @@
 			    <div class="section white">
 			      <div class="row container">
 			        <h2 class="header">Inicio</h2>
+
+			       <?php if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2): ?>
 			       
 			       <!-- Atajos de propietarios -->
 			        <div class="row">
@@ -64,6 +66,8 @@
 
 					  </div>
 
+					  <!-- Atajos de vehiculos -->
+
 			        <div class="row">
 
 					    <div class="col s6 m6 l6 xl6">
@@ -77,7 +81,7 @@
 					          <p> para poder registrar un vehiculo.</p>
 					        </div>
 					        <div class="card-action">
-					          <a href="../clientes/index.php">Registrar</a>
+					          <a href="../vehiculos/index.php">Registrar</a>
 					        </div>
 					      </div>
 					    </div>
@@ -93,12 +97,55 @@
 					          <p> para ver la lista de vehiculos.</p>
 					        </div>
 					        <div class="card-action">
-					          <a href="../clientes/list_clientes.php">Lista</a>
+					          <a href="../vehiculos/list_vehiculos.php">Lista</a>
 					        </div>
 					      </div>
 					    </div>
 
 					  </div>
+
+					  <?php
+					  		 else: 
+
+					  	?>
+
+					  	<div class="row">
+
+						    <div class="col s6 m6 l6 xl6">
+						      <div class="card z-depth-5">
+						        <div class="card-image">
+						          <img src="../img/lista_p.jpg">
+						          <span class="card-title">Lista de propietarios</span>
+						        </div>
+						        <div class="card-content">
+						          <p>Este es un atajo, </p> 
+						          <p> para ver la lista de propietarios.</p>
+						        </div>
+						        <div class="card-action">
+						          <a href="../clientes/list_clientes.php">Lista</a>
+						        </div>
+						      </div>
+						    </div>
+
+						    <div class="col s6 m6 l6 xl6">
+						      <div class="card z-depth-5">
+						        <div class="card-image">
+						          <img src="../img/lista_v.jpg">
+						          <span class="card-title">Lista de vehiculos</span>
+						        </div>
+						        <div class="card-content">
+						          <p>Este es un atajo, </p> 
+						          <p> para ver la lista de vehiculos.</p>
+						        </div>
+						        <div class="card-action">
+						          <a href="../vehiculos/list_vehiculos.php">Lista</a>
+						        </div>
+						      </div>
+						    </div>
+
+						  </div>
+
+						<?php endif; ?>
 
 			      </div>
 			    </div>

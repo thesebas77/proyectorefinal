@@ -43,8 +43,11 @@
 		          		<th>F. alta</th>
 		          		<th>Propietario</th>
 		          		<th>Base imponible</th>
+		          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          		<?php else: ?>
 		          		<th>Modificar</th>
 		          		<th>Eliminar</th>
+		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
@@ -58,6 +61,8 @@
 	          		<td><?php echo $falta; ?></td>
 	          		<td><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
 	          		<td><?php echo $base; ?></td>
+	          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          	<?php else: ?>
 
 	          		<td> 
 	          			<a href="#" class="btn-floating blue" onclick="
@@ -90,6 +95,7 @@
 							})
 	          			"><i class="material-icons">clear</i></a> 
 	          		</td>
+	          		<?php endif; ?>
 	          	</tr>
 	          	<?php }
 	          	$sel -> close();

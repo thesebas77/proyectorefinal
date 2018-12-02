@@ -42,8 +42,11 @@
 		          		<th>Domicilio</th>
 		          		<th>Localidad</th>
 		          		<th>Detalle</th>
+		          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          		<?php else: ?>
 		          		<th>Modificar</th>
 		          		<th>Eliminar</th>
+		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
@@ -55,41 +58,44 @@
 	          		<td><?php echo $ape; ?></td>
 	          		<td><?php echo $domi; ?></td>
 	          		<td><?php echo $loca; ?></td>
-	          		<td> 
-	          			<a href="../detalle/index.php?num=<?php echo $num; ?>" class="btn-floating green"><i class="material-icons">assignment</i></a> 
-	          		</td>
+		          		<td> 
+		          			<a href="../detalle/index.php?num=<?php echo $num; ?>" class="btn-floating green"><i class="material-icons">assignment</i></a> 
+		          		</td>
 
-	          		<td> 
-	          			<a href="#" class="btn-floating blue" onclick="
-	          				swal({
-							  title: 'Desea modificar el propietario?',
-							  text: 'Al modificarlo se van a reemplazar los datos anteriories!',
-							  type: 'question',
-							  showCancelButton: true,
-							  confirmButtonColor: '#3085d6',
-							  cancelButtonColor: '#d33',
-							  confirmButtonText: 'Si, Modificar!'
-							}).then(function () {
-									location.href='modificar_cliente.php?num=<?php echo $num; ?>';		      
-							})
-	          			"><i class="material-icons">autorenew</i></a> 
-	          		</td>
+		          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          		<?php else: ?>
+		          		<td> 
+		          			<a href="#" class="btn-floating blue" onclick="
+		          				swal({
+								  title: 'Desea modificar el propietario?',
+								  text: 'Al modificarlo se van a reemplazar los datos anteriories!',
+								  type: 'question',
+								  showCancelButton: true,
+								  confirmButtonColor: '#3085d6',
+								  cancelButtonColor: '#d33',
+								  confirmButtonText: 'Si, Modificar!'
+								}).then(function () {
+										location.href='modificar_cliente.php?num=<?php echo $num; ?>';		      
+								})
+		          			"><i class="material-icons">autorenew</i></a> 
+		          		</td>
 
-					<td> 
-	          			<a href="#" class="btn-floating red" onclick="
-	          				swal({
-							  title: 'Estas seguro que desea eliminar al propietario?',
-							  text: 'Al eliminarlo se borraran todos los vehiculos asociados y no podra recuperarlos!',
-							  type: 'warning',
-							  showCancelButton: true,
-							  confirmButtonColor: '#3085d6',
-							  cancelButtonColor: '#d33',
-							  confirmButtonText: 'Si, Eliminarlo!'
-							}).then(function () {
-									location.href='eliminar_cliente.php?num=<?php echo $num; ?>';		      
-							})
-	          			"><i class="material-icons">clear</i></a> 
-	          		</td>
+						<td> 
+		          			<a href="#" class="btn-floating red" onclick="
+		          				swal({
+								  title: 'Estas seguro que desea eliminar al propietario?',
+								  text: 'Al eliminarlo se borraran todos los vehiculos asociados y no podra recuperarlos!',
+								  type: 'warning',
+								  showCancelButton: true,
+								  confirmButtonColor: '#3085d6',
+								  cancelButtonColor: '#d33',
+								  confirmButtonText: 'Si, Eliminarlo!'
+								}).then(function () {
+										location.href='eliminar_cliente.php?num=<?php echo $num; ?>';		      
+								})
+		          			"><i class="material-icons">clear</i></a> 
+		          		 </td>
+	          		<?php endif; ?>
 	          	</tr>
 
 	          	<?php }

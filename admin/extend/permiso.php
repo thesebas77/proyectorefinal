@@ -1,5 +1,5 @@
 <?php 
-	if ($_SESSION['tipo'] != 1){
+	if ($_SESSION['tipo'] == 3){
 		header('location:bloqueo.php');
 	}
 

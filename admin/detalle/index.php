@@ -33,8 +33,11 @@ $row = $sel -> num_rows();
 		          		<th>Apellido</th>
 		          		<th>Domicilio</th>
 		          		<th>Localidad</th>
+		          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          		<?php else: ?>
 		          		<th>Modificar</th>
 		          		<th>Eliminar</th>
+		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
@@ -46,7 +49,8 @@ $row = $sel -> num_rows();
 	          		<td><?php echo $ape; ?></td>
 	          		<td><?php echo $domi; ?></td>
 	          		<td><?php echo $loca; ?></td>
-
+	          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          	<?php else: ?>
 	          		<td> 
 	          			<a href="#" class="btn-floating blue" onclick="
 	          				swal({
@@ -78,6 +82,7 @@ $row = $sel -> num_rows();
 							})
 	          			"><i class="material-icons">clear</i></a> 
 	          		</td>
+	          		<?php endif; ?>
 	          	</tr>
 
 
@@ -98,8 +103,11 @@ $row = $sel -> num_rows();
 		          		<th>Año</th>
 		          		<th>F. alta</th>
 		          		<th>Base imponible</th>
+		          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          		<?php else: ?>
 		          		<th>Modificar</th>
 		          		<th>Eliminar</th>
+		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
@@ -121,6 +129,8 @@ $row = $sel -> num_rows();
 	          		<td><?php echo $ano; ?></td>
 	          		<td><?php echo $falta; ?></td>
 	          		<td><?php echo $baseimponible; ?></td>
+	          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          	<?php else: ?>
 	          		<td> 
 	          			<a href="#" class="btn-floating blue" onclick="
 	          				swal({
@@ -152,6 +162,7 @@ $row = $sel -> num_rows();
 							})
 	          			"><i class="material-icons">clear</i></a> 
 	          		</td>
+	          		<?php endif; ?>
 	          	</tr>
 
 	          	<?php }
