@@ -46,34 +46,20 @@
 
 
 </head>
-<body>
+<body background="admin/img/background1.jpg">
 	
 		<nav class="blue">
 			<div class="nav-wrapper">
 				<a class="brand-logo left"><img src="admin/img/logo.png"style="width:140px "></a>
-				<ul id="nav-mobile" class="right">
-				
-				<?php if ($_SESSION['nick'] != ''): ?>	
-					<li><a href="admin/inicio/index.php"  class="purple btn waves-light white-text s2 m4 l6">Inicio</a></li>
-				<?php endif; ?>
-
-				</ul>
-			</div>
 		</nav>
 
+		<br>
 
 		<div class="row">
-			<br>
-			<br>
-			<br>
-			<br>
-			<h3 class="center">Rentas - Municipalidad de Tolhuin </h3>
+			<div class="col s3 m3 l3 xl3"></div>
+			<img class="responsive-img col s6 m6 l6 xl6" src="admin/img/logo.png">
 		</div>
-		
-		<div class="divider"></div>
-
-			<br>
-			<br>
+	
 			<br>
 
 
@@ -82,7 +68,7 @@
 			<div class="col s3 m3 l3 xl3"></div>
 
 			<div class="col s6 m6 l6 xl6">
-				<div class="card">
+				<div class="card z-depth-5">
 					<div class="card-content">
 						 <span class="card-title"><center>Inicio de sesion</center></span>
 				          <form action="admin/login/index.php" method="post" autocomplete="off">

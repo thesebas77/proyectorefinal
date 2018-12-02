@@ -33,7 +33,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body background="../img/background1.jpg">
 		<main>
 		<?php
 

@@ -8,10 +8,10 @@
 
 				<div class="row center">
 					<div class="col s12">
-						<div class="card">
+						<div class="card transparent">
 							<div class="card-content">
-								<span class="card-title">Bienvenido a Mundo sorteos</span>	
-								<p>sorteos rapidos, confiables y <?php echo '<label style="color: red;">Sin compromiso de compra</label>'; ?></p>
+								<span class="card-title">Bienvenido <?php echo $_SESSION['nom']; ?> </span>	
+								<p>Desde el menu de inicio va a poder hacer todo lo deseado</p>
 							</div>
 						</div>
 					</div>
