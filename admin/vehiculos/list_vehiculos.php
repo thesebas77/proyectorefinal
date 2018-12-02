@@ -32,11 +32,7 @@
 	         </div>
 	 	  </div>
 
-	          <?php if ($row != 0): ?>
 	          <table class="highlight">
-	          	<?php else: ?>
-	          <table class="highlight">
-	          	<?php endif; ?>
 	          	<thead>
 	          		<tr class="cabecera">
 		          		<th>Dominio</th>

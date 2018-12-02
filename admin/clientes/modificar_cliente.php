@@ -19,7 +19,7 @@
 					<div class="col s12">
 						<div class="card">
 							<div class="card-content">
-								<span class="card-title">Actualizacion de usuario</span>	
+								<span class="card-title">Actualizacion de propietarios</span>	
 
 									<form class="form" action="../clientes/up_cliente.php" method="post" >
 

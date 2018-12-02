@@ -7,7 +7,7 @@
 					<div class="col s12">
 						<div class="card">
 							<div class="card-content">
-								<span class="card-title">Registro de usuario</span>	
+								<span class="card-title">Registro de propietarios</span>	
 								<form class="form" action="../clientes/ins_clientes.php" method="post" enctype="multipart/form-data">
 
 									

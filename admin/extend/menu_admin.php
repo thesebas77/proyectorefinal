@@ -1,4 +1,4 @@
-<nav class="red">
+<nav class="blue darken-3">
 	<div class="nav-wrapper">
 		<a href="../inicio/index.php" class="brand-logo center"><img src="../img/logo.png"style="width:140px "></a>
 		<a href="" data-activates="menu" class="button-collpase"> <i class="material-icons">menu</i> </a>
@@ -8,7 +8,7 @@
 <ul id="menu" class="side-nav fixed">
 	<li>
 		<div class="userView">
-			<div class="background red">
+			<div class="background blue darken-3">
 				<img class="right" src="../img/logo.png"style="width:110px ">
 			</div>
 			<a href=""><?php echo $_SESSION['nom'], '-' ,$_SESSION['ape']; ?></a>

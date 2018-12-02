@@ -32,11 +32,7 @@
 	          </div>
 	 	  </div>
 
-	          <?php if ($row != 0): ?>
 	          <table class="highlight">
-	          	<?php else: ?>
-	          <table class="highlight">
-	          	<?php endif; ?>
 	          	<thead>
 	          		<tr class="cabecera">
 		          		<th>D.N.I/CUIL</th>
@@ -45,6 +41,7 @@
 		          		<th>Apellido</th>
 		          		<th>Domicilio</th>
 		          		<th>Localidad</th>
+		          		<th>Detalle</th>
 		          		<th>Modificar</th>
 		          		<th>Eliminar</th>
 	          		</tr>
@@ -57,7 +54,11 @@
 	          		<td><?php echo $nom; ?></td>
 	          		<td><?php echo $ape; ?></td>
 	          		<td><?php echo $domi; ?></td>
-	          		<td><?php echo $loca; ?></td> 
+	          		<td><?php echo $loca; ?></td>
+	          		<td> 
+	          			<a href="../detalle/index.php?num=<?php echo $num; ?>" class="btn-floating green"><i class="material-icons">assignment</i></a> 
+	          		</td>
+
 	          		<td> 
 	          			<a href="#" class="btn-floating blue" onclick="
 	          				swal({
