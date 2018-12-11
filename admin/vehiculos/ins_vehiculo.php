@@ -11,6 +11,9 @@
 		$base = htmlentities($_POST['base']);
 		$falta = htmlentities($_POST['falta']);
 
+		$mont = ($base*10)/100;
+		$cuo = $mont/6; 
+		$no = 2;
 
 		$ins = $con -> prepare("INSERT INTO vehiculo VALUES (?,?,?,?,?,?,?,?) ");
 		if ($dni == 0){
@@ -20,11 +23,48 @@
 		}
 		
 		$ins -> execute();
-		$ins -> close();
+		
 
 		if($ins){
-			header('location:../extend/alerta.php?msj=Se ha registrado el vehiculo con exito&c=ve&p=in&t=success');
-			//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 
+
+			$ins = $con -> prepare("INSERT INTO impuesto VALUES (?,?) ");
+			$ins -> bind_param('sd',$dom,$mont);
+			$ins -> execute();
+			
+			$au = 0;
+
+			if($ins){
+
+				#validacion por mes. (falta)
+
+				for ($i=0;$i<6;$i++){
+
+					$num = $i+1;
+
+					$au = $au + 2;
+					$au2 = $au + 1;
+
+					$fven = '20/'.$au.'/2019';
+					$fven2 = '20/'.$au2.'/2019';
+
+					if ($au2 == 13){
+						$fven2 = '20/01/2020';						
+					}
+
+					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?) ");
+					$ins -> bind_param('sidssi',$dom,$num,$cuo,$fven,$fven2,$no);
+					$ins -> execute();	
+				}
+				
+
+				header('location:../extend/alerta.php?msj=Se ha registrado el vehiculo con exito&c=ve&p=in&t=success');
+				//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 
+
+			}else{
+
+				header('location:../extend/alerta.php?msj=No se ha podido registrar el vehiculo&c=ve&p=in&t=error');
+
+			}
 			
 		}else{
 
@@ -32,6 +72,7 @@
 
 		}
 
+		$ins -> close();
 		
 		return false;
 	}else{

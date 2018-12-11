@@ -31,6 +31,7 @@
 	<li><div class="divider"></div></li>
 
 	<li><a class="subheader center">Pagos</a></li>
+	<li><a href="../pagos/index.php"><i class="material-icons">attach_money</i>Generar</a></li>
 
 	<li><div class="divider"></div></li>
 

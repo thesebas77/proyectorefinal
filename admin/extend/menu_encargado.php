@@ -32,6 +32,9 @@
 
 	<li><a class="subheader center">Pagos</a></li>
 
+	<li><a href="../pagos/index.php"><i class="material-icons">attach_money</i>Registrar</a></li>
+	<li><a href="../pagos/generar.php"><i class="material-icons">attach_money</i>Generar</a></li>
+
 	<li><div class="divider"></div></li>
 
 	<li><a href="../perfil/index.php"><i class="material-icons">settings</i>Editar perfil</a></li>

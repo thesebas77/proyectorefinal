@@ -12,7 +12,7 @@
 
 					<div class="row center">
 						<div class="col s12 m12 l12 xl12">
-							<div class="card transparent">
+							<div class="card transparent z-depth-5">
 								<div class="card-content">
 									<span class="card-title">Bienvenido <?php echo $_SESSION['nom']; ?> </span>	
 									<p>Desde el menu de inicio, le vamos a facilitar algunos atajos</p>
@@ -20,6 +20,12 @@
 							</div>
 						</div>
 					</div>
+
+					
+					
+
+
+					  </div>
 
 
 			    </div>
