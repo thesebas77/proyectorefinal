@@ -117,7 +117,7 @@
 							  cancelButtonColor: '#d33',
 							  confirmButtonText: 'Si, Emitir!'
 							}).then(function () {
-									location.href='../pagos/index.php?dom=<?php echo $dominio; ?>';		      
+									location.href='../pagos/emitir.php?dom=<?php echo $dominio; ?>';		      
 							})
 	          			"><i class="material-icons">attach_money</i></a> 
 	          		</td>
