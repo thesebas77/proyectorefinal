@@ -2,7 +2,10 @@
 
 	<br>
 	<div class="row">
-		<div class="col s6 m8">
+
+		<div class="col s2 m2 l2 xl2"></div>
+
+		<div class="col s8 m8 l8 xl8">
 			<nav class="blue darken-3">
 				<div class="nav-wrapper">
 					<div class="input-field">
@@ -26,11 +29,8 @@
 			 ?>
 	  <div class="row">
 	    <div class="col s12 m12 l12 xl12">
-	      <div class="card">
-	        <div class="card-content">
-	          <span class="card-title">Propietarios(Total: <?php echo $row ?>)</span>
-	          </div>
-	 	  </div>
+
+	 	  <p>Total de propietarios:  <?php echo $row ?></p> 
 
 	          <table class="highlight">
 	          	<thead>

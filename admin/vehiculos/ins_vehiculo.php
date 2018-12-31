@@ -35,17 +35,18 @@
 
 			if($ins){
 
-				#validacion por mes. (falta)
+				$res = include '../extend/fecha.php';
+				$aa = date('Y');
 
-				for ($i=0;$i<6;$i++){
+				for ($i=0;$i<$res;$i++){
 
 					$num = $i+1;
 
 					$au = $au + 2;
 					$au2 = $au + 1;
 
-					$fven = '20/'.$au.'/2019';
-					$fven2 = '20/'.$au2.'/2019';
+					$fven = '20/'.$au.'/'.$aa;
+					$fven2 = '20/'.$au2.'/'.$aa;
 
 					if ($au2 == 13){
 						$fven2 = '20/01/2020';						

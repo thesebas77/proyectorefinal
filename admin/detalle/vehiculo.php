@@ -86,6 +86,8 @@
 	          	<thead>
 	          		<tr class="cabecera">
 		          		<th>Cuota</th>
+		          		<th>Fecha V1.</th>
+		          		<th>Fecha V2.</th>
 		          		<th>Pagada</th>
 		          		<th>Pagar</th>
 	          		</tr>
@@ -93,8 +95,32 @@
 
 	          	<tr>
 	          		<td><?php echo $monto; ?></td>
-	          		<td><?php echo $falta; ?></td>
-	          		<td><?php echo $base; ?></td>
+	          		<td><?php echo $fven; ?></td>
+	          		<td><?php echo $fven2; ?></td>
+	          		<td><?php 
+	          			if ($paga == 2){
+	          				echo 'No'; 	
+	          			}else{
+	          				echo "Si";
+	          			}
+	          			
+
+	          		?></td>
+	          		<td> 
+	          			<a href="#" class="btn-floating green" onclick="
+	          				swal({
+							  title: 'Estas seguro que desea emitir la boleta de pago?',
+							  text: 'Al hacerlo podra cancelarlo mas adelante!',
+							  type: 'question',
+							  showCancelButton: true,
+							  confirmButtonColor: '#3085d6',
+							  cancelButtonColor: '#d33',
+							  confirmButtonText: 'Si, Emitir!'
+							}).then(function () {
+									location.href='../pagos/index.php?dom=<?php echo $dominio; ?>';		      
+							})
+	          			"><i class="material-icons">attach_money</i></a> 
+	          		</td>
 
 	          	<?php 
 	          	$sel -> close();

@@ -8,24 +8,9 @@
 
 
 				<div class="parallax-container">
-			      <div class="parallax"><img src="../img/background1.jpg"></div>
-
-					<div class="row center">
-						<div class="col s12 m12 l12 xl12">
-							<div class="card transparent z-depth-5">
-								<div class="card-content">
-									<span class="card-title">Bienvenido <?php echo $_SESSION['nom']; ?> </span>	
-									<p>Desde el menu de inicio, le vamos a facilitar algunos atajos</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					
-					
-
-
-					  </div>
+			      <div class="parallax"><img src="../img/background3.jpg"></div>
+			      	
+			      	<!-- Dentro de la pasarela -->
 
 
 			    </div>
@@ -45,8 +30,7 @@
 					          <span class="card-title">Registrar propietario</span>
 					        </div>
 					        <div class="card-content">
-					          <p>Este es un atajo, </p> 
-					          <p> para poder registrar a un propietario.</p>
+					          <p> Registrar propietario.</p>
 					        </div>
 					        <div class="card-action">
 					          <a href="../clientes/index.php">Registrar</a>
@@ -61,8 +45,7 @@
 					          <span class="card-title">Lista de propietarios</span>
 					        </div>
 					        <div class="card-content">
-					          <p>Este es un atajo, </p> 
-					          <p> para ver la lista de propietarios.</p>
+					          <p> Lista de propietarios.</p>
 					        </div>
 					        <div class="card-action">
 					          <a href="../clientes/list_clientes.php">Lista</a>
@@ -82,9 +65,8 @@
 					          <img src="../img/registrar_v.jpg">
 					          <span class="card-title">Registrar vehiculos</span>
 					        </div>
-					        <div class="card-content">
-					          <p>Este es un atajo, </p> 
-					          <p> para poder registrar un vehiculo.</p>
+					        <div class="card-content"> 
+					          <p> Registrar vehiculos.</p>
 					        </div>
 					        <div class="card-action">
 					          <a href="../vehiculos/index.php">Registrar</a>
@@ -98,9 +80,8 @@
 					          <img src="../img/lista_v.jpg">
 					          <span class="card-title">Lista de vehiculos</span>
 					        </div>
-					        <div class="card-content">
-					          <p>Este es un atajo, </p> 
-					          <p> para ver la lista de vehiculos.</p>
+					        <div class="card-content"> 
+					          <p> Lista de vehiculos.</p>
 					        </div>
 					        <div class="card-action">
 					          <a href="../vehiculos/list_vehiculos.php">Lista</a>
@@ -124,8 +105,7 @@
 						          <span class="card-title">Lista de propietarios</span>
 						        </div>
 						        <div class="card-content">
-						          <p>Este es un atajo, </p> 
-						          <p> para ver la lista de propietarios.</p>
+						          <p> Lista de propietarios.</p>
 						        </div>
 						        <div class="card-action">
 						          <a href="../clientes/list_clientes.php">Lista</a>
@@ -140,8 +120,7 @@
 						          <span class="card-title">Lista de vehiculos</span>
 						        </div>
 						        <div class="card-content">
-						          <p>Este es un atajo, </p> 
-						          <p> para ver la lista de vehiculos.</p>
+						          <p> Lista de vehiculos.</p>
 						        </div>
 						        <div class="card-action">
 						          <a href="../vehiculos/list_vehiculos.php">Lista</a>
