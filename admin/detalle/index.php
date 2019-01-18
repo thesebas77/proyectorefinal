@@ -103,7 +103,6 @@ $row = $sel -> num_rows();
 		          		<th>Tipo</th>
 		          		<th>Año</th>
 		          		<th>F. alta</th>
-		          		<th>Base imponible</th>
 		          		<th>Detalle</th>
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
@@ -118,11 +117,12 @@ $row = $sel -> num_rows();
 						$sel -> bind_param('i', $num);
 						$sel -> execute();
 						$sel -> store_result();
-						$sel -> bind_result($dominio,$marca,$modelo,$tipo,$ano,$falta,$propietario,$baseimponible);
+						$sel -> bind_result($dominio,$marca,$modelo,$tipo,$ano,$falta,$propietario);
 						$row = $sel -> num_rows();
 
 						 while($sel -> fetch()){ 
 				 ?>
+
 	          	<tr>
 	          		<td><?php echo $dominio; ?></td>
 	          		<td><?php echo $marca; ?></td>
@@ -130,7 +130,9 @@ $row = $sel -> num_rows();
 	          		<td><?php echo $tipo; ?></td>
 	          		<td><?php echo $ano; ?></td>
 	          		<td><?php echo $falta; ?></td>
-	          		<td><?php echo $baseimponible; ?></td>
+
+
+
 	          		<td> 
 		          			<a href="../detalle/vehiculo.php?dominio=<?php echo $dominio; ?>" class="btn-floating green"><i class="material-icons">assignment</i></a> 
 		          	</td>

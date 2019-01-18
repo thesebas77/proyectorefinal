@@ -24,7 +24,7 @@
 
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dom,$mar,$mod,$tipo,$ano,$falta,$pro,$base);
+		$sel -> bind_result($dom,$mar,$mod,$tipo,$ano,$falta,$pro);
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">
@@ -42,7 +42,6 @@
 		          		<th>Año</th>
 		          		<th>F. alta</th>
 		          		<th>Propietario</th>
-		          		<th>Base imponible</th>
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
 		          		<th>Modificar</th>
@@ -60,7 +59,7 @@
 	          		<td><?php echo $ano; ?></td>
 	          		<td><?php echo $falta; ?></td>
 	          		<td><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
-	          		<td><?php echo $base; ?></td>
+
 	          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          	<?php else: ?>
 

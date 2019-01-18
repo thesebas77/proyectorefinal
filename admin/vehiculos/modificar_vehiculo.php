@@ -10,11 +10,18 @@
 		$sel -> bind_param('s',$cod);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dom1,$marca1,$modelo1,$tipo1,$ano1,$falta1,$propietario1,$baseimponible1);
+		$sel -> bind_result($dom1,$marca1,$modelo1,$tipo1,$ano1,$falta1,$propietario1);
 		$row = $sel -> num_rows();
 
 		if($sel -> fetch()){}
 
+			$sel = $con -> prepare("SELECT valor FROM baseimponible WHERE dom = ?"); 
+			$sel -> bind_param('s', $cod);
+			$sel -> execute();
+			$sel -> store_result();
+			$sel -> bind_result($valor);
+
+			if ($sel -> fetch()){}
 			 ?>
 
 			 	<div class="row">
@@ -173,7 +180,7 @@
 									<!-- input base imponible -->
 									
 									<div class="input-field col s12">
-										<input type="text" name="base" value="<?php echo $baseimponible1 ?>">
+										<input type="text" name="base" value="<?php echo $valor ?>">
 										<label for="base">Base imponible: $</label>
 									</div>
 

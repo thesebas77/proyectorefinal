@@ -2,10 +2,9 @@
 
 				<div class="row">
 					<div class="col s12">
-						<div class="card">
+						<div class="card center">
 							<div class="card-content">
-								<span class="card-title">Titulo</span>	
-								<p>Contenido</p>
+								<span class="card-title">Emitir boleta de pago</span>	
 							</div>
 						</div>
 					</div>

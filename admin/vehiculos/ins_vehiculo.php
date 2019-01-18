@@ -15,11 +15,11 @@
 		$cuo = $mont/6; 
 		$no = 2;
 
-		$ins = $con -> prepare("INSERT INTO vehiculo VALUES (?,?,?,?,?,?,?,?) ");
+		$ins = $con -> prepare("INSERT INTO vehiculo VALUES (?,?,?,?,?,?,?) ");
 		if ($dni == 0){
-			$ins -> bind_param('ssssisid',$dom,$marca,$modelo,$tipo,$ano,$falta,$cuil,$base);
+			$ins -> bind_param('ssssisi',$dom,$marca,$modelo,$tipo,$ano,$falta,$cuil);
 		}else{
-			$ins -> bind_param('ssssisid',$dom,$marca,$modelo,$tipo,$ano,$falta,$dni,$base);	
+			$ins -> bind_param('ssssisi',$dom,$marca,$modelo,$tipo,$ano,$falta,$dni);	
 		}
 		
 		$ins -> execute();
@@ -49,7 +49,7 @@
 					$fven2 = '20/'.$au2.'/'.$aa;
 
 					if ($au2 == 13){
-						$fven2 = '20/01/2020';						
+						$fven2 = '20/01/'.$aa+1;						
 					}
 
 					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?) ");
@@ -57,6 +57,9 @@
 					$ins -> execute();	
 				}
 				
+				$ins = $con -> prepare("INSERT INTO baseimponible VALUES(?,?,?)");
+				$ins -> bind_param('sds',$dom,$base,$aa);
+				$ins -> execute();
 
 				header('location:../extend/alerta.php?msj=Se ha registrado el vehiculo con exito&c=ve&p=in&t=success');
 				//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 

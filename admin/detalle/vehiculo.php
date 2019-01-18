@@ -6,7 +6,7 @@
 		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dominio,$marca,$modelo,$tipo,$ano,$falta,$pro,$base);
+		$sel -> bind_result($dominio,$marca,$modelo,$tipo,$ano,$falta,$pro);
 		$row = $sel -> num_rows();
 
 		if ($sel -> fetch()){}
@@ -22,6 +22,17 @@
 						</div>
 					</div>
 				</div>
+
+		<?php 
+			$sel = $con -> prepare("SELECT valor FROM baseimponible WHERE dom = ?"); 
+			$sel -> bind_param('s', $dom);
+			$sel -> execute();
+			$sel -> store_result();
+			$sel -> bind_result($valor);
+
+			if ($sel -> fetch()){}
+
+		?>		
 
 
 		<h5 class="center">Vehiculo</h5>
@@ -47,7 +58,8 @@
 	          		<td><?php echo $tipo; ?></td>
 	          		<td><?php echo $ano; ?></td>
 	          		<td><?php echo $falta; ?></td>
-	          		<td><?php echo $base; ?></td>
+	          		<td> <?php echo $valor; ?> </td>		
+	          		
 
 	   </table>
 
@@ -79,12 +91,11 @@
 	   		$sel -> store_result();
 	   		$sel -> bind_result($imp,$num, $valor, $fven, $fven2, $paga);
 
-	   		if ($sel -> fetch()){}
-
 	    ?>
 	   <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
+	          			<th>Numero</th>
 		          		<th>Cuota</th>
 		          		<th>Fecha V1.</th>
 		          		<th>Fecha V2.</th>
@@ -93,20 +104,29 @@
 	          		</tr>
 	          	</thead>
 
+	          	<?php while ($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td><?php echo $monto; ?></td>
+	          		<td><?php echo $num; ?></td>
+	          		<td><?php echo $valor; ?></td>
 	          		<td><?php echo $fven; ?></td>
 	          		<td><?php echo $fven2; ?></td>
 	          		<td><?php 
 	          			if ($paga == 2){
 	          				echo 'No'; 	
+	          				$ban = 0;
 	          			}else{
 	          				echo "Si";
+	          				$ban = 1;
 	          			}
 	          			
 
 	          		?></td>
-	          		<td> 
+
+	          		<?php if ($ban == 1): ?>
+	          		<td style="display: none;">
+	          		<?php else: ?>
+	          		<td>
+	          		<?php endif; ?>
 	          			<a href="#" class="btn-floating green" onclick="
 	          				swal({
 							  title: 'Estas seguro que desea emitir la boleta de pago?',
@@ -123,6 +143,7 @@
 	          		</td>
 
 	          	<?php 
+	          	}
 	          	$sel -> close();
 	          	 ?>
 	   </table>
