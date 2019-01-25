@@ -59,7 +59,9 @@
 	          		<td><?php echo $domi; ?></td>
 	          		<td><?php echo $loca; ?></td>
 		          		<td> 
-		          			<a href="../detalle/index.php?num=<?php echo $num; ?>" class="btn-floating green"><i class="material-icons">assignment</i></a> 
+		          			  <button data-target="modal1" onclick="enviar(this.value)" value="<?php echo $num; ?>" class="btn-floating green"><i class="material-icons">visibility</i></button>
+
+		          			
 		          		</td>
 
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
@@ -105,7 +107,48 @@
 	    </div>
 	  </div>
 
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Detalles</h4>
+
+      <div class="res_modal">
+      	
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Listo</a>
+    </div>
+  </div>
+
 	<?php include '../extend/scripts.php'; ?>
+
+	<script>
+		
+
+  	$(document).ready(function(){
+    	$('.modal').modal();
+ 	 });
+        
+	
+
+	function enviar(valor){
+		$.get('../detalle/index.php', {
+			num:valor,
+
+				beforeSend: function(){
+					$('.res_modal').html("Espere un momento..");
+				}
+			
+			}, function(respuesta){
+				$('.res_modal').html(respuesta);
+			}
+		)
+	}
+
+	</script>
 
 </body>
 </html>
