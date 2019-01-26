@@ -3,7 +3,9 @@
 
 	$dom = htmlentities($_GET['dom']);
 	$num = htmlentities($_GET['num']);
+	$ncuo = htmlentities($_GET['ncuo']);
 
+	# Proietario
 	$sel = $con -> prepare("SELECT num,tipo,nom,ape,domicilio,localidad FROM propietario WHERE num = ?");
 		$sel -> bind_param('d',$num);
 		$sel -> execute();
@@ -13,7 +15,7 @@
 		if ($sel -> fetch()){}
 
 
-
+	# Vehiculo
 	$sel = $con -> prepare("SELECT marca, modelo, tipo, ano FROM vehiculo WHERE dominio = ?");
 		$sel -> bind_param('s',$dom);
 		$sel -> execute();
@@ -21,6 +23,16 @@
 		$sel -> bind_result($mar, $mod, $tip, $ano);
 		$row = $sel -> num_rows();
 		if ($sel -> fetch()){}
+
+	# Cuota
+	$sel = $con -> prepare('SELECT * FROM cuota WHERE imp = ? AND num = ?');
+	   		$sel -> bind_param('si', $dom, $ncuo);
+	   		$sel -> execute();
+	   		$sel -> store_result();
+	   		$sel -> bind_result($imp,$numc, $valor, $fven, $fven2, $paga);
+	   		$row = $sel -> num_rows();
+			if ($sel -> fetch()){}
+
 			
 	
 
@@ -45,14 +57,14 @@ ob_start() ?>
             </td>
             <td  colspan="3"  height="10">
                 <p align="center">
-                  <font size=1>  FSW-100
+                  <font size=1>  <?php echo $numc; ?>
                 </p>
             </td>
         </tr>
         <tr>
             <td  height="18">
                 <p align="center">
-                   <font size=1> <strong>Fecha de vencimiento 1: </strong>
+                   <font size=1> <strong>Fecha de vencimiento 1: </strong> <?php echo $fven; ?>
                     <strong></strong>
                 </p>
             </td>
@@ -70,7 +82,7 @@ ob_start() ?>
         <tr>
             <td  height="18">
                 <p align="center">
-                 <font size=1>  <strong>Fecha de vencimiento 2:</strong>
+                 <font size=1>  <strong>Fecha de vencimiento 2:</strong> <?php echo $fven2; ?>
                 </p>
             </td>
         </tr>
@@ -85,21 +97,21 @@ ob_start() ?>
 <tbody>
 <tr style="page-break-inside: avoid; height: 7.0pt;">
 <td style="width: 519.25pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.0pt;" colspan="2" width="692">
-<p><strong>Nombre del propietario: </strong>seva mars</p>
+<p><strong>Nombre del propietario: </strong><?php echo $nom; ?> <?php echo $ape; ?></p>
 </td>
 </tr>
 <tr style="height: 7.4pt;">
 <td style="width: 259.65pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.4pt;" width="346">
-<p><strong>D.N.I/Cuil:</strong> 323232 </p>
+<p><strong>D.N.I/Cuil:</strong> <?php echo $num; ?> </p>
 </td>
 <td style="width: 259.55pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.4pt;" width="346">
-<p><strong>Domicilio:</strong> dada </p>
-<p><strong>Localidad:</strong> dadad  </p>
+<p><strong>Domicilio:</strong> <?php echo $domi; ?> </p>
+<p><strong>Localidad:</strong> <?php echo $loca; ?>  </p>
 </td>
 </tr>
 <tr style="height: 6.4pt;">
 <td style="width: 519.25pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 6.4pt;" colspan="2" width="692">
-<p><strong>Dominio:</strong> fefe2323 </p>
+<p><strong>Dominio:</strong> <?php echo $dom; ?></p>
 </td>
 </tr>
 </tbody>
@@ -112,16 +124,17 @@ ob_start() ?>
 <tbody>
 <tr style="height: 7.4pt;">
 <td style="width: 259.55pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.4pt;" width="346">
-<p><strong>Marca:</strong> dada </p>
-<p><strong>Modelo:</strong> dadad  </p>
+<p><strong>Marca:</strong> <?php echo $mar; ?> </p>
+<p><strong>Modelo:</strong> <?php echo $mod; ?>  </p>
 </td>
 <td style="width: 259.55pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.4pt;" width="346">
-<p><strong>Tipo:</strong> dada </p>
-<p><strong>Año:</strong> dadad  </p>
+<p><strong>Tipo:</strong> <?php echo $tip; ?> </p>
+<p><strong>Año:</strong> <?php echo $ano; ?>  </p>
 </td>
 </tr>
 <tr style="page-break-inside: avoid; height: 7.0pt;">
 <td style="width: 519.25pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.0pt;" colspan="2" width="692">
+<br>
 
 <table style="border-collapse: collapse;" border="1"; width="520">
 	  <tr>
@@ -148,32 +161,33 @@ ob_start() ?>
             
             <td  height="10">
                 <p align="center">
-                 <font size=1> 1</font>
+                 <font size=1> <?php echo $numc; ?></font>
                 </p>
             </td>
             <td  height="10">
                 <p align="center">
-                   <font size=1> 1600
+                   <font size=1> <?php echo $valor; ?>
                 </p>
             </td>
            
             <td  colspan="3"  height="10">
                 <p align="center">
-                  <font size=1>  <strong>1600</strong>
+                  <font size=1>  <strong><?php echo $valor; ?></strong>
                 </p>
             </td>
         </tr>
 
 </table>
 
- <p style="text-align: center;">codigo de barra </p>
+ <p style="text-align: center;">codigo:  </p>
+ <p style="text-align: center; font-weight: bold;"><?php echo $num, $numc, $dom; ?></p>
+ <p style="text-align: center;">Digale al vendedor los numeros </p>
+
 </td>
 </tr>
+
 </tbody>
 </table>
-
-
-
 
 
 

@@ -5,7 +5,10 @@
 						<div class="card">
 							<div class="card-content">
 								<span class="card-title">Titulo</span>	
-								<p>Contenido</p>
+								
+								
+
+								
 							</div>
 						</div>
 					</div>

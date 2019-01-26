@@ -111,16 +111,42 @@
 	          		<td><?php echo $fven; ?></td>
 	          		<td><?php echo $fven2; ?></td>
 	          		<td><?php 
-	          			if ($paga == 2){
-	          				echo 'No'; 	
-	          				$ban = 0;
-	          			}else{
-	          				echo "Si";
-	          				$ban = 1;
-	          			}
+	          			if ($paga == 2):
+	          				$ban = 0;?>
+	          				<a href="#" class="btn-floating blue center" onclick="
+	          				swal({
+							  title: 'Seguro que la boleta esta pagada?',
+							  text: 'Si esta seguro continue!',
+							  type: 'question',
+							  showCancelButton: true,
+							  confirmButtonColor: '#3085d6',
+							  cancelButtonColor: '#d33',
+							  confirmButtonText: 'Si!'
+							}).then(function () {
+									location.href='../pagos/upcuota.php?&imp=<?php echo $imp; ?>&num=<?php echo $num; ?>&pa=<?php echo $paga; ?>';		      
+							})
+	          			">No</a>
+	          			<?php  	
+	          			else:
+	          				$ban = 1;?>
+	          				<a href="#" class="btn-floating blue center" onclick="
+	          				swal({
+							  title: 'Seguro que quiere modificar el pago?',
+							  text: 'Si esta seguro continue!',
+							  type: 'question',
+							  showCancelButton: true,
+							  confirmButtonColor: '#3085d6',
+							  cancelButtonColor: '#d33',
+							  confirmButtonText: 'Si!'
+							}).then(function () {
+									location.href='../pagos/upcuota.php?&imp=<?php echo $imp; ?>&num=<?php echo $num; ?>&pa=<?php echo $paga; ?>';		      
+							})
+	          			">Si</a> 
+
+	          			<?php endif; ?>
 	          			
 
-	          		?></td>
+	          		</td>
 
 	          		<?php if ($ban == 1): ?>
 	          		<td style="display: none;">
@@ -137,7 +163,7 @@
 							  cancelButtonColor: '#d33',
 							  confirmButtonText: 'Si, Emitir!'
 							}).then(function () {
-									location.href='../pagos/crearPdf.php?dom=<?php echo $dominio; ?>&num=<?php echo $pro; ?>';		      
+									location.href='../pagos/crearPdf.php?dom=<?php echo $dominio; ?>&num=<?php echo $pro; ?>&ncuo=<?php echo $num; ?>';		      
 							})
 	          			"><i class="material-icons">attach_money</i></a> 
 	          		</td>
