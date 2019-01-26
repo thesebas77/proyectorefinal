@@ -130,14 +130,14 @@
 	          			<a href="#" class="btn-floating green" onclick="
 	          				swal({
 							  title: 'Estas seguro que desea emitir la boleta de pago?',
-							  text: 'Al hacerlo podra cancelarlo mas adelante!',
+							  text: 'Al hacerlo se descargara la boleta!',
 							  type: 'question',
 							  showCancelButton: true,
 							  confirmButtonColor: '#3085d6',
 							  cancelButtonColor: '#d33',
 							  confirmButtonText: 'Si, Emitir!'
 							}).then(function () {
-									location.href='../pagos/emitir.php?dom=<?php echo $dominio; ?>';		      
+									location.href='../pagos/crearPdf.php?dom=<?php echo $dominio; ?>&num=<?php echo $pro; ?>';		      
 							})
 	          			"><i class="material-icons">attach_money</i></a> 
 	          		</td>
