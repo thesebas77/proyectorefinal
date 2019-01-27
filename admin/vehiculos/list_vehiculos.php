@@ -35,35 +35,35 @@
 	          <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th>Dominio</th>
-		          		<th>Marca</th>
-		          		<th>Modelo</th>
-		          		<th>Tipo</th>
-		          		<th>Año</th>
-		          		<th>F. alta</th>
-		          		<th>Propietario</th>
+		          		<th class="center">Dominio</th>
+		          		<th class="center">Marca</th>
+		          		<th class="center">Modelo</th>
+		          		<th class="center">Tipo</th>
+		          		<th class="center">Año</th>
+		          		<th class="center">F. alta</th>
+		          		<th class="center">Propietario</th>
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
-		          		<th>Modificar</th>
-		          		<th>Eliminar</th>
+		          		<th class="center">Modificar</th>
+		          		<th class="center">Eliminar</th>
 		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td><?php echo $dom; ?></td>
-	          		<td><?php echo $mar; ?></td>
-	          		<td><?php echo $mod; ?></td>
-	          		<td><?php echo $tipo; ?></td>
-	          		<td><?php echo $ano; ?></td>
-	          		<td><?php echo $falta; ?></td>
-	          		<td><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
+	          		<td class="center"><?php echo $dom; ?></td>
+	          		<td class="center"><?php echo $mar; ?></td>
+	          		<td class="center"><?php echo $mod; ?></td>
+	          		<td class="center"><?php echo $tipo; ?></td>
+	          		<td class="center"><?php echo $ano; ?></td>
+	          		<td class="center"><?php echo $falta; ?></td>
+	          		<td class="center"><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
 
 	          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          	<?php else: ?>
 
-	          		<td> 
+	          		<td class="center"> 
 	          			<a href="#" class="btn-floating blue" onclick="
 	          				swal({
 							  title: 'Desea modificar el vehiculo?',
@@ -79,7 +79,7 @@
 	          			"><i class="material-icons">autorenew</i></a> 
 	          		</td>
 
-					<td> 
+					<td class="center"> 
 	          			<a href="#" class="btn-floating red" onclick="
 	          				swal({
 							  title: 'Estas seguro que desea eliminar al usuario?',

@@ -35,30 +35,30 @@
 	          <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th>D.N.I/CUIL</th>
-		          		<th>Tipo</th>
-		          		<th>Nombre</th>
-		          		<th>Apellido</th>
-		          		<th>Domicilio</th>
-		          		<th>Localidad</th>
-		          		<th>Detalle</th>
+		          		<th class="center">D.N.I/CUIL</th>
+		          		<th class="center">Tipo</th>
+		          		<th class="center">Nombre</th>
+		          		<th class="center">Apellido</th>
+		          		<th class="center">Domicilio</th>
+		          		<th class="center">Localidad</th>
+		          		<th class="center">Detalle</th>
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
-		          		<th>Modificar</th>
-		          		<th>Eliminar</th>
+		          		<th class="center">Modificar</th>
+		          		<th class="center">Eliminar</th>
 		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td><?php echo $num; ?></td>
-	          		<td><?php echo $tipo; ?></td>
-	          		<td><?php echo $nom; ?></td>
-	          		<td><?php echo $ape; ?></td>
-	          		<td><?php echo $domi; ?></td>
-	          		<td><?php echo $loca; ?></td>
-		          		<td> 
+	          		<td class="center"><?php echo $num; ?></td>
+	          		<td class="center"><?php echo $tipo; ?></td>
+	          		<td class="center"><?php echo $nom; ?></td>
+	          		<td class="center"><?php echo $ape; ?></td>
+	          		<td class="center"><?php echo $domi; ?></td>
+	          		<td class="center"><?php echo $loca; ?></td>
+		          		<td class="center"> 
 		          			  <button data-target="modal1" onclick="enviar(this.value)" value="<?php echo $num; ?>" class="btn-floating green"><i class="material-icons">visibility</i></button>
 
 		          			
@@ -66,7 +66,7 @@
 
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
-		          		<td> 
+		          		<td class="center"> 
 		          			<a href="#" class="btn-floating blue" onclick="
 		          				swal({
 								  title: 'Desea modificar el propietario?',
@@ -82,7 +82,7 @@
 		          			"><i class="material-icons">autorenew</i></a> 
 		          		</td>
 
-						<td> 
+						<td class="center"> 
 		          			<a href="#" class="btn-floating red" onclick="
 		          				swal({
 								  title: 'Estas seguro que desea eliminar al propietario?',

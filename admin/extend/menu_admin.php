@@ -14,38 +14,33 @@
 			<a href=""><?php echo $_SESSION['nom'], '-' ,$_SESSION['ape']; ?></a>
 		</div>
 	</li>
-	<li><a href="../inicio"><i class="material-icons">home</i>Inicio</a></li>
+	<li><a href="../inicio"><i class="material-icons green-text">home</i>Inicio</a></li>
 
 	<li><div class="divider"></div></li>
 
 	<li><a class="subheader center">Propietarios</a></li>
-	<li><a href="../clientes"><i class="material-icons">contacts</i>Registrar</a></li>
-	<li><a href="../clientes/list_clientes.php"><i class="material-icons">contacts</i>Lista</a></li>
+	<li><a href="../clientes"><i class="material-icons blue-text">contacts</i>Registrar</a></li>
+	<li><a href="../clientes/list_clientes.php"><i class="material-icons blue-text">contacts</i>Lista</a></li>
 
 	<li><div class="divider"></div></li>
 
 	<li><a class="subheader center">Vehiculos</a></li>
-	<li><a href="../vehiculos/index.php"><i class="material-icons">directions_car</i>Registrar</a></li>
-	<li><a href="../vehiculos/list_vehiculos.php"><i class="material-icons">directions_car</i>Lista</a></li>
-
-	<li><div class="divider"></div></li>
-
-	<li><a class="subheader center">Pagos</a></li>
-	<li><a href="../pagos/index.php"><i class="material-icons">attach_money</i>Generar</a></li>
+	<li><a href="../vehiculos/index.php"><i class="material-icons red-text">directions_car</i>Registrar</a></li>
+	<li><a href="../vehiculos/list_vehiculos.php"><i class="material-icons red-text">directions_car</i>Lista</a></li>
 
 	<li><div class="divider"></div></li>
 
 	<li><a class="subheader center">Usuarios</a></li>
-	<li><a href="../usuarios"><i class="material-icons">person</i>Registrar</a></li>
-	<li><a href="../usuarios/list_usuarios.php"><i class="material-icons">person</i>Lista</a></li>
+	<li><a href="../usuarios"><i class="material-icons purple-text">person</i>Registrar</a></li>
+	<li><a href="../usuarios/list_usuarios.php"><i class="material-icons purple-text">person</i>Lista</a></li>
 
 	<li><div class="divider"></div></li>
 
-	<li><a href="../perfil/index.php"><i class="material-icons">settings</i>Editar perfil</a></li>
+	<li><a href="../perfil/index.php"><i class="material-icons grey-text">settings</i>Editar perfil</a></li>
 
 	<li><div class="divider"></div></li>
 
-	<li><a href="../../salir.php"><i class="material-icons">power_settings_news</i>Salir</a></li>
+	<li><a href="../../salir.php"><i class="material-icons red-text">power_settings_news</i>Salir</a></li>
 
 	<li><div class="divider"></div></li>
 

@@ -61,32 +61,32 @@ $row = $sel -> num_rows();
 	    	 <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th>D.N.I/CUIL</th>
-		          		<th>Tipo</th>
-		          		<th>Nombre</th>
-		          		<th>Apellido</th>
-		          		<th>Domicilio</th>
-		          		<th>Localidad</th>
+		          		<th class="center">D.N.I/CUIL</th>
+		          		<th class="center">Tipo</th>
+		          		<th class="center">Nombre</th>
+		          		<th class="center">Apellido</th>
+		          		<th class="center">Domicilio</th>
+		          		<th class="center">Localidad</th>
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
-		          		<th>Modificar</th>
-		          		<th>Eliminar</th>
+		          		<th class="center">Modificar</th>
+		          		<th class="center">Eliminar</th>
 		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td><?php echo $num; ?></td>
-	          		<td><?php echo $tipo; ?></td>
-	          		<td><?php echo $nom; ?></td>
-	          		<td><?php echo $ape; ?></td>
-	          		<td><?php echo $domi; ?></td>
-	          		<td><?php echo $loca; ?></td>
+	          		<td class="center"><?php echo $num; ?></td>
+	          		<td class="center"><?php echo $tipo; ?></td>
+	          		<td class="center"><?php echo $nom; ?></td>
+	          		<td class="center"><?php echo $ape; ?></td>
+	          		<td class="center"><?php echo $domi; ?></td>
+	          		<td class="center"><?php echo $loca; ?></td>
 
 	          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          	<?php else: ?>
-	          		<td> 
+	          		<td class="center"> 
 	          			<a href="#" class="btn-floating blue" onclick="
 	          				swal({
 							  title: 'Desea modificar el propietario?',
@@ -102,7 +102,7 @@ $row = $sel -> num_rows();
 	          			"><i class="material-icons">autorenew</i></a> 
 	          		</td>
 
-					<td> 
+					<td class="center"> 
 	          			<a href="#" class="btn-floating red" onclick="
 	          				swal({
 							  title: 'Estas seguro que desea eliminar al propietario?',
@@ -131,17 +131,17 @@ $row = $sel -> num_rows();
 		<table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th>Dominio</th>
-		          		<th>Marca</th>
-		          		<th>Modelo</th>
-		          		<th>Tipo</th>
-		          		<th>Año</th>
-		          		<th>F. alta</th>
-		          		<th>Detalle</th>
+		          		<th class="center">Dominio</th>
+		          		<th class="center">Marca</th>
+		          		<th class="center">Modelo</th>
+		          		<th class="center">Tipo</th>
+		          		<th class="center">Año</th>
+		          		<th class="center">F. alta</th>
+		          		<th class="center">Detalle</th>
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
-		          		<th>Modificar</th>
-		          		<th>Eliminar</th>
+		          		<th class="center">Modificar</th>
+		          		<th class="center">Eliminar</th>
 		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
@@ -158,21 +158,21 @@ $row = $sel -> num_rows();
 				 ?>
 
 	          	<tr>
-	          		<td><?php echo $dominio; ?></td>
-	          		<td><?php echo $marca; ?></td>
-	          		<td><?php echo $modelo; ?></td>
-	          		<td><?php echo $tipo; ?></td>
-	          		<td><?php echo $ano; ?></td>
-	          		<td><?php echo $falta; ?></td>
+	          		<td class="center"><?php echo $dominio; ?></td>
+	          		<td class="center"><?php echo $marca; ?></td>
+	          		<td class="center"><?php echo $modelo; ?></td>
+	          		<td class="center"><?php echo $tipo; ?></td>
+	          		<td class="center"><?php echo $ano; ?></td>
+	          		<td class="center"><?php echo $falta; ?></td>
 
 
 
-	          		<td> 
+	          		<td class="center"> 
 		          			<a href="../detalle/vehiculo.php?dominio=<?php echo $dominio; ?>" class="btn-floating green"><i class="material-icons">assignment</i></a> 
 		          	</td>
 	          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          	<?php else: ?>
-	          		<td> 
+	          		<td class="center"> 
 	          			<a href="#" class="btn-floating blue" onclick="
 	          				swal({
 							  title: 'Desea modificar el vehiculo?',
@@ -188,7 +188,7 @@ $row = $sel -> num_rows();
 	          			"><i class="material-icons">autorenew</i></a> 
 	          		</td>
 
-					<td> 
+					<td class="center"> 
 	          			<a href="#" class="btn-floating red" onclick="
 	          				swal({
 							  title: 'Estas seguro que desea eliminar al usuario?',

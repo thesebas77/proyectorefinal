@@ -41,24 +41,24 @@
 		<table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th>Propietario</th>
-		          		<th>Marca</th>
-		          		<th>Modelo</th>
-		          		<th>Tipo</th>
-		          		<th>Año</th>
-		          		<th>F. alta</th>
-		          		<th>Base imponible</th>
+		          		<th class="center">Propietario</th>
+		          		<th class="center">Marca</th>
+		          		<th class="center">Modelo</th>
+		          		<th class="center">Tipo</th>
+		          		<th class="center">Año</th>
+		          		<th class="center">F. alta</th>
+		          		<th class="center">Base imponible</th>
 	          		</tr>
 	          	</thead>
 
 	          	<tr>
-	          		<td><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
-	          		<td><?php echo $marca; ?></td>
-	          		<td><?php echo $modelo; ?></td>
-	          		<td><?php echo $tipo; ?></td>
-	          		<td><?php echo $ano; ?></td>
-	          		<td><?php echo $falta; ?></td>
-	          		<td> <?php echo $valor; ?> </td>		
+	          		<td class="center"><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
+	          		<td class="center"><?php echo $marca; ?></td>
+	          		<td class="center"><?php echo $modelo; ?></td>
+	          		<td class="center"><?php echo $tipo; ?></td>
+	          		<td class="center"><?php echo $ano; ?></td>
+	          		<td class="center"><?php echo $falta; ?></td>
+	          		<td class="center"> <?php echo $valor; ?> </td>		
 	          		
 
 	   </table>
@@ -82,6 +82,25 @@
 		   <div class="divider"></div>
 		   <p class="center"><b>Monto total:</b> $<?php echo $monto; ?></p>
 
+		   <p class="center">
+	   		<strong>Emitir todo junto</strong>
+	   		<br>
+	   		<a href="#" class="btn green" onclick="
+  				swal({
+				  title: 'Estas seguro que desea emitir la boleta de pago?',
+				  text: 'Al hacerlo se descargara la boleta!',
+				  type: 'question',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Si, Emitir!'
+				}).then(function () {
+						location.href='../pagos/crearPdf2.php?dom=<?php echo $dominio; ?>&num=<?php echo $pro; ?>';		      
+				})
+  			"><i class="material-icons">picture_as_pdf</i></a>
+  			<br>
+  			 (Descuento del 10%)
+	   		</p>
 
 		 <?php 
 
@@ -95,22 +114,38 @@
 	   <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-	          			<th>Numero</th>
-		          		<th>Cuota</th>
-		          		<th>Fecha V1.</th>
-		          		<th>Fecha V2.</th>
-		          		<th>Pagada</th>
-		          		<th>Pagar</th>
+	          			<th class="center">Numero</th>
+		          		<th class="center">Cuota</th>
+		          		<th class="center">Fecha V1.</th>
+		          		<th class="center">Fecha V2.</th>
+		          		<th class="center">Pagada</th>
+		          		<th class="center">Boleta</th> 
 	          		</tr>
 	          	</thead>
 
 	          	<?php while ($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td><?php echo $num; ?></td>
-	          		<td><?php echo $valor; ?></td>
-	          		<td><?php echo $fven; ?></td>
-	          		<td><?php echo $fven2; ?></td>
-	          		<td><?php 
+	          		<td class="center"><?php echo $num; ?></td>
+	          		<td class="center"><?php echo $valor; ?></td>
+	          		<td class="center"><?php echo $fven; ?></td>
+	          		<td class="center"><?php echo $fven2; ?></td>
+	          		<?php if ($_SESSION['tipo'] == 3): ?>
+
+	          		<td class="center">
+	          			<?php if ($paga == 2):
+	          				$ban = 0;?>
+	          			<p>No</p>
+	          			<?php else: 
+	          				$ban = 1;?>
+	          				<p>Si</p>
+	          			<?php endif; ?>
+	          		</td>
+	          		
+	          		<?php else: ?>
+
+	          		<td class="center"><?php 
+	          			 
+
 	          			if ($paga == 2):
 	          				$ban = 0;?>
 	          				<a href="#" class="btn-floating blue center" onclick="
@@ -148,10 +183,12 @@
 
 	          		</td>
 
+	          	<?php endif; ?>
+
 	          		<?php if ($ban == 1): ?>
 	          		<td style="display: none;">
 	          		<?php else: ?>
-	          		<td>
+	          		<td class="center">
 	          		<?php endif; ?>
 	          			<a href="#" class="btn-floating green" onclick="
 	          				swal({
@@ -165,16 +202,15 @@
 							}).then(function () {
 									location.href='../pagos/crearPdf.php?dom=<?php echo $dominio; ?>&num=<?php echo $pro; ?>&ncuo=<?php echo $num; ?>';		      
 							})
-	          			"><i class="material-icons">attach_money</i></a> 
+	          			"><i class="material-icons">picture_as_pdf</i></a> 
 	          		</td>
-
 	          	<?php 
 	          	}
-	          	$sel -> close();
+	          	
 	          	 ?>
 	   </table>
 
-
+	   <?php $sel -> close(); ?>
 			<?php include '../extend/scripts.php'; ?>
 
 		

@@ -51,9 +51,9 @@
 	          <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th>Usuario</th>
-		          		<th>Nombre</th>
-		          		<th>Apellido</th>
+		          		<th class="center">Usuario</th>
+		          		<th class="center">Nombre</th>
+		          		<th class="center">Apellido</th>
 	          		</tr>
 	          	</thead>
 
@@ -62,9 +62,9 @@
 	          	<?php if ($tipo == 1): ?>
 	          
 	          	<tr>
-	          		<td><?php echo $user; ?></td>
-	          		<td><?php echo $nom; ?></td>
-	          		<td><?php echo $ape; ?></td>
+	          		<td class="center"><?php echo $user; ?></td>
+	          		<td class="center"><?php echo $nom; ?></td>
+	          		<td class="center"><?php echo $ape; ?></td>
 	          		<!-- <td>
 	          			<?php //if ($bloqueo == '1'): ?> 
 	          			<a href="bloqueo_manual.php?us=<?php //echo $id_user; ?>&bl=<?php //echo $bloqueo; ?>"><i class="material-icons">lock_open</i></a>	
@@ -114,10 +114,10 @@
           <table class="highlight" >
           	<thead>
           		<tr class="cabecera">
-	          		<th>Usuario</th>
-	          		<th>Nombre</th>
-	          		<th>Apellido</th>
-	          		<th>Eliminar</th>
+	          		<th class="center">Usuario</th>
+	          		<th class="center">Nombre</th>
+	          		<th class="center">Apellido</th>
+	          		<th class="center">Eliminar</th>
           		</tr>
           	</thead>
 
@@ -126,9 +126,9 @@
           	<?php if ($tipo == 2): ?>
           
           	<tr>
-          		<td><?php echo $user; ?></td>
-          		<td><?php echo $nom; ?></td>
-          		<td><?php echo $ape; ?></td>
+          		<td class="center"><?php echo $user; ?></td>
+          		<td class="center"><?php echo $nom; ?></td>
+          		<td class="center"><?php echo $ape; ?></td>
           		<!-- <td>
           			<?php //if ($bloqueo == '1'): ?> 
           			<a href="bloqueo_manual.php?us=<?php //echo $id_user; ?>&bl=<?php //echo $bloqueo; ?>"><i class="material-icons">lock_open</i></a>	
@@ -137,7 +137,7 @@
           			<?php //endif; ?>
           			 
           		</td> -->
-          		<td> 
+          		<td class="center"> 
           			<a href="#" class="btn-floating red" onclick="
           				swal({
 						  title: 'Estas seguro que desea eliminar al usuario?',
@@ -178,10 +178,10 @@
 	          <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th>Usuario</th>
-		          		<th>Nombre</th>
-		          		<th>Apellido</th>
-		          		<th>Eliminar</th>
+		          		<th class="center">Usuario</th>
+		          		<th class="center">Nombre</th>
+		          		<th class="center">Apellido</th>
+		          		<th class="center">Eliminar</th>
 	          		</tr>
 	          	</thead>
 
@@ -190,9 +190,9 @@
 	          	<?php if ($tipo == 3): ?>
 	          
 	          	<tr>
-	          		<td><?php echo $user; ?></td>
-	          		<td><?php echo $nom; ?></td>
-	          		<td><?php echo $ape; ?></td>
+	          		<td class="center"><?php echo $user; ?></td>
+	          		<td class="center"><?php echo $nom; ?></td>
+	          		<td class="center"><?php echo $ape; ?></td>
 	          		<!-- <td>
 	          			<?php //if ($bloqueo == '1'): ?> 
 	          			<a href="bloqueo_manual.php?us=<?php //echo $id_user; ?>&bl=<?php //echo $bloqueo; ?>"><i class="material-icons">lock_open</i></a>	
@@ -201,7 +201,7 @@
 	          			<?php //endif; ?>
 	          			 
 	          		</td> -->
-	          		<td> 
+	          		<td class="center"> 
 	          			<a href="#" class="btn-floating red" onclick="
 	          				swal({
 							  title: 'Estas seguro que desea eliminar al usuario?',
