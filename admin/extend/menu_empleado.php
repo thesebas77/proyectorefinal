@@ -11,7 +11,7 @@
 			<div class="background green darken-3">
 				<img class="right" src="../img/logo.png"style="width:110px ">
 			</div>
-			<a href=""><?php echo $_SESSION['nom'], '-' ,$_SESSION['ape']; ?></a>
+			<strong class="white-text"><?php echo $_SESSION['nom'];?>  <?php echo $_SESSION['ape'];  ?></strong>
 		</div>
 	</li>
 	<li><a href="../inicio"><i class="material-icons green-text">home</i>Inicio</a></li>

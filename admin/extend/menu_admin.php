@@ -11,7 +11,7 @@
 			<div class="background blue darken-3">
 				<img class="right" src="../img/logo.png"style="width:110px ">
 			</div>
-			<a href=""><?php echo $_SESSION['nom'], '-' ,$_SESSION['ape']; ?></a>
+			<strong class="white-text"><?php echo $_SESSION['nom'];?>  <?php echo $_SESSION['ape'];  ?></strong>
 		</div>
 	</li>
 	<li><a href="../inicio"><i class="material-icons green-text">home</i>Inicio</a></li>
@@ -27,6 +27,7 @@
 	<li><a class="subheader center">Vehiculos</a></li>
 	<li><a href="../vehiculos/index.php"><i class="material-icons red-text">directions_car</i>Registrar</a></li>
 	<li><a href="../vehiculos/list_vehiculos.php"><i class="material-icons red-text">directions_car</i>Lista</a></li>
+	<li><a href="../vehiculos/list_baja_vehiculos.php"><i class="material-icons red-text">local_car_wash</i>Bajas</a></li>
 
 	<li><div class="divider"></div></li>
 

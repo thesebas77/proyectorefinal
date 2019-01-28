@@ -12,7 +12,8 @@
 		$falta = htmlentities($_POST['falta']);
 
 		$mont = ($base*10)/100;
-		$cuo = $mont/6; 
+		$c = $mont/6; 
+		$cuo = round($c,2);
 		$no = 2;
 
 		$ins = $con -> prepare("INSERT INTO vehiculo VALUES (?,?,?,?,?,?,?) ");
@@ -49,7 +50,7 @@
 					$fven2 = '20/'.$au2.'/'.$aa;
 
 					if ($au2 == 13){
-						$fven2 = '20/01/'.$aa+1;						
+						$fven2 = '20/01/2020';						
 					}
 
 					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?) ");
