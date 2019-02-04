@@ -31,6 +31,13 @@
 
 	<li><div class="divider"></div></li>
 
+	<li><a class="subheader center">Informes</a></li>
+	<li><a href="../informes/recaudacion.php"><i class="material-icons orange-text">info</i>Recaudación</a></li>
+	<li><a href="../informes/deuda.php"><i class="material-icons orange-text">info</i>Deuda Fiscal</a></li>
+	<li><a href="../informes/cotizacion.php"><i class="material-icons orange-text">info</i>Cotización fiscal nacional</a></li>
+
+	<li><div class="divider"></div></li>
+
 	<li><a class="subheader center">Usuarios</a></li>
 	<li><a href="../usuarios"><i class="material-icons purple-text">person</i>Registrar</a></li>
 	<li><a href="../usuarios/list_usuarios.php"><i class="material-icons purple-text">person</i>Lista</a></li>

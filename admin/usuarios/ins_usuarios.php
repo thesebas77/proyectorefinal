@@ -12,10 +12,10 @@
 			header('location:../extend/alerta.php?msj=Hay un campo sin especificar&c=us&p=in&t=error');	
 			exit;
 		}
-		if (!ctype_alpha($user)){
+		/*if (!ctype_alpha($user)){
 			header('location:../extend/alerta.php?msj=El nick no contiene solo letras&c=us&p=in&t=error');	
 			exit;	
-		}
+		}*/
 		
 		$caracteres = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
 		for ($i=0; $i < strlen($nom); $i++) { 

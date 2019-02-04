@@ -12,7 +12,7 @@
 									<!-- Input nick -->
 
 									<div class="input-field">
-										<input type="text" required autofocus name="user" title="Este debe de contener entre 8 y 20 caracteres" pattern="[A-Za-z0-9]{8,20}" id="user" onblur="may(this.value, this.id)" >
+										<input type="text" required autofocus name="user"  id="user" onblur="may(this.value, this.id)" >
 										<label for="user">Usuario:</label>
 									</div>
 
