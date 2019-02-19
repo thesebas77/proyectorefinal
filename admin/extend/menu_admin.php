@@ -18,6 +18,10 @@
 
 	<li><div class="divider"></div></li>
 
+	<li><a href="../importacion/importarIndex.php"><i class="material-icons pink-text">publish</i>Cotización fiscal nacional</a></li>
+
+	<li><div class="divider"></div></li>
+
 	<li><a class="subheader center">Propietarios</a></li>
 	<li><a href="../clientes"><i class="material-icons blue-text">contacts</i>Registrar</a></li>
 	<li><a href="../clientes/list_clientes.php"><i class="material-icons blue-text">contacts</i>Lista</a></li>
@@ -34,7 +38,6 @@
 	<li><a class="subheader center">Informes</a></li>
 	<li><a href="../informes/recaudacion.php"><i class="material-icons orange-text">info</i>Recaudación</a></li>
 	<li><a href="../informes/deuda.php"><i class="material-icons orange-text">info</i>Deuda Fiscal</a></li>
-	<li><a href="../importacion/importarIndex.php"><i class="material-icons orange-text">info</i>Importar Cotización fiscal nacional</a></li>
     
 
 	<li><div class="divider"></div></li>

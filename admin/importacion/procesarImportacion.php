@@ -7,12 +7,12 @@
 
 <body>
 <?php 
-include 'conexion.php';
-include 'simplexlsx.class.php';
+include '../conexion/conexion.php';
+include 'SimpleXML_class_array.php';
 
 
-$xlsx= 	htmlentities($_POST['archivo']);
-$file= new SimpleXLSX( $xlsx );
+$xlsx = $_FILES['archivo'];
+$file = new SimpleXLSX( $xlsx );
 $truncate->$con->prepare("truncate table valuacion");
 $truncate->execute();
 if($truncate)

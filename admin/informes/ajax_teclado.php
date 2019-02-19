@@ -2,20 +2,21 @@
 	
 	$fdes = htmlentities($_GET['fdes']);
 	$fhas = htmlentities($_GET['fhas']);
-	$pa = 1;
-
-	
+	$pa = 1;	
 
 
 
-		$sel = $con -> prepare(" SELECT sum(valor) FROM cuota WHERE paga = ?, fven BETWEEN fven (?) AND fven2 (?) ");
+		$sel = $con -> prepare(" SELECT valor, fven, fven2 FROM cuota WHERE paga = ? AND fven BETWEEN ? AND ? ");
 
-		$sel -> bind_param('iss',$pa, $fdes, $fhas);
+		$sel -> bind_param('iss',$pa,$fdes,$fhas);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($rec);
+		$sel -> bind_result($valor, $fven, $fven2);
 		$row = $sel -> num_rows();
+
+
 			 ?>
+
 	  <div class="row">
 	    <div class="col s12 m12 l12 xl12"> 
 
@@ -33,9 +34,9 @@
 
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td class="center"><?php echo $rec; ?></td>
-	          		<td class="center"><?php echo ''; ?></td>
-	          		<td class="center"><?php echo ''; ?></td>
+	          		<td class="center"><?php echo $valor; ?></td>
+	          		<td class="center"><?php echo $fven; ?></td>
+	          		<td class="center"><?php echo $fven2; ?></td>
 	          		<td class="center"><?php echo ''; ?></td>
 	          		<td class="center"><?php echo ''; ?></td>
 	          		<td class="center"><?php echo ''; ?></td>

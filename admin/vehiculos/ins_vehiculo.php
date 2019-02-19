@@ -39,15 +39,31 @@
 				$res = include '../extend/fecha.php';
 				$aa = date('Y');
 
-				for ($i=0;$i<$res;$i++){
+				for ($i=0;$i<=$res;$i++){
 
 					$num = $i+1;
 
 					$au = $au + 2;
 					$au2 = $au + 1;
 
-					$fven = '20/'.$au.'/'.$aa;
-					$fven2 = '20/'.$au2.'/'.$aa;
+					if ($au < 10 && $au2 < 10){
+						$fven = '20/'.'0'.$au.'/'.$aa;
+						$fven2 = '20/'.'0'.$au2.'/'.$aa;
+
+							}elseif ($au < 10 && $au2 >= 10) {
+								$fven = '20/'.'0'.$au.'/'.$aa;
+								$fven2 = '20/'.$au2.'/'.$aa;	
+
+								}elseif ($au >= 10 && $au2 >=10) {
+									$fven = '20/'.$au.'/'.$aa;
+									$fven2 = '20/'.$au2.'/'.$aa;	
+							}
+								
+					
+
+
+					
+					
 
 					if ($au2 == 13){
 						$fven2 = '20/01/2020';						

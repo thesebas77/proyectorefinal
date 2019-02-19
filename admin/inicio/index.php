@@ -12,11 +12,11 @@
 			      	
 			      	<!-- Dentro de la pasarela -->
 
-
 			    </div>
 			    <div class="section white">
 			      <div class="row container">
 			        <h2 class="header">Inicio</h2>
+
 
 			       <?php if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2): ?>
 			       
