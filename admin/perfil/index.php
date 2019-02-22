@@ -9,6 +9,7 @@
 			    <div class="card-tabs">
 			      <ul class="tabs tabs-fixed-width">
 			        <li class="tab"><a href="#datos" class="active">Datos</a></li>
+			        <li class="tab"><a href="#foto" class="active">Foto</a></li>
 			        <li class="tab"><a href="#pass">Contraseña</a></li>
 			      </ul>
 			    </div>
@@ -58,6 +59,43 @@
 									
 						</form>
 			      </div>
+
+			      <div id="foto">
+			      		<form class="form" action="up_foto.php" method="post">
+
+							<div class="card horizontal center">
+					      <div class="card-image">
+					        <img src="<?php echo $_SESSION['foto']; ?>" width="200" height="200">
+					      </div>
+					      <div class="card-stacked">
+					        <div class="card-content">
+					          <p class="center">Esta es su foto actual,</p>
+					          <p class="center">¿desea cambiarla?.</p>
+
+
+						          <div class="file-field input-field">
+									<div class="btn">
+										<span>Foto</span>
+										<input type="file" name="foto">
+									</div>
+
+									<div class="file-path-wrapper">
+										<input class="file-path validate" type="text">
+									</div>
+								  </div>
+					        </div>
+
+
+					        <div class="card-action">
+					          <button type="submit" class="btn-flat orange-text">Cambiar</button>
+					        </div>
+					      </div>
+					    </div>
+
+									
+						</form>
+			      </div>
+
 			      <div id="pass">
 
 			      		<form class="form" action="up_pass.php" method="post">

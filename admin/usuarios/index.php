@@ -68,7 +68,7 @@
 																			
 									</div>
 
-									<!-- foto
+									<!-- foto -->
 
 									<div class="file-field input-field">
 										<div class="btn">
@@ -81,7 +81,7 @@
 										</div>
 									</div>
 									
-									-->
+									
 									
 									<br>
 									

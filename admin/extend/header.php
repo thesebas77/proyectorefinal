@@ -32,6 +32,7 @@
 			}
 			}
 		</style>
+			
 	</head>
 	<body background="../img/background1.jpg">
 		<main>

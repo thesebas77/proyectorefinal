@@ -13,7 +13,7 @@ include 'SimpleXML_class_array.php';
 
 $xlsx = $_FILES['archivo'];
 $file = new SimpleXLSX( $xlsx );
-$truncate->$con->prepare("truncate table valuacion");
+$truncate = $con->prepare("truncate table valuacion");
 $truncate->execute();
 if($truncate)
 {echo"borro";}

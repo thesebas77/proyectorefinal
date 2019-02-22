@@ -24,11 +24,11 @@
 			header('location:../extend/alerta.php?msj=El formato no es correcto&c=salir&p=salir&t=error');
 		}else{
 			$bl = 1;
-			$sel = $con -> prepare("SELECT user,pass,nom,ape,tipo FROM usuario WHERE user = ? AND pass = ?");
+			$sel = $con -> prepare("SELECT user,pass,nom,ape,tipo,foto FROM usuario WHERE user = ? AND pass = ?");
 			$sel -> bind_param('ss',$usuario,$password);
 			$sel -> execute();
 			$sel -> store_result();
-			$sel -> bind_result($usuario,$password,$nom,$ape,$tipo);
+			$sel -> bind_result($usuario,$password,$nom,$ape,$tipo,$foto);
 			$row = $sel -> num_rows();
 			if($row == 1){
 				if ($sel -> fetch()){
@@ -37,6 +37,7 @@
 					$nom1 = $nom;
 					$ape1 = $ape;
 					$tipo1 = $tipo;
+					$foto1 = $foto;
 				}
 
 				if ($nick == $usuario && $contra == $password){
@@ -44,6 +45,7 @@
 					$_SESSION['nom'] = $nom1;
 					$_SESSION['ape'] = $ape1;
 					$_SESSION['tipo'] = $tipo1;
+					$_SESSION['foto'] = $foto1;
 					
 
 					header('location:../extend/alerta.php?msj=Bienvenido&c=home&p=home&t=success');

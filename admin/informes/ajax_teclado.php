@@ -6,9 +6,9 @@
 
 
 
-		$sel = $con -> prepare(" SELECT valor, fven, fven2 FROM cuota WHERE paga = ? AND fven BETWEEN ? AND ? ");
+		$sel = $con -> prepare(" SELECT valor, fven, fven2 FROM cuota WHERE paga = ? ");
 
-		$sel -> bind_param('iss',$pa,$fdes,$fhas);
+		$sel -> bind_param('i',$pa);
 		$sel -> execute();
 		$sel -> store_result();
 		$sel -> bind_result($valor, $fven, $fven2);
@@ -16,6 +16,7 @@
 
 
 			 ?>
+
 
 	  <div class="row">
 	    <div class="col s12 m12 l12 xl12"> 

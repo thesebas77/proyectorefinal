@@ -46,7 +46,8 @@
 			exit;
 		}
 
-		/*$extension = '';
+		
+		$extension = '';
 		$ruta = 'foto_perfil';
 		$archivo = $_FILES['foto']['tmp_name'];
 		$nomarchivo = $_FILES['foto']['name'];
@@ -54,20 +55,24 @@
 		if ($archivo != ''){
 			$extension = $info['extension'];
 			if ($extension == 'png' || $extension == 'PNG' || $extension == 'JPG' || $extension == 'jpg'){
-				move_uploaded_file($archivo, 'foto_perfil/'.$nick.'.'.$extension);
-				$ruta = $ruta.'/'.$nick.'.'.$extension;
+				move_uploaded_file($archivo, '../perfil/foto_perfil/'.$user.'.'.$extension);
+				$ruta = $ruta.'/'.$user.'.'.$extension;
 			}else{
 				header('location:../extend/alerta.php?msj=El formato no es valido&c=us&p=in&t=error');	
 				exit;
 			}
 		}else{
-			$ruta = 'foto_perfil/perfil.jpg';
-		}*/
+
+				$ruta = 'foto_perfil/perfil.png';
+			}
+		
+		
+
 		$pass1 = sha1($pass1);
 	
 		$id_user = '';
-		$ins = $con -> prepare("INSERT INTO usuario VALUES (?,?,?,?,?,?) ");
-		$ins -> bind_param('issssi',$id_user,$user,$pass1,$nom,$ape,$tipo);
+		$ins = $con -> prepare("INSERT INTO usuario VALUES (?,?,?,?,?,?,?) ");
+		$ins -> bind_param('issssis',$id_user,$user,$pass1,$nom,$ape,$tipo,$ruta);
 		$ins -> execute();
 		$ins -> close();
 
