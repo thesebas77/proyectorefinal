@@ -61,7 +61,6 @@
 			      </div>
 
 			      <div id="foto">
-			      		<form class="form" action="up_foto.php" method="post">
 
 							<div class="card horizontal center">
 					      <div class="card-image">
@@ -72,11 +71,12 @@
 					          <p class="center">Esta es su foto actual,</p>
 					          <p class="center">¿desea cambiarla?.</p>
 
+					          <form class="form" action="up_foto.php" method="post" enctype="multipart/form-data">
 
 						          <div class="file-field input-field">
 									<div class="btn">
 										<span>Foto</span>
-										<input type="file" name="foto">
+										<input type="file" name="foto" required>
 									</div>
 
 									<div class="file-path-wrapper">
@@ -86,14 +86,15 @@
 					        </div>
 
 
-					        <div class="card-action">
-					          <button type="submit" class="btn-flat orange-text">Cambiar</button>
-					        </div>
+						        
+						          <button type="submit" class="btn-flat orange-text">Cambiar</button>
+					          </form>
+					        
 					      </div>
 					    </div>
 
 									
-						</form>
+						
 			      </div>
 
 			      <div id="pass">
