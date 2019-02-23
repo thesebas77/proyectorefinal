@@ -15,20 +15,22 @@
 					          <p>Esta es su foto actual,</p>
 					          <p>¿desea cambiarla?.</p>
 
+					          <form class="form" action="up_foto.php" method="post" enctype="multipart/form-data">
 
 					          		<div class="file-field input-field">
 										<div class="btn">
 											<span>Foto</span>
-											<input type="file" name="foto">
+											<input type="file" name="foto" required>
 										</div>
 
 										<div class="file-path-wrapper">
 											<input class="file-path validate" type="text">
 										</div>
 								  	</div>
-					        </div>
-					        <div class="card-action">
-					          <a href="#">Cambiar</a>
+
+								  	<button type="submit" class="btn-flat orange-text">Cambiar</button>
+
+								</form>
 					        </div>
 					      </div>
 					    </div>

@@ -7,7 +7,7 @@
 						<div class="card">
 							<div class="card-content">
 								<span class="card-title">Registro de usuario</span>	
-								<form class="form" action="ins_usuarios.php" method="post" >
+								<form class="form" action="ins_usuarios.php" method="post" enctype="multipart/form-data">
 
 									<!-- Input nick -->
 

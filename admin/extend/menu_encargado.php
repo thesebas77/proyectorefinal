@@ -8,9 +8,12 @@
 <ul id="menu" class="side-nav fixed">
 	<li>
 		<div class="userView">
-			<div class="background orange darken-3">
+			<div class="background blue darken-3">
 				<img class="right" src="../img/logo.png"style="width:110px ">
 			</div>
+			<a href="../perfil/fotoperfil.php">
+				<img src="../perfil/<?php echo $_SESSION['foto']; ?>" class="circle">
+			</a>
 			<strong class="white-text"><?php echo $_SESSION['nom'];?>  <?php echo $_SESSION['ape'];  ?></strong>
 		</div>
 	</li>

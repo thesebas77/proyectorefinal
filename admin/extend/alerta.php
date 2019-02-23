@@ -67,6 +67,9 @@
 			case 'par':
 				$pagina = 'participa.php';
 				break;
+			case 'fp':
+				$pagina = 'fotoperfil.php';
+				break;
 		}
 
 		$dir = $carpeta.$pagina;
