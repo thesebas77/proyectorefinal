@@ -1,11 +1,14 @@
 			<?php include '../extend/header.php'; ?>
 
 				<div class="row">
+					 
+					<h2 class="header">Cambiar foto de perfil</h2>
+					 <br><br><br>
+
 					<div class="col s2 m2"></div>
 
 					 <div class="col s8 m8">
-					    <h2 class="header">Cambiar foto de perfil</h2>
-					    <br><br><br>
+					 
 					    <div class="card horizontal center">
 					      <div class="card-image">
 					        <img src="<?php echo $_SESSION['foto']; ?>" width="200" height="200">
