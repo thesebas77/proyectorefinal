@@ -37,7 +37,7 @@ foreach ($_FILES as $key) {
 $res=mysqli_query($con,$sql);
 $affected = (int) (mysqli_affected_rows($con));
 echo "Se Insertaron ",$affected," nuevos registros</p>";
-
+echo "<a href='actualizacion.php'>Actualizar Valores a tributar</a>";
 ?>
 </body>
 </html>
