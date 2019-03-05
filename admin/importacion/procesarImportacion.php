@@ -1,7 +1,6 @@
 <?php 
      include '../extend/header.php';
-     include '../extend/permiso.php';
-              
+     include '../extend/permiso.php';           
 ?>
 <!doctype html>
 <html>
@@ -37,7 +36,9 @@ foreach ($_FILES as $key) {
 $res=mysqli_query($con,$sql);
 $affected = (int) (mysqli_affected_rows($con));
 echo "Se Insertaron ",$affected," nuevos registros</p>";
-echo "<a href='actualizacion.php'>Actualizar Valores a tributar</a>";
+echo "El Proceso de actualizacion de datos puede demorar varios minutos siga los links hasta finalizar el proceso <br>";
+echo "1er Paso: ";
+echo "<a href='actualizarTipos.php'>Actualizar Tipos de Vehiculos</a><br>";
 ?>
 </body>
 </html>
