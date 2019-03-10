@@ -69,7 +69,16 @@
 							            <input type="text" name="tel"   id="tel"  >
 							            <label for="tel">Telefono</label>
 						          	</div> -->
-																						
+
+						          	<!-- Input Email -->
+									
+						          	<div class="input-field">
+							            <input name="email" id="email" type="email" class="validate">
+							            <label for="email">Email:</label>
+							            <span class="helper-text" data-error="wrong" data-success="right"></span>
+							          </div>
+							        
+
 									<!-- Input dire -->
 
 									<div class="input-field">
@@ -98,6 +107,11 @@
 									</div>
 									
 									-->
+
+									<div class="input-field col s12">
+							          <textarea name="observacion" id="textarea1" class="materialize-textarea"></textarea>
+							          <label for="textarea1">Observacion</label>
+							        </div>
 									
 									<br>
 									
@@ -107,7 +121,7 @@
 									    <i class="material-icons right">send</i>
 									  </button>
 
-									
+									</div>
 								</form>
 							</div>
 						</div>

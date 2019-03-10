@@ -1,6 +1,5 @@
-<?php include '../extend/header.php';
+	<?php include '../extend/header.php';
 				  include '../extend/permiso.php';
-				  
 			 ?>
 
 			 	<div class="row">
@@ -26,7 +25,7 @@
 
 									  <p>
 										 <input class="with-gap" name="persona" type="radio" id="juridica" />
-										  <label for="juridica">Persona juridica</label>
+										  <label for="juridica">Razon Social</label>
 									  </p>
 
 									  <div id="phumana">
@@ -54,7 +53,7 @@
 
 									<span class="card-title">Datos del vehiculo</span>
 
-									<!-- Input nombre -->
+									<!-- Input Dominio -->
 
 									<div class="input-field">
 										<input type="text" name="dom" title="Ingrese la patente del vehiculo" id="dom" required>
@@ -65,52 +64,41 @@
 										<div class="validacion5"></div>
 
 
-									<!-- select marca -->
+									<!-- Persona humano o persona juridica -->
+
+									  
+								      <p>
+										 <input class="with-gap" name="origen" type="radio" id="nacional" checked/>
+										  <label for="nacional">Nacional</label>
+									  </p>
+
+									  <p>
+										 <input class="with-gap" name="origen" type="radio" id="importado" />
+										  <label for="importado">Importado</label>
+									  </p>
+
+
+									  <div id="pnacional">
+
+									  		<!-- select marca -->
 
 									<div class="input-field col s12">
 										<select name="marca" id="marca" required>
 											<option value="" disabled selected>Seleccione una marca</option>
 											<?php 
+											$ori = 'N';
 
-
-											$sel = $con -> prepare('SELECT marca FROM marca');
+											$sel = $con -> prepare('SELECT id, marca FROM marca WHERE origen = ?');
+											$sel -> bind_param('s',$ori);
 											$sel -> execute();
-											$sel -> bind_result($marca);
+											$sel -> bind_result($id_marca, $marca);
 											$sel -> store_result();
 
 											while($sel -> fetch()){
 
 
 											 ?>
-											 <option value="<?php echo $marca; ?>"><?php echo $marca; ?></option>
-
-											 <?php }
-
-											  ?>
-											 
-											
-										</select>
-									</div>
-									
-									<!-- select modelo -->
-
-									<div class="input-field col s12">
-
-										<select name="modelo" id="modelo" required>
-											<option value="" disabled selected>Seleccione un modelo</option>
-											<?php 
-
-
-											$sel1 = $con -> prepare('SELECT cod_mod FROM modelo');
-											$sel1 -> execute();
-											$sel1 -> bind_result($cod_mod);
-											$sel1 -> store_result();
-
-											while($sel1 -> fetch()){
-
-
-											 ?>
-											 <option value="<?php echo $cod_mod; ?>"><?php echo $cod_mod; ?></option>
+											 <option value="<?php echo $id_marca; ?>"><?php echo $marca; ?></option>
 
 											 <?php }
 
@@ -120,26 +108,24 @@
 										</select>
 									</div>
 
-									<!-- select tipo -->
+									<!-- select tipo vehiculo -->
 
 									<div class="input-field col s12">
-
 										<select name="tipo" id="tipo" required>
 											<option value="" disabled selected>Seleccione un tipo</option>
 											<?php 
+											
 
+											$sel = $con -> prepare('SELECT id, tipo FROM tipo_vehiculo');
+											$sel -> execute();
+											$sel -> bind_result($id_tipo, $tipo);
+											$sel -> store_result();
 
-											$sel1 = $con -> prepare('SELECT * FROM tipo');
-											$sel1 -> execute();
-											$sel1 -> bind_result($cod_tipo,$tipo);
-											$sel1 -> store_result();
-
-											while($sel1 -> fetch()){
+											while($sel -> fetch()){
 
 
 											 ?>
-											 <option value="<?php echo $tipo; ?>"><?php echo $tipo; ?></option>
-
+											 <option value="<?php echo $id_tipo; ?>"><?php echo $tipo; ?></option>
 											 <?php }
 
 											  ?>
@@ -147,25 +133,26 @@
 											
 										</select>
 									</div>
-									<!-- select año -->
+
+									<!-- select modelo vehiculo -->
 
 									<div class="input-field col s12">
-
-										<select name="ano" id="ano" required>
-											<option value="" disabled selected>Seleccione un año</option>
+										<select name="modelo" id="modelo" required>
+											<option value="" disabled selected>Seleccione un modelo</option>
 											<?php 
+											
 
+											$sel = $con -> prepare('SELECT id, descripcion FROM vehiculo WHERE id_marca = ? AND id_tipo = ?');
+											$sel -> bind_param('ii',$marca1, $tipo1);
+											$sel -> execute();
+											$sel -> bind_result($id_vehiculo, $descripcion);
+											$sel -> store_result();
 
-											$sel1 = $con -> prepare('SELECT * FROM ano');
-											$sel1 -> execute();
-											$sel1 -> bind_result($anos);
-											$sel1 -> store_result();
-
-											while($sel1 -> fetch()){
+											while($sel -> fetch()){
 
 
 											 ?>
-											 <option value="<?php echo $anos; ?>"><?php echo $anos; ?></option>
+											 <option value="<?php echo $id_vehiculo; ?>"><?php echo $descripcion; ?></option>
 
 											 <?php }
 
@@ -191,11 +178,22 @@
 
 									<br>
 									
+									
 									<!-- Input boton -->
 
 									  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar">Registrar
 									    <i class="material-icons right">send</i>
 									  </button>
+									  	
+									  </div>
+
+
+
+
+									  <div id="pimportado">
+									  		gesgesg
+									  	
+									  </div>
 
 									
 								</form>
@@ -205,11 +203,13 @@
 				</div>
 
 
-			<?php include '../extend/scripts.php'; ?>
+			<?php include '../extend/scripts.php';
+			 ?>
 			
 			<script src="../js/validacion3.js"></script>
 			<script src="../js/validacion4.js"></script>
 			<script src="../js/validacion5.js"></script>
+			<script src="../js/validacion_auto.js"></script>
 
 	</body>
 </html>

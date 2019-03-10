@@ -3,7 +3,7 @@
 	$dni = htmlentities($_POST['dni']);
 	
 
-	$sel = $con -> prepare("SELECT num FROM propietario WHERE num = ?");
+	$sel = $con -> prepare("SELECT numDocumento FROM propietario WHERE numDocumento = ?");
 	$sel -> bind_param('i',$dni);
 	$sel -> execute();
 	$sel -> bind_result($num);

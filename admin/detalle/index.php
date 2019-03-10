@@ -32,9 +32,9 @@
 <?php
 	include '../conexion/conexion.php';
 
-$num = htmlentities($_GET['num']);
+$num = htmlentities($_GET['id']);
 
-$sel = $con -> prepare("SELECT * FROM propietario WHERE num = ?");
+$sel = $con -> prepare("SELECT * FROM propietario WHERE id = ?");
 $sel -> bind_param('i', $num);
 $sel -> execute();
 $sel -> store_result();

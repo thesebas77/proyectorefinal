@@ -34,7 +34,7 @@
 		</style>
 			
 	</head>
-	<body background="../img/img2.jpg">
+	<body>
 		<main>
 		<?php
 

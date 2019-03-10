@@ -69,6 +69,25 @@
 		});
 
 
+		$('#pimportado').hide();
+
+		$("#nacional").change(function(){
+  			
+		  $('#pnacional').show();
+		  $('#pimportado').hide();
+		  
+
+		});
+
+		$("#importado").change(function(){
+  
+		  $('#pimportado').show();
+		  $('#pnacional').hide();
+		  
+
+		});
+
+
 		 $(document).ready(function(){
 		    $('.parallax').parallax();
 		  });

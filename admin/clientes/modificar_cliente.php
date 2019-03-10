@@ -1,14 +1,14 @@
 <?php include '../extend/header.php';
 	  include '../extend/permiso.php';
 
-	  	$cod = htmlentities($_GET['num']);
+	  	$cod = htmlentities($_GET['id']);
 
-		$sel = $con -> prepare("SELECT * FROM propietario where num = ?");
+		$sel = $con -> prepare("SELECT razonSocial,numDocumento,tipo,nombre,apellido,domicilio,localidad FROM propietario where id = ?");
 
 		$sel -> bind_param('i',$cod);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($num,$tipo,$nom,$ape,$domi,$loca);
+		$sel -> bind_result($razon, $num,$tipo,$nom,$ape,$domi,$loca);
 		$row = $sel -> num_rows();
 
 		if($sel -> fetch()){}
@@ -26,7 +26,7 @@
 									<!-- Persona humano o persona juridica -->
 
 									  <p>
-									  	<label for="nume">D.N.I/CUIL:</label>
+									  	<label for="nume">ID:</label>
 									  	<input type="number" value="<?php echo $cod ?>" name="nume" readonly>	
 									  </p>
 
@@ -54,7 +54,7 @@
 									  <div id="phumana">
 
 									  	<div class="input-field">
-											<input type="number" name="dni" title="Ingrese el D.N.I" id="dni" min="10000000" max="100000000">
+											<input value="<?php echo $num ?>" type="number" name="dni" title="Ingrese el D.N.I" id="dni" min="10000000" max="100000000">
 											<label for="dni">D.N.I:</label>				
 										</div>
 

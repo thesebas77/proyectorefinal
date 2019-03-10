@@ -20,11 +20,11 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT num,tipo,nom,ape,domicilio,localidad FROM propietario ");
+		$sel = $con -> prepare("SELECT id,razonSocial,numDocumento,tipo,nombre,apellido,domicilio,localidad FROM propietario ");
 
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($num,$tipo,$nom,$ape,$domi,$loca);
+		$sel -> bind_result($id_pro,$razon,$num,$tipo,$nom,$ape,$domi,$loca);
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">
@@ -52,14 +52,20 @@
 
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td class="center"><?php echo $num; ?></td>
+
+	          		<td class="center"><?php if ($num == 0){
+	          			echo $razon;
+	          		}else{
+	          			echo $num; 
+	          		}
+	          		?></td>
 	          		<td class="center"><?php echo $tipo; ?></td>
 	          		<td class="center"><?php echo $nom; ?></td>
 	          		<td class="center"><?php echo $ape; ?></td>
 	          		<td class="center"><?php echo $domi; ?></td>
 	          		<td class="center"><?php echo $loca; ?></td>
 		          		<td class="center"> 
-		          			  <button data-target="modal1" onclick="enviar(this.value)" value="<?php echo $num; ?>" class="btn-floating green"><i class="material-icons">visibility</i></button>
+		          			  <button data-target="modal1" onclick="enviar(this.value)" value="<?php echo $id_pro; ?>" class="btn-floating green"><i class="material-icons">visibility</i></button>
 
 		          			
 		          		</td>
@@ -77,7 +83,7 @@
 								  cancelButtonColor: '#d33',
 								  confirmButtonText: 'Si, Modificar!'
 								}).then(function () {
-										location.href='modificar_cliente.php?num=<?php echo $num; ?>';		      
+										location.href='modificar_cliente.php?id=<?php echo $id_pro; ?>';		      
 								})
 		          			"><i class="material-icons">autorenew</i></a> 
 		          		</td>

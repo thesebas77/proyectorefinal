@@ -14,12 +14,27 @@
 			$tipo = 'Humana';
 		}
 
-		$ins = $con -> prepare("INSERT INTO propietario VALUES (?,?,?,?,?,?) ");
+		$id = '';
+		$nul = '1231';
+		$razon ='';
+		$razo ='no';
+		$email = 'dada@geag.com';
+		$gru = 0;
+		$est = 'no se';
+		$obs = 'hola';
+
+
+		$ins = $con -> prepare("INSERT INTO propietario VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ");
+
 		if ($dni == 0){
-			$ins -> bind_param('isssss',$cuil,$tipo,$nom,$ape,$dire,$ciu);
+
+			$ins -> bind_param('issiissssiss',$id,$nom,$ape,$cuil,$razon,$dire,$email,$ciu,$tipo,$gru,$est,$obs);
+
 		}else{
-			$ins -> bind_param('isssss',$dni,$tipo,$nom,$ape,$dire,$ciu);	
+
+			$ins -> bind_param('issiissssiss',$id,$nom,$ape,$razon,$dni,$dire,$email,$ciu,$tipo,$gru,$est,$obs);
 		}
+		
 		
 		$ins -> execute();
 		$ins -> close();
