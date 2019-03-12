@@ -12,7 +12,7 @@
 								</p>
 
 								<span class="card-title">Registro de vehiculo</span>	
-								<form class="form" action="../vehiculos/ins_vehiculo.php" method="post">
+					<form class="form" action="../vehiculos/ins_vehiculo.php" method="post">
 
 									
 									<!-- Persona humano o persona juridica -->
@@ -36,9 +36,10 @@
 										</div>
 
 										<div class="valid4"></div>
+										
 
 									  </div>
-
+									  
 									  <div id="pjuridica">
 
 									  	<div class="input-field">
@@ -47,6 +48,8 @@
 										</div>
 
 										<div class="valid3"></div>
+
+										
 
 									  </div>
 
@@ -78,138 +81,205 @@
 									  </p>
 
 
-									  <div id="pnacional">
+							<div id="pnacional">
 
+								 		<!-- select marca -->
+										<div class="input-field col s12">
+											<select name="marca" id="marca" required>
+												<option value="" disabled selected>Seleccione una marca</option>
+												<?php 
+												$ori = 'N';
+												
+												$sel = $con -> prepare('SELECT id, marca FROM marca WHERE origen = ?');
+												$sel -> bind_param('s',$ori);
+												$sel -> execute();
+												$sel -> bind_result($id_marca, $marca);
+												$sel -> store_result();
+
+												while($sel -> fetch()){
+
+
+												 ?>
+												 <option value="<?php echo $id_marca; ?>"><?php echo $id_marca; ?> - <?php echo $marca; ?></option>
+
+											
+												<?php } ?>
+												  												 
+												
+											</select>
+										</div>
+
+										<!-- select tipo vehiculo -->
+
+										<div class="input-field col s12">
+											<select name="tipo" class="tipo" id="tipo" required>
+												<option value="" disabled selected>Seleccione un tipo</option>
+												<?php 
+												
+												
+
+												$sel = $con -> prepare('SELECT id, tipo FROM tipo_vehiculo');
+												$sel -> execute();
+												$sel -> bind_result($id_tipo, $tipo);
+												$sel -> store_result();
+
+												while($sel -> fetch()){
+
+
+												 ?>
+												 <option value="<?php echo $id_tipo; ?>"><?php echo $id_tipo; ?> - <?php echo $tipo; ?></option>
+												 <?php 
+
+												 
+												}
+
+												  ?>
+												 
+												
+											</select>
+										</div>
+										
+
+										<!-- select modelo vehiculo -->
+
+		
+										<div class="valid_ve">
+											
+										</div>
+		
+										<!-- date fecha de alta -->
+
+										<div class="input-field col s12">
+											<input type="text" class="datepicker" name="falta">
+											<label for="falta">Ingrese la fecha de alta:</label>
+										</div>
+
+										<!-- input base imponible -->
+										
+										<div class="input-field col s12">
+											<input type="number" name="base">
+											<label for="base">Base imponible: $</label>
+										</div>
+
+										<br>
+
+										  	
+							 </div>
+
+									  
+
+
+							<div id="pimportado">
 									  		<!-- select marca -->
+										<div class="input-field col s12">
+											<select name="marca_i" id="marca_i" required>
+												<option value="" disabled selected>Seleccione una marca</option>
+												<?php 
+												$orin = 'I';
+												
+												$sel = $con -> prepare('SELECT id, marca FROM marca WHERE origen = ?');
+												$sel -> bind_param('s',$orin);
+												$sel -> execute();
+												$sel -> bind_result($id_marca, $marca);
+												$sel -> store_result();
 
-									<div class="input-field col s12">
-										<select name="marca" id="marca" required>
-											<option value="" disabled selected>Seleccione una marca</option>
-											<?php 
-											$ori = 'N';
-
-											$sel = $con -> prepare('SELECT id, marca FROM marca WHERE origen = ?');
-											$sel -> bind_param('s',$ori);
-											$sel -> execute();
-											$sel -> bind_result($id_marca, $marca);
-											$sel -> store_result();
-
-											while($sel -> fetch()){
+												while($sel -> fetch()){
 
 
-											 ?>
-											 <option value="<?php echo $id_marca; ?>"><?php echo $marca; ?></option>
+												 ?>
+												 <option value="<?php echo $id_marca; ?>"><?php echo $id_marca; ?> - <?php echo $marca; ?></option>
 
-											 <?php }
+												
+												 	<?php } ?>
+			
 
-											  ?>
-											 
+
+												 
+												
+											</select>
+										</div>
+
+										<!-- select tipo vehiculo -->
+
+										<div class="input-field col s12">
+											<select name="tipo_i" class="tipo_i" id="tipo_i" required>
+												<option value="" disabled selected>Seleccione un tipo</option>
+												<?php 
+												
+												
+
+												$sel = $con -> prepare('SELECT id, tipo FROM tipo_vehiculo');
+												$sel -> execute();
+												$sel -> bind_result($id_tipo, $tipo);
+												$sel -> store_result();
+
+												while($sel -> fetch()){
+
+
+												 ?>
+												 <option value="<?php echo $id_tipo; ?>"><?php echo $id_tipo; ?> - <?php echo $tipo; ?></option>
+												 <?php 
+
+												 
+												}
+
+												  ?>
+												 
+												
+											</select>
+										</div>
+
+										<!-- select modelo vehiculo -->
+
+		
+										<div class="valid_vei">
 											
-										</select>
-									</div>
+										</div>
+		
+										<!-- date fecha de alta -->
 
-									<!-- select tipo vehiculo -->
+										<div class="input-field col s12">
+											<input type="text" class="datepicker" name="falta">
+											<label for="falta">Ingrese la fecha de alta:</label>
+										</div>
 
-									<div class="input-field col s12">
-										<select name="tipo" id="tipo" required>
-											<option value="" disabled selected>Seleccione un tipo</option>
-											<?php 
-											
+										<!-- input base imponible -->
+										
+										<div class="input-field col s12">
+											<input type="number" name="base">
+											<label for="base">Base imponible: $</label>
+										</div>
 
-											$sel = $con -> prepare('SELECT id, tipo FROM tipo_vehiculo');
-											$sel -> execute();
-											$sel -> bind_result($id_tipo, $tipo);
-											$sel -> store_result();
-
-											while($sel -> fetch()){
-
-
-											 ?>
-											 <option value="<?php echo $id_tipo; ?>"><?php echo $tipo; ?></option>
-											 <?php }
-
-											  ?>
-											 
-											
-										</select>
-									</div>
-
-									<!-- select modelo vehiculo -->
-
-									<div class="input-field col s12">
-										<select name="modelo" id="modelo" required>
-											<option value="" disabled selected>Seleccione un modelo</option>
-											<?php 
-											
-
-											$sel = $con -> prepare('SELECT id, descripcion FROM vehiculo WHERE id_marca = ? AND id_tipo = ?');
-											$sel -> bind_param('ii',$marca1, $tipo1);
-											$sel -> execute();
-											$sel -> bind_result($id_vehiculo, $descripcion);
-											$sel -> store_result();
-
-											while($sel -> fetch()){
-
-
-											 ?>
-											 <option value="<?php echo $id_vehiculo; ?>"><?php echo $descripcion; ?></option>
-
-											 <?php }
-
-											  ?>
-											 
-											
-										</select>
-									</div>
-
-									<!-- date fecha de alta -->
-
-									<div class="input-field col s12">
-										<input type="text" class="datepicker" name="falta">
-										<label for="falta">Ingrese la fecha de alta:</label>
-									</div>
-
-									<!-- input base imponible -->
-									
-									<div class="input-field col s12">
-										<input type="text" name="base">
-										<label for="base">Base imponible: $</label>
-									</div>
-
-									<br>
-									
-									
-									<!-- Input boton -->
-
-									  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar">Registrar
-									    <i class="material-icons right">send</i>
-									  </button>
+										<br>
 									  	
-									  </div>
+							</div>
 
 
 
+										
+										<!-- Input boton -->
 
-									  <div id="pimportado">
-									  		gesgesg
-									  	
-									  </div>
-
+										  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar">Registrar
+										    <i class="material-icons right">send</i>
+										  </button>
 									
 								</form>
+
+
 							</div>
 						</div>
 					</div>
 				</div>
 
+				
 
-			<?php include '../extend/scripts.php';
-			 ?>
+			<?php include '../extend/scripts.php';?>
 			
 			<script src="../js/validacion3.js"></script>
 			<script src="../js/validacion4.js"></script>
 			<script src="../js/validacion5.js"></script>
-			<script src="../js/validacion_auto.js"></script>
+			<script src="../js/validacion_ve.js"></script>
+			<script src="../js/validacion_vei.js"></script>
 
 	</body>
 </html>

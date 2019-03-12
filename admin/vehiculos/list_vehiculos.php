@@ -20,11 +20,11 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT * FROM vehiculo ");
+		$sel = $con -> prepare("SELECT * FROM padron ");
 
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dom,$mar,$mod,$tipo,$ano,$falta,$pro);
+		$sel -> bind_result($dom,$cod_ve,$falta,$pro);
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">

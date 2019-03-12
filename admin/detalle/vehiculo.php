@@ -2,7 +2,7 @@
 
 		$dom = htmlentities($_GET['dominio']);
 
-		$sel = $con -> prepare("SELECT * FROM vehiculo WHERE dominio = ?");
+		$sel = $con -> prepare("SELECT padron.cod_vehiculo,padron.fechaAlta,padron.propietario FROM padron INNER JOIN vehiculo WHERE padron.dominio = ?");
 		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();

@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="../css/materialize.min.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="../css/sweetalert2.css">
+		
 		<style media="screen">
 			
 			header, main, footer {
@@ -38,6 +39,7 @@
 		<main>
 		<?php
 
+
 			if ($_SESSION['tipo'] == 1){
 				include 'menu_admin.php';	
 			}else{
@@ -50,5 +52,8 @@
 				
 			}
 
-	
+		
 		?>
+
+		
+

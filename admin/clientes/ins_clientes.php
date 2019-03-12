@@ -7,6 +7,8 @@
 		$ape = htmlentities($_POST['ape']);
 		$dire = htmlentities($_POST['dire']);
 		$ciu = htmlentities($_POST['ciu']);
+		$email = htmlentities($_POST['email']);
+		$obs = htmlentities($_POST['observacion']);
 
 		if ($dni == 0){
 			$tipo = 'Juridica';
@@ -15,13 +17,9 @@
 		}
 
 		$id = '';
-		$nul = '1231';
 		$razon ='';
-		$razo ='no';
-		$email = 'dada@geag.com';
 		$gru = 0;
-		$est = 'no se';
-		$obs = 'hola';
+		$est = 'Regular';
 
 
 		$ins = $con -> prepare("INSERT INTO propietario VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ");

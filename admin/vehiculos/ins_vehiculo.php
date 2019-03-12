@@ -4,10 +4,8 @@
 		$dni = htmlentities($_POST['dni']);
 		$cuil = htmlentities($_POST['cuil']);
 		$dom = htmlentities($_POST['dom']);
-		$marca = htmlentities($_POST['marca']);
-		$modelo = htmlentities($_POST['modelo']);
+		$id_modelo = htmlentities($_POST['modelo']);
 		$tipo = htmlentities($_POST['tipo']);
-		$ano = htmlentities($_POST['ano']);
 		$base = htmlentities($_POST['base']);
 		$falta = htmlentities($_POST['falta']);
 
@@ -15,21 +13,39 @@
 		$c = $mont/6; 
 		$cuo = round($c,2);
 		$no = 2;
+		$anac = date('Y');
+		$id_im = '';
 
-		$ins = $con -> prepare("INSERT INTO vehiculo VALUES (?,?,?,?,?,?,?) ");
 		if ($dni == 0){
-			$ins -> bind_param('ssssisi',$dom,$marca,$modelo,$tipo,$ano,$falta,$cuil);
+
+					$sel = $con -> prepare("SELECT id FROM propietario WHERE razonSocial = ?");
+					$sel -> bind_param('i',$cuil);
+					$sel -> execute();
+					$sel -> bind_result($num);
+					$sel -> store_result();
+					$row = $sel -> num_rows();
+					if($sel -> fetch()){}					
+
 		}else{
-			$ins -> bind_param('ssssisi',$dom,$marca,$modelo,$tipo,$ano,$falta,$dni);	
+					$sel = $con -> prepare("SELECT id FROM propietario WHERE numDocumento = ?");
+					$sel -> bind_param('i',$dni);
+					$sel -> execute();
+					$sel -> bind_result($num);
+					$sel -> store_result();
+					$row = $sel -> num_rows();
+					if($sel -> fetch()){}								
 		}
+
+		$ins = $con -> prepare("INSERT INTO padron VALUES (?,?,?,?) ");
 		
+		$ins -> bind_param('sisi',$dom,$id_modelo,$falta,$num);
 		$ins -> execute();
 		
 
 		if($ins){
 
-			$ins = $con -> prepare("INSERT INTO impuesto VALUES (?,?) ");
-			$ins -> bind_param('sd',$dom,$mont);
+			$ins = $con -> prepare("INSERT INTO impuesto VALUES (?,?,?,?) ");
+			$ins -> bind_param('isds',$id_im,$dom,$mont,$anac);
 			$ins -> execute();
 			
 			$au = 0;
@@ -58,25 +74,21 @@
 									$fven = '20/'.$au.'/'.$aa;
 									$fven2 = '20/'.$au2.'/'.$aa;	
 							}
-								
-					
-
-
-					
-					
+											
 
 					if ($au2 == 13){
 						$fven2 = '20/01/2020';						
 					}
 
-					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?) ");
-					$ins -> bind_param('sidssi',$dom,$num,$cuo,$fven,$fven2,$no);
+					$id_cuo = '';
+					$id_use = '';
+					$fpago = '';
+
+					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?,?,?,?) ");
+					$ins -> bind_param('isddssiis',$id_cuo,$dom,$cuo,$base,$fven,$fven2,$no,$id_use,$fpago);
 					$ins -> execute();	
 				}
 				
-				$ins = $con -> prepare("INSERT INTO baseimponible VALUES(?,?,?)");
-				$ins -> bind_param('sds',$dom,$base,$aa);
-				$ins -> execute();
 
 				header('location:../extend/alerta.php?msj=Se ha registrado el vehiculo con exito&c=ve&p=in&t=success');
 				//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 

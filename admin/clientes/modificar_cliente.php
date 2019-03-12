@@ -3,12 +3,12 @@
 
 	  	$cod = htmlentities($_GET['id']);
 
-		$sel = $con -> prepare("SELECT razonSocial,numDocumento,tipo,nombre,apellido,domicilio,localidad FROM propietario where id = ?");
+		$sel = $con -> prepare("SELECT razonSocial,numDocumento,tipo,nombre,apellido,domicilio,localidad,email,observaciones FROM propietario where id = ?");
 
 		$sel -> bind_param('i',$cod);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($razon, $num,$tipo,$nom,$ape,$domi,$loca);
+		$sel -> bind_result($razon, $num,$tipo,$nom,$ape,$domi,$loca,$email,$obs);
 		$row = $sel -> num_rows();
 
 		if($sel -> fetch()){}
@@ -96,6 +96,12 @@
 							            <input type="text" name="tel"   id="tel"  >
 							            <label for="tel">Telefono</label>
 						          	</div> -->
+
+						          	 	<div class="input-field">
+							            <input value="<?php echo $email; ?>" name="email" id="email" type="email" class="validate">
+							            <label for="email">Email:</label>
+							            <span class="helper-text" data-error="wrong" data-success="right"></span>
+							          </div>
 																						
 									<!-- Input dire -->
 
@@ -125,6 +131,11 @@
 									</div>
 									
 									-->
+
+									<div class="input-field col s12">
+							          <textarea name="observacion" id="textarea1" class="materialize-textarea"><?php echo $obs; ?></textarea>
+							          <label for="textarea1">Observacion</label>
+							        </div>
 									
 									<br>
 									

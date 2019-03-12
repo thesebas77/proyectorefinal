@@ -32,7 +32,7 @@
 
 	 	  <p>Total de propietarios:  <?php echo $row ?></p> 
 
-	          <table class="highlight">
+	          <table class="highlight" id="personas1">
 	          	<thead>
 	          		<tr class="cabecera">
 		          		<th class="center">D.N.I/CUIL</th>
@@ -99,7 +99,7 @@
 								  cancelButtonColor: '#d33',
 								  confirmButtonText: 'Si, Eliminarlo!'
 								}).then(function () {
-										location.href='eliminar_cliente.php?num=<?php echo $num; ?>';		      
+										location.href='eliminar_cliente.php?num=<?php echo $id_pro; ?>';		      
 								})
 		          			"><i class="material-icons">clear</i></a> 
 		          		 </td>
@@ -113,7 +113,7 @@
 	    </div>
 	  </div>
 
-
+        
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -132,7 +132,8 @@
 	<?php include '../extend/scripts.php'; ?>
 
 	<script>
-		
+
+
 
   	$(document).ready(function(){
     	$('.modal').modal();
@@ -142,7 +143,7 @@
 
 	function enviar(valor){
 		$.get('../detalle/index.php', {
-			num:valor,
+			id_pro:valor,
 
 				beforeSend: function(){
 					$('.res_modal').html("Espere un momento..");

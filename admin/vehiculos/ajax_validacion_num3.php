@@ -3,7 +3,7 @@
 	$dom = htmlentities($_POST['dom']);
 	
 
-	$sel = $con -> prepare("SELECT dominio FROM vehiculo WHERE dominio = ?");
+	$sel = $con -> prepare("SELECT dominio FROM padron WHERE dominio = ?");
 	$sel -> bind_param('s',$dom);
 	$sel -> execute();
 	$sel -> bind_result($dominio);

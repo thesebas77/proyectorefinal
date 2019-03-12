@@ -26,19 +26,19 @@
 			}
 		</style>
 	</head>
-	<body background="../img/background1.jpg">
+	<body>
 		
 
 <?php
 	include '../conexion/conexion.php';
 
-$num = htmlentities($_GET['id']);
+$num = htmlentities($_GET['id_pro']);
 
 $sel = $con -> prepare("SELECT * FROM propietario WHERE id = ?");
 $sel -> bind_param('i', $num);
 $sel -> execute();
 $sel -> store_result();
-$sel -> bind_result($nume,$tipo,$nom,$ape,$domi,$loca);
+$sel -> bind_result($nume,$nom,$ape,$cuil,$razon,$domi,$email,$loca,$tipo,$gru,$est,$obs);
 $row = $sel -> num_rows();
 ?>
 
@@ -67,11 +67,6 @@ $row = $sel -> num_rows();
 		          		<th class="center">Apellido</th>
 		          		<th class="center">Domicilio</th>
 		          		<th class="center">Localidad</th>
-		          		<?php if ($_SESSION['tipo'] == 3): ?>
-		          		<?php else: ?>
-		          		<th class="center">Modificar</th>
-		          		<th class="center">Eliminar</th>
-		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
@@ -83,41 +78,6 @@ $row = $sel -> num_rows();
 	          		<td class="center"><?php echo $ape; ?></td>
 	          		<td class="center"><?php echo $domi; ?></td>
 	          		<td class="center"><?php echo $loca; ?></td>
-
-	          		<?php if ($_SESSION['tipo'] == 3): ?>
-		          	<?php else: ?>
-	          		<td class="center"> 
-	          			<a href="#" class="btn-floating blue" onclick="
-	          				swal({
-							  title: 'Desea modificar el propietario?',
-							  text: 'Al modificarlo se van a reemplazar los datos anteriories!',
-							  type: 'question',
-							  showCancelButton: true,
-							  confirmButtonColor: '#3085d6',
-							  cancelButtonColor: '#d33',
-							  confirmButtonText: 'Si, Modificar!'
-							}).then(function () {
-									location.href='../clientes/modificar_cliente.php?num=<?php echo $num; ?>';		      
-							})
-	          			"><i class="material-icons">autorenew</i></a> 
-	          		</td>
-
-					<td class="center"> 
-	          			<a href="#" class="btn-floating red" onclick="
-	          				swal({
-							  title: 'Estas seguro que desea eliminar al propietario?',
-							  text: 'Al eliminarlo se borraran todos los vehiculos asociados y no podra recuperarlos!',
-							  type: 'warning',
-							  showCancelButton: true,
-							  confirmButtonColor: '#3085d6',
-							  cancelButtonColor: '#d33',
-							  confirmButtonText: 'Si, Eliminarlo!'
-							}).then(function () {
-									location.href='../clientes/eliminar_cliente.php?num=<?php echo $num; ?>';		      
-							})
-	          			"><i class="material-icons">clear</i></a> 
-	          		</td>
-	          		<?php endif; ?>
 	          	</tr>
 
 
@@ -132,11 +92,8 @@ $row = $sel -> num_rows();
 	          	<thead>
 	          		<tr class="cabecera">
 		          		<th class="center">Dominio</th>
-		          		<th class="center">Marca</th>
+		          		<th class="center">Fecha de Alta</th>
 		          		<th class="center">Modelo</th>
-		          		<th class="center">Tipo</th>
-		          		<th class="center">Año</th>
-		          		<th class="center">F. alta</th>
 		          		<th class="center">Detalle</th>
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
@@ -147,11 +104,11 @@ $row = $sel -> num_rows();
 	          	</thead>
 
 	          	<?php 
-						$sel = $con -> prepare("SELECT * FROM vehiculo WHERE propietario = ?");
+						$sel = $con -> prepare("SELECT padron.dominio,padron.fechaAlta, vehiculo.descripcion  FROM padron INNER JOIN vehiculo ON padron.cod_vehiculo = vehiculo.id WHERE padron.propietario = ?");
 						$sel -> bind_param('i', $num);
 						$sel -> execute();
 						$sel -> store_result();
-						$sel -> bind_result($dominio,$marca,$modelo,$tipo,$ano,$falta,$propietario);
+						$sel -> bind_result($dominio,$falta,$desc);
 						$row = $sel -> num_rows();
 
 						 while($sel -> fetch()){ 
@@ -159,11 +116,8 @@ $row = $sel -> num_rows();
 
 	          	<tr>
 	          		<td class="center"><?php echo $dominio; ?></td>
-	          		<td class="center"><?php echo $marca; ?></td>
-	          		<td class="center"><?php echo $modelo; ?></td>
-	          		<td class="center"><?php echo $tipo; ?></td>
-	          		<td class="center"><?php echo $ano; ?></td>
 	          		<td class="center"><?php echo $falta; ?></td>
+	          		<td class="center"><?php echo $desc; ?></td>
 
 
 

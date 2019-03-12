@@ -2,10 +2,12 @@
 
 ?>
 </main>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
 	<script src="../js/materialize.js"> </script>
 	<script src="../js/sweetalert2.js"> </script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
 	
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121875488-1"></script>

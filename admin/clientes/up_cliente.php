@@ -9,6 +9,9 @@
 		$ape = htmlentities($_POST['ape']);
 		$dire = htmlentities($_POST['dire']);
 		$ciu = htmlentities($_POST['ciu']);
+		$email = htmlentities($_POST['email']);
+		$obs = htmlentities($_POST['observacion']);
+
 
 		if ($dni == 0){
 			$tipo = 'Juridica';
@@ -16,12 +19,13 @@
 			$tipo = 'Humana';
 		}
 
+		$razon = '';
 
-		$ins = $con -> prepare("UPDATE propietario SET num=?, tipo=?, nom=?, ape=?, domicilio=?, localidad=? WHERE num = ?");
+		$ins = $con -> prepare("UPDATE propietario SET  nombre=?, apellido=?, razonSocial=?, numDocumento=?, domicilio=?, email=?, localidad=?, tipo=?, observaciones=? WHERE id = ?");
 		if ($dni == 0){
-			$ins -> bind_param('isssssi',$cuil,$tipo,$nom,$ape,$dire,$ciu,$nume);
+			$ins -> bind_param('ssiisssssi',$nom,$ape,$cuil,$razon,$dire,$email,$ciu,$tipo,$obs,$nume);
 		}else{
-			$ins -> bind_param('isssssi',$dni,$tipo,$nom,$ape,$dire,$ciu,$nume);	
+			$ins -> bind_param('ssiisssssi',$nom,$ape,$razon,$dni,$dire,$email,$ciu,$tipo,$obs,$nume);
 		}
 		
 		$ins -> execute();
