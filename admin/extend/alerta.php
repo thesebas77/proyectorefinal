@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Sorteo</title>
+	<title>Proceso</title>
 	<link rel="stylesheet" href="../css/sweetalert2.css">
 </head>
 <body>

@@ -43,6 +43,7 @@
 	<li><a class="subheader center">Informes</a></li>
 	<li><a href="../informes/recaudacion.php"><i class="material-icons orange-text">info</i>Recaudación</a></li>
 	<li><a href="../informes/deuda.php"><i class="material-icons orange-text">info</i>Deuda Fiscal</a></li>
+	<li><a href="../informes/actividad.php"><i class="material-icons orange-text">youtube_searched_for</i>Actividades</a></li>
     
 
 	<li><div class="divider"></div></li>

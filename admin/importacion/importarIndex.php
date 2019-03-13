@@ -3,18 +3,18 @@
 	  include '../extend/permiso.php';
 				  
 ?>
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <title>Importar Valuacion</title>
 </head>
-<body>
+<br>
+<br>
+<br>
+<br>
 <br>
 <div class="row">
-	<div class="col s12">
+	<div class="col s2 m2 l2 xl2">
+		
+	</div>
+	<div class="col s8 m8 l8 xl8 ">
 		<div class="card">
 			<div class="card-content">
 				<span class="card-title">Importación de Valuación Nacional</span>	
@@ -40,6 +40,10 @@
             	</form>
 			</div>
 		</div>
+	</div>
+
+	<div class="col s2 m2 l2 xl2">
+		
 	</div>
 </div>
 <?php include '../extend/scripts.php'; ?>
