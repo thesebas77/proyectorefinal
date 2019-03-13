@@ -74,18 +74,17 @@
 
 		$('#pimportado').hide();
 
-		$("#nacional").change(function(){
+		$(".switch").change(function(){
   			
-		  $('#pnacional').show();
-		  $('#pimportado').hide();
+		  $('#pnacional').toggle();
+		  
 		  
 
 		});
 
-		$("#importado").change(function(){
+		$(".switch").change(function(){
   
-		  $('#pimportado').show();
-		  $('#pnacional').hide();
+		  $('#pimportado').toggle();
 		  
 
 		});
