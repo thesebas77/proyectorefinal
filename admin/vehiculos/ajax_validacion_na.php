@@ -1,0 +1,4 @@
+<?php 
+
+$nacional = 1;
+ ?>

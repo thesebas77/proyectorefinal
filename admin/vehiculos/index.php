@@ -72,13 +72,23 @@
 									  
 								      <p>
 										 <input class="with-gap" name="origen" type="radio" id="nacional" checked/>
+
 										  <label for="nacional">Nacional</label>
 									  </p>
+
+									  <div class="valid_na">
+									  	
+									  </div>
 
 									  <p>
 										 <input class="with-gap" name="origen" type="radio" id="importado" />
 										  <label for="importado">Importado</label>
 									  </p>
+
+									  <div class="valid_imp">
+									  	
+									  </div>
+
 
 
 							<div id="pnacional">
@@ -166,95 +176,9 @@
 										  	
 							 </div>
 
-									  
+	
 
-
-							<div id="pimportado">
-									  		<!-- select marca -->
-										<div class="input-field col s12">
-											<select name="marca_i" id="marca_i" required>
-												<option value="" disabled selected>Seleccione una marca</option>
-												<?php 
-												$orin = 'I';
-												
-												$sel = $con -> prepare('SELECT id, marca FROM marca WHERE origen = ?');
-												$sel -> bind_param('s',$orin);
-												$sel -> execute();
-												$sel -> bind_result($id_marca, $marca);
-												$sel -> store_result();
-
-												while($sel -> fetch()){
-
-
-												 ?>
-												 <option value="<?php echo $id_marca; ?>"><?php echo $id_marca; ?> - <?php echo $marca; ?></option>
-
-												
-												 	<?php } ?>
-			
-
-
-												 
-												
-											</select>
-										</div>
-
-										<!-- select tipo vehiculo -->
-
-										<div class="input-field col s12">
-											<select name="tipo_i" class="tipo_i" id="tipo_i" required>
-												<option value="" disabled selected>Seleccione un tipo</option>
-												<?php 
-												
-												
-
-												$sel = $con -> prepare('SELECT id, tipo FROM tipo_vehiculo');
-												$sel -> execute();
-												$sel -> bind_result($id_tipo, $tipo);
-												$sel -> store_result();
-
-												while($sel -> fetch()){
-
-
-												 ?>
-												 <option value="<?php echo $id_tipo; ?>"><?php echo $id_tipo; ?> - <?php echo $tipo; ?></option>
-												 <?php 
-
-												 
-												}
-
-												  ?>
-												 
-												
-											</select>
-										</div>
-
-										<!-- select modelo vehiculo -->
-
-		
-										<div class="valid_vei">
-											
-										</div>
-		
-										<!-- date fecha de alta -->
-
-										<div class="input-field col s12">
-											<input type="text" class="datepicker" name="falta">
-											<label for="falta">Ingrese la fecha de alta:</label>
-										</div>
-
-										<!-- input base imponible -->
-										
-										<div class="input-field col s12">
-											<input type="number" name="base">
-											<label for="base">Base imponible: $</label>
-										</div>
-
-										<br>
-									  	
-							</div>
-
-
+						
 
 										
 										<!-- Input boton -->
