@@ -2,11 +2,11 @@
 
 		$dom = htmlentities($_GET['dominio']);
 
-		$sel = $con -> prepare("SELECT padron.cod_vehiculo,padron.fechaAlta,padron.propietario FROM padron INNER JOIN vehiculo WHERE padron.dominio = ?");
+		$sel = $con -> prepare("SELECT p.cod_vehiculo,p.fechaAlta,pro.apellido, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, cu.baseImponible, i.anio FROM padron as p INNER JOIN propietario as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id INNER JOIN cuota as cu ON p.dominio = cu.imp INNER JOIN impuesto as i ON p.dominio = i.dom WHERE p.dominio = ?");
 		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dominio,$marca,$modelo,$tipo,$ano,$falta,$pro);
+		$sel -> bind_result($cod_ve,$falta,$pro,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$monto,$ano);
 		$row = $sel -> num_rows();
 
 		if ($sel -> fetch()){}
@@ -16,23 +16,12 @@
 					<div class="col s12">
 						<div class="card transparent center">
 							<div class="card-content">
-								<span class="card-title">Dominio: <?php echo $dominio; ?></span>	
+								<span class="card-title">Dominio: <?php echo $dom ?></span>	
 								<p>Estado de pagos</p>
 							</div>
 						</div>
 					</div>
-				</div>
-
-		<?php 
-			$sel = $con -> prepare("SELECT valor FROM baseimponible WHERE dom = ?"); 
-			$sel -> bind_param('s', $dom);
-			$sel -> execute();
-			$sel -> store_result();
-			$sel -> bind_result($valor);
-
-			if ($sel -> fetch()){}
-
-		?>		
+				</div>	
 
 
 		<h5 class="center">Vehiculo</h5>
@@ -54,11 +43,11 @@
 	          	<tr>
 	          		<td class="center"><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
 	          		<td class="center"><?php echo $marca; ?></td>
-	          		<td class="center"><?php echo $modelo; ?></td>
+	          		<td class="center"><?php echo $desc; ?></td>
 	          		<td class="center"><?php echo $tipo; ?></td>
 	          		<td class="center"><?php echo $ano; ?></td>
 	          		<td class="center"><?php echo $falta; ?></td>
-	          		<td class="center"> <?php echo $valor; ?> </td>		
+	          		<td class="center"> <?php echo $monto; ?> </td>		
 	          		
 
 	   </table>
@@ -67,7 +56,7 @@
 	   <?php 
 
 	   		$sel = $con -> prepare('SELECT monto FROM impuesto WHERE dom = ?');
-	   		$sel -> bind_param('s', $dominio);
+	   		$sel -> bind_param('s', $dom);
 	   		$sel -> execute();
 	   		$sel -> store_result();
 	   		$sel -> bind_result($monto);
@@ -105,16 +94,16 @@
 		 <?php 
 
 	   		$sel = $con -> prepare('SELECT * FROM cuota WHERE imp = ?');
-	   		$sel -> bind_param('s', $dominio);
+	   		$sel -> bind_param('s', $dom);
 	   		$sel -> execute();
 	   		$sel -> store_result();
-	   		$sel -> bind_result($imp,$num, $valor, $fven, $fven2, $paga);
+	   		$sel -> bind_result($id_cu,$imp_cu,$base, $valor, $fven, $fven2, $paga, $usu, $fpago);
 
 	    ?>
 	   <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-	          			<th class="center">Numero</th>
+	          			<th class="center">Id</th>
 		          		<th class="center">Cuota</th>
 		          		<th class="center">Fecha V1.</th>
 		          		<th class="center">Fecha V2.</th>
@@ -125,7 +114,7 @@
 
 	          	<?php while ($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td class="center"><?php echo $num; ?></td>
+	          		<td class="center"><?php echo $id_cu; ?></td>
 	          		<td class="center"><?php echo $valor; ?></td>
 	          		<td class="center"><?php echo $fven; ?></td>
 	          		<td class="center"><?php echo $fven2; ?></td>
@@ -158,7 +147,7 @@
 							  cancelButtonColor: '#d33',
 							  confirmButtonText: 'Si!'
 							}).then(function () {
-									location.href='../pagos/upcuota.php?&imp=<?php echo $imp; ?>&num=<?php echo $num; ?>&pa=<?php echo $paga; ?>';		      
+									location.href='../pagos/upcuota.php?&imp=<?php echo $imp_cu; ?>&num=<?php echo $id_cu; ?>&pa=<?php echo $paga; ?>';		      
 							})
 	          			">No</a>
 	          			<?php  	
@@ -174,7 +163,7 @@
 							  cancelButtonColor: '#d33',
 							  confirmButtonText: 'Si!'
 							}).then(function () {
-									location.href='../pagos/upcuota.php?&imp=<?php echo $imp; ?>&num=<?php echo $num; ?>&pa=<?php echo $paga; ?>';		      
+									location.href='../pagos/upcuota.php?&imp=<?php echo $imp_cu; ?>&num=<?php echo $id_cu; ?>&pa=<?php echo $paga; ?>';		      
 							})
 	          			">Si</a> 
 

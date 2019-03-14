@@ -10,7 +10,7 @@
 		$va = 2;
 	}
 
-	$up = $con -> prepare("UPDATE cuota SET paga=? WHERE imp = ? AND num = ? AND paga = ?");
+	$up = $con -> prepare("UPDATE cuota SET paga=? WHERE imp = ? AND id = ? AND paga = ?");
 		$up -> bind_param('isii',$va,$imp, $num, $pa);
 		$up -> execute();
 		$up -> close();

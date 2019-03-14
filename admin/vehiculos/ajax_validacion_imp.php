@@ -1,4 +1,0 @@
-<?php 
-
-$importado = 2;
- ?>

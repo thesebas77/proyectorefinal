@@ -86,7 +86,7 @@
 
 								 		<!-- select marca -->
 										<div class="input-field col s12">
-											<select name="marca" id="marca" required>
+											<select name="marca" id="marca">
 												<option value="" disabled selected>Seleccione una marca</option>
 												<?php 
 												$ori = 'N';
@@ -113,7 +113,7 @@
 										<!-- select tipo vehiculo -->
 
 										<div class="input-field col s12">
-											<select name="tipo" class="tipo" id="tipo" required>
+											<select name="tipo" class="tipo" id="tipo">
 												<option value="" disabled selected>Seleccione un tipo</option>
 												<?php 
 												
@@ -147,22 +147,6 @@
 										<div class="valid_ve">
 											
 										</div>
-		
-										<!-- date fecha de alta -->
-
-										<div class="input-field col s12">
-											<input type="text" class="datepicker" name="falta">
-											<label for="falta">Ingrese la fecha de alta:</label>
-										</div>
-
-										<!-- input base imponible -->
-										
-										<div class="input-field col s12">
-											<input type="number" name="base">
-											<label for="base">Base imponible: $</label>
-										</div>
-
-										<br>
 
 										  	
 							 </div>
@@ -172,7 +156,7 @@
 							<div id="pimportado">
 									  		<!-- select marca -->
 										<div class="input-field col s12">
-											<select name="marca_i" id="marca_i" required>
+											<select name="marca" id="marca_i">
 												<option value="" disabled selected>Seleccione una marca</option>
 												<?php 
 												$orin = 'I';
@@ -202,7 +186,7 @@
 										<!-- select tipo vehiculo -->
 
 										<div class="input-field col s12">
-											<select name="tipo_i" class="tipo_i" id="tipo_i" required>
+											<select name="tipo" class="tipo_i" id="tipo_i">
 												<option value="" disabled selected>Seleccione un tipo</option>
 												<?php 
 												
@@ -235,7 +219,10 @@
 										<div class="valid_vei">
 											
 										</div>
-		
+									  	
+							</div>
+
+
 										<!-- date fecha de alta -->
 
 										<div class="input-field col s12">
@@ -251,11 +238,6 @@
 										</div>
 
 										<br>
-									  	
-							</div>
-
-
-
 										
 										<!-- Input boton -->
 
