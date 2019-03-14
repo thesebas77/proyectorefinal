@@ -222,6 +222,12 @@
 									  	
 							</div>
 
+										<!-- Año del auto -->								
+
+										<div class="input-field col s12">
+											<input type="number" name="anomodelo">
+											<label for="anomodelo">Año del modelo: </label>
+										</div>
 
 										<!-- date fecha de alta -->
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-03-2019 a las 19:22:56
+-- Tiempo de generación: 14-03-2019 a las 19:53:07
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.1.18
 
@@ -102,7 +102,13 @@ INSERT INTO `cuota` (`id`, `imp`, `valor`, `baseImponible`, `vencimiento1`, `ven
 (33, 'kro129', 1583.33, 95000, '20/06/2019', '20/07/2019', 2, 0, ''),
 (34, 'kro129', 1583.33, 95000, '20/08/2019', '20/09/2019', 2, 0, ''),
 (35, 'kro129', 1583.33, 95000, '20/10/2019', '20/11/2019', 2, 0, ''),
-(36, 'kro129', 1583.33, 95000, '20/12/2019', '20/01/2020', 2, 0, '');
+(36, 'kro129', 1583.33, 95000, '20/12/2019', '20/01/2020', 2, 0, ''),
+(37, 'hdp123', 6416.65, 384999, '20/02/2019', '20/03/2019', 2, 0, ''),
+(38, 'hdp123', 6416.65, 384999, '20/04/2019', '20/05/2019', 2, 0, ''),
+(39, 'hdp123', 6416.65, 384999, '20/06/2019', '20/07/2019', 2, 0, ''),
+(40, 'hdp123', 6416.65, 384999, '20/08/2019', '20/09/2019', 2, 0, ''),
+(41, 'hdp123', 6416.65, 384999, '20/10/2019', '20/11/2019', 2, 0, ''),
+(42, 'hdp123', 6416.65, 384999, '20/12/2019', '20/01/2020', 2, 0, '');
 
 -- --------------------------------------------------------
 
@@ -127,7 +133,8 @@ INSERT INTO `impuesto` (`id`, `dom`, `monto`, `anio`) VALUES
 (3, 'hnl520', 45000, '2019'),
 (4, 'hnd520', 3231.4, '2019'),
 (5, 'hnl521', 30440, '2019'),
-(6, 'kro129', 9500, '2019');
+(6, 'kro129', 9500, '2019'),
+(7, 'hdp123', 38499.9, '2018');
 
 -- --------------------------------------------------------
 
@@ -348,18 +355,24 @@ CREATE TABLE `padron` (
   `dominio` text NOT NULL,
   `cod_vehiculo` int(11) NOT NULL,
   `fechaAlta` text NOT NULL,
-  `propietario` bigint(11) NOT NULL
+  `propietario` bigint(11) NOT NULL,
+  `anioModelo` text NOT NULL,
+  `baseImponible` double NOT NULL,
+  `cotizacionExtra` double NOT NULL,
+  `importe` double NOT NULL,
+  `situacion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `padron`
 --
 
-INSERT INTO `padron` (`dominio`, `cod_vehiculo`, `fechaAlta`, `propietario`) VALUES
-('hnl520', 31, '12/03/2019', 1),
-('hnd520', 6, '13/03/2019', 1),
-('hnl521', 5, '13/03/2019', 1),
-('kro129', 37, '13/03/2019', 3);
+INSERT INTO `padron` (`dominio`, `cod_vehiculo`, `fechaAlta`, `propietario`, `anioModelo`, `baseImponible`, `cotizacionExtra`, `importe`, `situacion`) VALUES
+('hnl520', 31, '12/03/2019', 1, '', 0, 0, 0, ''),
+('hnd520', 6, '13/03/2019', 1, '', 0, 0, 0, ''),
+('hnl521', 5, '13/03/2019', 1, '', 0, 0, 0, ''),
+('kro129', 37, '13/03/2019', 3, '', 0, 0, 0, ''),
+('hdp123', 2842, '31/03/2019', 1, '2018', 384999, 0, 0, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -17842,13 +17855,13 @@ ALTER TABLE `vehiculo`
 -- AUTO_INCREMENT de la tabla `cuota`
 --
 ALTER TABLE `cuota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `impuesto`
 --
 ALTER TABLE `impuesto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`

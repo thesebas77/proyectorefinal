@@ -20,12 +20,13 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT * FROM padron ");
-
+		$sel = $con -> prepare("SELECT p.anioModelo, p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo FROM padron as p INNER JOIN propietario as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id");
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dom,$cod_ve,$falta,$pro);
+		$sel -> bind_result($am,$dom,$cod_ve,$falta,$pro,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo);
 		$row = $sel -> num_rows();
+
+
 			 ?>
 	  <div class="row">
 	    <div class="col s12 m12 l12 xl12">
@@ -53,10 +54,10 @@
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
 	          		<td class="center"><?php echo $dom; ?></td>
-	          		<td class="center"><?php echo $mar; ?></td>
-	          		<td class="center"><?php echo $mod; ?></td>
+	          		<td class="center"><?php echo $marca; ?></td>
+	          		<td class="center"><?php echo $desc; ?></td>
 	          		<td class="center"><?php echo $tipo; ?></td>
-	          		<td class="center"><?php echo $ano; ?></td>
+	          		<td class="center"><?php echo $am; ?></td>
 	          		<td class="center"><?php echo $falta; ?></td>
 	          		<td class="center"><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
 

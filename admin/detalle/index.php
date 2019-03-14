@@ -38,7 +38,7 @@ $sel = $con -> prepare("SELECT * FROM propietario WHERE id = ?");
 $sel -> bind_param('i', $num);
 $sel -> execute();
 $sel -> store_result();
-$sel -> bind_result($nume,$nom,$ape,$cuil,$razon,$domi,$email,$loca,$tipo,$gru,$est,$obs);
+$sel -> bind_result($nume,$nom,$ape,$cuil,$razon,$domi,$email,$f_alta,$loca,$tipo,$gru,$est,$obs);
 $row = $sel -> num_rows();
 ?>
 
@@ -61,23 +61,23 @@ $row = $sel -> num_rows();
 	    	 <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th class="center">D.N.I/CUIL</th>
+		          		<th class="center">Email</th>
 		          		<th class="center">Tipo</th>
 		          		<th class="center">Nombre</th>
 		          		<th class="center">Apellido</th>
 		          		<th class="center">Domicilio</th>
-		          		<th class="center">Localidad</th>
+		          		<th class="center">Fecha de alta</th>
 	          		</tr>
 	          	</thead>
 
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td class="center"><?php echo $num; ?></td>
+	          		<td class="center"><?php echo $email; ?></td>
 	          		<td class="center"><?php echo $tipo; ?></td>
 	          		<td class="center"><?php echo $nom; ?></td>
 	          		<td class="center"><?php echo $ape; ?></td>
 	          		<td class="center"><?php echo $domi; ?></td>
-	          		<td class="center"><?php echo $loca; ?></td>
+	          		<td class="center"><?php echo $f_alta; ?></td>
 	          	</tr>
 
 

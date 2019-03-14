@@ -8,13 +8,14 @@
 		$tipo = htmlentities($_POST['tipo']);
 		$base = htmlentities($_POST['base']);
 		$falta = htmlentities($_POST['falta']);
+		$anmo = htmlentities($_POST['anomodelo']);
 
 		$mont = ($base*10)/100;
 		$c = $mont/6; 
 		$cuo = round($c,2);
 		$no = 2;
-		$anac = date('Y');
 		$id_im = '';
+		$activo = 'Activo';
 
 		if ($dni == 0){
 
@@ -36,16 +37,16 @@
 					if($sel -> fetch()){}								
 		}
 
-		$ins = $con -> prepare("INSERT INTO padron VALUES (?,?,?,?) ");
+		$ins = $con -> prepare("INSERT INTO padron VALUES (?,?,?,?,?,?,?,?,?) ");
 		
-		$ins -> bind_param('sisi',$dom,$id_modelo,$falta,$num);
+		$ins -> bind_param('sisisddds',$dom,$id_modelo,$falta,$num,$anmo,$base,$id_im,$id_im,$activo);
 		$ins -> execute();
 		
 
 		if($ins){
 
 			$ins = $con -> prepare("INSERT INTO impuesto VALUES (?,?,?,?) ");
-			$ins -> bind_param('isds',$id_im,$dom,$mont,$anac);
+			$ins -> bind_param('isds',$id_im,$dom,$mont,$anmo);
 			$ins -> execute();
 			
 			$au = 0;
