@@ -7,7 +7,7 @@
 			$a = date('Y');
 			$fbaja = $d.'/'.$m.'/'.$a;
 
-	$sel = $con -> prepare("SELECT * FROM vehiculo WHERE propietario = ?");
+	$sel = $con -> prepare("SELECT * FROM padron WHERE propietario = ?");
 		$sel -> bind_param('i',$num);
 		$sel -> execute();
 		$sel -> store_result();

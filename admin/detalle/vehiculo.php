@@ -2,7 +2,7 @@
 
 		$dom = htmlentities($_GET['dominio']);
 
-		$sel = $con -> prepare("SELECT p.cod_vehiculo,p.fechaAlta,pro.apellido, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, cu.baseImponible, i.anio FROM padron as p INNER JOIN propietario as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id INNER JOIN cuota as cu ON p.dominio = cu.imp INNER JOIN impuesto as i ON p.dominio = i.dom WHERE p.dominio = ?");
+		$sel = $con -> prepare("SELECT p.cod_vehiculo,p.fechaAlta,pro.apellido, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, cu.baseImponible, p.anioModelo FROM padron as p INNER JOIN propietario as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id INNER JOIN cuota as cu ON p.dominio = cu.imp WHERE p.dominio = ?");
 		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();
