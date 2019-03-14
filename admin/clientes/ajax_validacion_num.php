@@ -1,21 +1,19 @@
 <?php include '../conexion/conexion.php'; 
 
-	$cuil = htmlentities($_POST['cuil']);
-	
+	$cuit= htmlentities($_POST['cuit']);
 
-	$sel = $con -> prepare("SELECT razonSocial FROM propietario WHERE razonSocial = ?");
-	$sel -> bind_param('i',$cuil);
+	$sel = $con -> prepare("SELECT cuit FROM propietario WHERE  cuit=?");
+	$sel -> bind_param('s',$cuit);
 	$sel -> execute();
-	$sel -> bind_result($num);
+	$sel -> bind_result($cuit);
 	$sel -> store_result();
 	$row = $sel -> num_rows();
 
 	if ($row != 0){
-		echo "<label style='color:red'> El propietario esta registrado (CUIL) </label>
+		echo "<label style='color:red'> La Razon Social esta registrada </label>
 		";
 	}else{
-		echo "<label style='color:green'> El propietario no esta registrado (CUIL)
-			</label>
+		echo "<label style='color:green'> La Razon Social no esta registrado </label>
 			";
 	}
 

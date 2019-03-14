@@ -4,28 +4,26 @@
 		
 		$nume = htmlentities($_POST['nume']);
 		$dni = htmlentities($_POST['dni']);
-		$cuil = htmlentities($_POST['cuil']);
+		$cuit = htmlentities($_POST['cuil']);
 		$nom = htmlentities($_POST['nom']);
 		$ape = htmlentities($_POST['ape']);
+		$razon=htmlentities($_POST['ape']);
 		$dire = htmlentities($_POST['dire']);
-		$ciu = htmlentities($_POST['ciu']);
 		$email = htmlentities($_POST['email']);
+		$ciu = htmlentities($_POST['ciu']);
+		$tipo=htmlentities($_POST['email']);
+		$grupo = htmlentities($_POST['email']);
 		$obs = htmlentities($_POST['observacion']);
 
 
-		if ($dni == 0){
+		if (empty($dni)){
 			$tipo = 'Juridica';
+			$ins = $con -> prepare("UPDATE propietario SET  razonSocial=?, cuit=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
+			$ins -> bind_param('sisssssiss',$razon,$cuit,$razon,$dire,$email,$ciu,$tipo,$gru,$est,$obs,$nume);
 		}else{
 			$tipo = 'Humana';
-		}
-
-		$razon = '';
-
-		$ins = $con -> prepare("UPDATE propietario SET  nombre=?, apellido=?, razonSocial=?, numDocumento=?, domicilio=?, email=?, localidad=?, tipo=?, observaciones=? WHERE id = ?");
-		if ($dni == 0){
-			$ins -> bind_param('ssiisssssi',$nom,$ape,$cuil,$razon,$dire,$email,$ciu,$tipo,$obs,$nume);
-		}else{
-			$ins -> bind_param('ssiisssssi',$nom,$ape,$razon,$dni,$dire,$email,$ciu,$tipo,$obs,$nume);
+			$ins = $con -> prepare("UPDATE propietario SET  nombre=?, apellido=?,  dni=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
+			$ins -> bind_param('ssissssiss',$nom,$ape,$dni,$dire,$email,$ciu,$tipo,$gru,$est,$obs,$nume);
 		}
 		
 		$ins -> execute();

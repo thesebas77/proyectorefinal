@@ -11,12 +11,12 @@
 								<form class="form" action="../clientes/ins_clientes.php" method="post" enctype="multipart/form-data">
 
 									
-									<!-- Persona humano o persona juridica -->
+									<!-- Persona fisica o persona juridica -->
 
 									  
 								      <p>
 										 <input class="with-gap" name="persona" type="radio" id="humana" checked/>
-										  <label for="humana">Persona humana</label>
+										  <label for="humana">Persona fisica</label>
 									  </p>
 
 									  <p>
@@ -32,37 +32,41 @@
 										</div>
 
 											<div class="valid4"></div>
+											<!-- Input nombre -->
+
+										<div class="input-field">
+											<input type="text" name="nom" title="Ingrese su nombre" id="nom" pattern="[A-Za-z/s ]+">
+											<label for="nom">Nombre:</label>
+																				
+										</div>
+
+										<!-- Input apellido -->
+
+										<div class="input-field">
+											<input type="text" name="ape" title="Ingrese su apellido" id="ape" pattern="[A-Za-z/s ]+" >
+											<label for="ape">Apellido:</label>
+																				
+										</div>
+
 
 									  </div>
 
 									  <div id="pjuridica">
 
 									  	<div class="input-field">
-											<input type="number" name="cuil" title="Ingrese el CUIL" id="cuil" min="1000000000" max="100000000000">
-											<label for="cuil">CUIL:</label>				
+											<input type="number" name="cuit" title="Ingrese el CUIT" id="cuit" min="1000000000" max="100000000000">
+											<label for="cuit">CUIT:</label>				
 										</div>
-
-											<div class="valid3"></div>
-
+											 <div class="valid3"></div>
+											<!-- Input razon Scocial -->
+										<div class="input-field">
+											<input type="text" name="razon" title="Ingrese Razon Social" id="razon" pattern="[A-Za-z/s ]+">
+											<label for="razon">Razon Social:</label>
+																				
+										</div>
+                                              
+                
 									  </div>
-
-									<span class="card-title">Datos personales</span>
-
-									<!-- Input nombre -->
-
-									<div class="input-field">
-										<input type="text" name="nom" title="Ingrese tu nombre" id="nom" pattern="[A-Za-z/s ]+" required>
-										<label for="nom">Nombre:</label>
-																			
-									</div>
-
-									<!-- Input apellido -->
-
-									<div class="input-field">
-										<input type="text" name="ape" title="Ingrese su apellido" id="ape" pattern="[A-Za-z/s ]+" required>
-										<label for="ape">Apellido:</label>
-																			
-									</div>
 
 									<!-- Select telefono 
 									<div class="input-field">
@@ -92,27 +96,38 @@
 										<label for="ciu">Localidad:</label>
 																			
 									</div>
+									<div class="input-field col s12">
+											<select name="grupo"  id="grupo" required>
+												<option value="" disabled selected>Seleccione Grupo</option>
+												<?php 
+												
+												
 
-									<!-- foto
+												$sel = $con -> prepare('SELECT id, nombre FROM persona_grupo');
+												$sel -> execute();
+												$sel -> bind_result($id, $nombre);
+												$sel -> store_result();
 
-									<div class="file-field input-field">
-										<div class="btn">
-											<span>Foto</span>
-											<input type="file" name="foto">
+												while($sel -> fetch()){
+
+
+												 ?>
+												 <option value="<?php echo $id; ?>"> <?php echo $nombre; ?></option>
+												 <?php 
+
+												 
+												}
+
+												  ?>
+												 
+												
+											</select>
 										</div>
-
-										<div class="file-path-wrapper">
-											<input class="file-path validate" type="text">
-										</div>
-									</div>
-									
-									-->
-
 									<div class="input-field col s12">
 							          <textarea name="observacion" id="textarea1" class="materialize-textarea"></textarea>
 							          <label for="textarea1">Observacion</label>
 							        </div>
-									
+
 									<br>
 									
 									<!-- Input boton -->

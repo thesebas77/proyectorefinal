@@ -3,12 +3,12 @@
 
 	  	$cod = htmlentities($_GET['id']);
 
-		$sel = $con -> prepare("SELECT razonSocial,numDocumento,tipo,nombre,apellido,domicilio,localidad,email,observaciones FROM propietario where id = ?");
+		$sel = $con -> prepare("SELECT nombre,apellido,razonSocial,dni,cuit,domicilio,email,localidad,tipo,grupo,estado,observaciones FROM propietario where id = ?");
 
 		$sel -> bind_param('i',$cod);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($razon, $num,$tipo,$nom,$ape,$domi,$loca,$email,$obs);
+		$sel -> bind_result($nom,$ape,$razon, $dni,$cuit,$domi,$email,$loca,$tipo,$gru,$est,$obs);
 		$row = $sel -> num_rows();
 
 		if($sel -> fetch()){}
@@ -36,7 +36,7 @@
 									  </p>
 
 									  <p class="red-text">
-									  	Estos datos debe ingresarlos nuevamente para modificar: PERSONA (HUMANA/JURIDICA), (D.N.I/CUIL).
+									  	Estos datos debe ingresarlos nuevamente para modificar: PERSONA (HUMANA/JURIDICA), (D.N.I/CUIT).
 									  </p>
 
 									  <br>
@@ -65,8 +65,8 @@
 									  <div id="pjuridica">
 
 									  	<div class="input-field">
-											<input type="number" name="cuil" title="Ingrese el CUIL" id="cuil" min="1000000000" max="100000000000">
-											<label for="cuil">CUIL:</label>				
+											<input type="number" name="cuit" title="Ingrese el CUIT" id="cuit" min="1000000000" max="100000000000">
+											<label for="cuit">CUIT:</label>				
 										</div>
 
 											<div class="valid3"></div>
