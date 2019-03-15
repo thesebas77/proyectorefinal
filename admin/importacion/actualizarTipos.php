@@ -1,16 +1,6 @@
 <?php 
      include '../extend/header.php';
      include '../extend/permiso.php';
-              
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-<?php
-include'../conexion/conexion.php';
 
 
 /*---------------------------------------------------------------------------
@@ -23,10 +13,10 @@ $res2=mysqli_query($con,"SELECT DISTINCT(v.tv),v.tipo  from valuacion v ORDER BY
 while($v2=mysqli_fetch_array($res2))
 {
 	
-	$sql2=$con->prepare("INSERT INTO tipos_vehiculos (tv, tipo)
+	$sql2=$con->prepare("INSERT INTO tipo_vehiculos (tv, tipo)
             SELECT '$v2[0]', '$v2[1]'
                 FROM dual
-                WHERE NOT EXISTS (SELECT tv,tipo FROM tipos_vehiculos
+                WHERE NOT EXISTS (SELECT tv,tipo FROM tipo_vehiculos
                                       WHERE tv='$v2[0]' AND tipo='$v2[1]')");
 	$sql2->execute();
 }

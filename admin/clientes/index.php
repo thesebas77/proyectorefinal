@@ -54,7 +54,7 @@
 									  <div id="pjuridica">
 										
 										<div class="input-field">
-											<input type="number" name="cuil" title="Ingrese el CUIL" id="cuil" min="10000000000" max="100000000000">
+											<input type="number" name="cuit" title="Ingrese el CUIL" id="cuit" min="10000000000" max="100000000000">
 											<label for="cuil">CUIL:</label>				
 										</div>
 

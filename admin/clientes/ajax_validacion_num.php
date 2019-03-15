@@ -1,6 +1,6 @@
 <?php include '../conexion/conexion.php'; 
 
-	$cuit= htmlentities($_POST['cuil']);
+	$cuit= htmlentities($_POST['cuit']);
 
 	$sel = $con -> prepare("SELECT id FROM persona WHERE cuit = ?");
 	$sel -> bind_param('i',$cuit);
