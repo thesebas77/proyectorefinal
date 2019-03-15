@@ -22,7 +22,7 @@ $('#pass2').change(function(event){
 
 	}else{
 
-		swal('Uups','Las contraseñas no coinciden', 'error');
+		swal('Las contraseñas no coinciden', 'error');
 		$('#edit').hide();
 	}
 });

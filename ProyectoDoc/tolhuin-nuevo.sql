@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-03-2019 a las 19:53:07
+-- Tiempo de generación: 15-03-2019 a las 16:25:17
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.1.18
 
@@ -53,7 +53,7 @@ CREATE TABLE `bajavehiculo` (
   `ano` int(11) NOT NULL,
   `falta` text NOT NULL,
   `fbaja` text NOT NULL,
-  `propietario` int(11) NOT NULL
+  `propietario` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -74,42 +74,6 @@ CREATE TABLE `cuota` (
   `fechaPago` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `cuota`
---
-
-INSERT INTO `cuota` (`id`, `imp`, `valor`, `baseImponible`, `vencimiento1`, `vencimiento2`, `paga`, `usuario`, `fechaPago`) VALUES
-(1, 'hnl520', 540.73, 32444, '20/02/2019', '20/03/2019', 2, 0, ''),
-(2, 'hnl520', 540.73, 32444, '20/04/2019', '20/05/2019', 2, 0, ''),
-(3, 'hnl520', 540.73, 32444, '20/06/2019', '20/07/2019', 2, 0, ''),
-(4, 'hnl520', 540.73, 32444, '20/08/2019', '20/09/2019', 2, 0, ''),
-(5, 'hnl520', 540.73, 32444, '20/10/2019', '20/11/2019', 2, 0, ''),
-(6, 'hnl520', 540.73, 32444, '20/12/2019', '20/01/2020', 2, 0, ''),
-(19, 'hnd520', 538.57, 32314, '20/02/2019', '20/03/2019', 2, 0, ''),
-(20, 'hnd520', 538.57, 32314, '20/04/2019', '20/05/2019', 2, 0, ''),
-(21, 'hnd520', 538.57, 32314, '20/06/2019', '20/07/2019', 2, 0, ''),
-(22, 'hnd520', 538.57, 32314, '20/08/2019', '20/09/2019', 2, 0, ''),
-(23, 'hnd520', 538.57, 32314, '20/10/2019', '20/11/2019', 2, 0, ''),
-(24, 'hnd520', 538.57, 32314, '20/12/2019', '20/01/2020', 2, 0, ''),
-(25, 'hnl521', 5073.33, 304400, '20/02/2019', '20/03/2019', 2, 0, ''),
-(26, 'hnl521', 5073.33, 304400, '20/04/2019', '20/05/2019', 2, 0, ''),
-(27, 'hnl521', 5073.33, 304400, '20/06/2019', '20/07/2019', 2, 0, ''),
-(28, 'hnl521', 5073.33, 304400, '20/08/2019', '20/09/2019', 2, 0, ''),
-(29, 'hnl521', 5073.33, 304400, '20/10/2019', '20/11/2019', 2, 0, ''),
-(30, 'hnl521', 5073.33, 304400, '20/12/2019', '20/01/2020', 2, 0, ''),
-(31, 'kro129', 1583.33, 95000, '20/02/2019', '20/03/2019', 2, 0, ''),
-(32, 'kro129', 1583.33, 95000, '20/04/2019', '20/05/2019', 2, 0, ''),
-(33, 'kro129', 1583.33, 95000, '20/06/2019', '20/07/2019', 2, 0, ''),
-(34, 'kro129', 1583.33, 95000, '20/08/2019', '20/09/2019', 2, 0, ''),
-(35, 'kro129', 1583.33, 95000, '20/10/2019', '20/11/2019', 2, 0, ''),
-(36, 'kro129', 1583.33, 95000, '20/12/2019', '20/01/2020', 2, 0, ''),
-(37, 'hdp123', 6416.65, 384999, '20/02/2019', '20/03/2019', 2, 0, ''),
-(38, 'hdp123', 6416.65, 384999, '20/04/2019', '20/05/2019', 2, 0, ''),
-(39, 'hdp123', 6416.65, 384999, '20/06/2019', '20/07/2019', 2, 0, ''),
-(40, 'hdp123', 6416.65, 384999, '20/08/2019', '20/09/2019', 2, 0, ''),
-(41, 'hdp123', 6416.65, 384999, '20/10/2019', '20/11/2019', 2, 0, ''),
-(42, 'hdp123', 6416.65, 384999, '20/12/2019', '20/01/2020', 2, 0, '');
-
 -- --------------------------------------------------------
 
 --
@@ -122,19 +86,6 @@ CREATE TABLE `impuesto` (
   `monto` double NOT NULL,
   `anio` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `impuesto`
---
-
-INSERT INTO `impuesto` (`id`, `dom`, `monto`, `anio`) VALUES
-(1, 'hnl520', 3244.4, '2019'),
-(2, 'hnl520', 3888.8, '2019'),
-(3, 'hnl520', 45000, '2019'),
-(4, 'hnd520', 3231.4, '2019'),
-(5, 'hnl521', 30440, '2019'),
-(6, 'kro129', 9500, '2019'),
-(7, 'hdp123', 38499.9, '2018');
 
 -- --------------------------------------------------------
 
@@ -356,39 +307,29 @@ CREATE TABLE `padron` (
   `cod_vehiculo` int(11) NOT NULL,
   `fechaAlta` text NOT NULL,
   `propietario` bigint(11) NOT NULL,
-  `anioModelo` text NOT NULL,
+  `anioModelo` int(11) NOT NULL,
   `baseImponible` double NOT NULL,
   `cotizacionExtra` double NOT NULL,
   `importe` double NOT NULL,
   `situacion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `padron`
---
-
-INSERT INTO `padron` (`dominio`, `cod_vehiculo`, `fechaAlta`, `propietario`, `anioModelo`, `baseImponible`, `cotizacionExtra`, `importe`, `situacion`) VALUES
-('hnl520', 31, '12/03/2019', 1, '', 0, 0, 0, ''),
-('hnd520', 6, '13/03/2019', 1, '', 0, 0, 0, ''),
-('hnl521', 5, '13/03/2019', 1, '', 0, 0, 0, ''),
-('kro129', 37, '13/03/2019', 3, '', 0, 0, 0, ''),
-('hdp123', 2842, '31/03/2019', 1, '2018', 384999, 0, 0, 'Activo');
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `propietario`
+-- Estructura de tabla para la tabla `persona`
 --
 
-CREATE TABLE `propietario` (
+CREATE TABLE `persona` (
   `id` int(11) NOT NULL,
   `nombre` text CHARACTER SET latin1 NOT NULL,
   `apellido` text CHARACTER SET latin1 NOT NULL,
-  `razonSocial` bigint(20) NOT NULL,
-  `numDocumento` bigint(11) NOT NULL,
+  `razonSocial` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `dni` bigint(11) NOT NULL,
+  `cuit` bigint(20) NOT NULL,
   `domicilio` text CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
   `email` text CHARACTER SET latin1 NOT NULL,
-  `fechaAlta` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `fechaAlta` date NOT NULL,
   `localidad` text CHARACTER SET latin1 NOT NULL,
   `tipo` text CHARACTER SET latin1 NOT NULL,
   `grupo` int(11) DEFAULT NULL,
@@ -397,31 +338,29 @@ CREATE TABLE `propietario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- Volcado de datos para la tabla `propietario`
+-- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `propietario` (`id`, `nombre`, `apellido`, `razonSocial`, `numDocumento`, `domicilio`, `email`, `fechaAlta`, `localidad`, `tipo`, `grupo`, `estado`, `observaciones`) VALUES
-(1, 'Sebastian', 'Martinez', 0, 38424348, 'intevu9', 'th@h.com', '', 'rio grande', 'Humana', 0, 'Regular', 'ajwfmomfaw'),
-(2, 'micaela', 'martinez', 0, 40311230, 'intevu', 'fawfa@fawfa', '', 'rio grande', 'Humana', 0, 'Regular', 'wajdwaodmoaw'),
-(3, 'jorge', 'fernando', 20311230330, 0, 'maria', 'wfafwa@fawfwa', '', 'Tolhuin', 'Juridica', 0, 'Regular', 'fwafwafaf');
+INSERT INTO `persona` (`id`, `nombre`, `apellido`, `razonSocial`, `dni`, `cuit`, `domicilio`, `email`, `fechaAlta`, `localidad`, `tipo`, `grupo`, `estado`, `observaciones`) VALUES
+(1, 'Sebastian', 'Martinez', '', 38424348, 0, 'Inevu 9 casa 5', 'thesebas77@icloud.com', '2019-03-15', 'Rio Grande', 'Humana', 3, 'Regular', 'affeafeafe');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `propietariogrupo`
+-- Estructura de tabla para la tabla `persona_grupo`
 --
 
-CREATE TABLE `propietariogrupo` (
+CREATE TABLE `persona_grupo` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `descuento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `propietariogrupo`
+-- Volcado de datos para la tabla `persona_grupo`
 --
 
-INSERT INTO `propietariogrupo` (`id`, `nombre`, `descuento`) VALUES
+INSERT INTO `persona_grupo` (`id`, `nombre`, `descuento`) VALUES
 (0, 'cliente', 0),
 (2, 'Personal', 0),
 (3, 'Cliente-Personal', 50);
@@ -17812,15 +17751,15 @@ ALTER TABLE `marca`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `propietario`
+-- Indices de la tabla `persona`
 --
-ALTER TABLE `propietario`
+ALTER TABLE `persona`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `propietariogrupo`
+-- Indices de la tabla `persona_grupo`
 --
-ALTER TABLE `propietariogrupo`
+ALTER TABLE `persona_grupo`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -17855,13 +17794,13 @@ ALTER TABLE `vehiculo`
 -- AUTO_INCREMENT de la tabla `cuota`
 --
 ALTER TABLE `cuota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `impuesto`
 --
 ALTER TABLE `impuesto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -17870,10 +17809,10 @@ ALTER TABLE `marca`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
--- AUTO_INCREMENT de la tabla `propietario`
+-- AUTO_INCREMENT de la tabla `persona`
 --
-ALTER TABLE `propietario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `persona`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_vehiculo`

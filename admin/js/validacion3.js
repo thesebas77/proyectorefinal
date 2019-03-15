@@ -1,6 +1,6 @@
 $('#cuil').change(function(){
 	$.post('ajax_validacion_num.php', {
-		cuil:$('#cuil').val(),
+		cuit:$('#cuit').val(),
 
 			beforeSend: function(){
 				$('.valid3').html("Espere un momento..");

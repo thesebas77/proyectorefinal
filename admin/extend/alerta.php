@@ -75,7 +75,7 @@
 		$dir = $carpeta.$pagina;
 
 		if ($t == "error"){
-			$titulo = "Opps..";
+			$titulo = "Error";
 		}else{
 			$titulo = "Buen trabajo!";
 		}

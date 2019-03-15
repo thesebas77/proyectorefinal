@@ -1,47 +1,44 @@
 <?php include '../conexion/conexion.php'; 
 
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if($_SERVER['REQUEST_METHOD'] == 'POST')
+	{
 		$dni = htmlentities($_POST['dni']);
-		$cuil = htmlentities($_POST['cuil']);
+		$cuit = htmlentities($_POST['cuit']);
 		$nom = htmlentities($_POST['nom']);
 		$ape = htmlentities($_POST['ape']);
+		$razon = htmlentities($_POST['razon']);
 		$dire = htmlentities($_POST['dire']);
 		$ciu = htmlentities($_POST['ciu']);
 		$email = htmlentities($_POST['email']);
+		$gru= htmlentities($_POST['grupo']);
 		$obs = htmlentities($_POST['observacion']);
-
-		if ($dni == 0){
+		$fecha=date("d-m-Y");
+		$estado="Regular";
+		$usuario=$_SESSION['user'];
+	
+		if (empty($dni))
+		{	
 			$tipo = 'Juridica';
-		}else{
+			$ins=$con->prepare("INSERT INTO propietario (razonSocial,cuit,domicilio,email,localidad,tipo,grupo,estado,observaciones) 
+			VALUES ('$razon',$cuit,'$dire','$email','$ciu','$tipo',$gru,'$estado','$obs') ");
+			$ins -> execute();
+		}
+		else{
 			$tipo = 'Humana';
+			echo $tipo."<br>";
+			$ins = $con -> prepare("INSERT INTO propietario(nombre,apellido,dni,domicilio,email,localidad,tipo,grupo,estado,observaciones)
+			 VALUES ('$nom','$ape',$dni,'$dire','$email','$ciu','$tipo',$gru,'$estado','$obs') ");
+			 $ins -> execute();
 		}
 
-		$id = '';
-		$razon ='';
-		$gru = 0;
-		$est = 'Regular';
-
-
-		$ins = $con -> prepare("INSERT INTO propietario VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ");
-
-		if ($dni == 0){
-
-			$ins -> bind_param('issiissssiss',$id,$nom,$ape,$cuil,$razon,$dire,$email,$ciu,$tipo,$gru,$est,$obs);
-
-		}else{
-
-			$ins -> bind_param('issiissssiss',$id,$nom,$ape,$razon,$dni,$dire,$email,$ciu,$tipo,$gru,$est,$obs);
-		}
-		
-		
-		$ins -> execute();
-		$ins -> close();
 
 		if($ins){
+			$log= $con->prepare("INSERT INTO auditoria");
 			header('location:../extend/alerta.php?msj=Se ha registrado el propietario con exito&c=cl&p=in&t=success');
 			//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 
 			
-		}else{
+		}
+		else{
 
 			header('location:../extend/alerta.php?msj=No se ha podido registrar el propietario&c=cl&p=in&t=error');
 
@@ -49,10 +46,10 @@
 
 		
 		return false;
-	}else{
+	}
+else{
 		header('location:../extend/alerta.php?msj=Utiliza el formulario&c=salir&p=salir&t=error');
 	}
 
-	$con -> close();
 
 ?>

@@ -20,11 +20,11 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT id,razonSocial,numDocumento,tipo,nombre,apellido,domicilio,localidad FROM propietario ");
+		$sel = $con -> prepare("SELECT id,razonSocial,dni,cuit,tipo,nombre,apellido,domicilio,grupo,localidad FROM propietario WHERE estado LIKE '%Regular%' ");
 
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($id_pro,$razon,$num,$tipo,$nom,$ape,$domi,$loca);
+		$sel -> bind_result($id_pro,$razon,$dni,$cuit,$tipo,$nom,$ape,$domi,$gru,$loca);
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">
@@ -35,12 +35,12 @@
 	          <table class="highlight" id="personas1">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th class="center">D.N.I/CUIL</th>
-		          		<th class="center">Tipo</th>
+		          		<th class="center">D.N.I/CUIT</th>
+                        <th class="center">Apellido/Razon Social</th>
 		          		<th class="center">Nombre</th>
-		          		<th class="center">Apellido</th>
 		          		<th class="center">Domicilio</th>
 		          		<th class="center">Localidad</th>
+                        <th class="center">Tipo</th>
 		          		<th class="center">Detalle</th>
 		          		<?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
@@ -53,17 +53,21 @@
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
 
-	          		<td class="center"><?php if ($num == 0){
-	          			echo $razon;
+	          		<td class="center"><?php if (empty($dni)){
+	          			echo $cuit;
 	          		}else{
-	          			echo $num; 
+	          			echo $dni; 
 	          		}
 	          		?></td>
-	          		<td class="center"><?php echo $tipo; ?></td>
-	          		<td class="center"><?php echo $nom; ?></td>
-	          		<td class="center"><?php echo $ape; ?></td>
+	          		<td class="center"><?php if (empty($ape)){
+	          			echo $razon;
+	          		}else{
+	          			echo $ape; 
+	          		}?></td>
+                    <td class="center"><?php echo $nom; ?></td>
 	          		<td class="center"><?php echo $domi; ?></td>
 	          		<td class="center"><?php echo $loca; ?></td>
+                    <td class="center"><?php echo $tipo; ?></td>
 		          		<td class="center"> 
 		          			  <button data-target="modal1" onclick="enviar(this.value)" value="<?php echo $id_pro; ?>" class="btn-floating green"><i class="material-icons">visibility</i></button>
 
