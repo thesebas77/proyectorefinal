@@ -6,33 +6,30 @@
 			$m = date('n');
 			$a = date('Y');
 			$fbaja = $d.'/'.$m.'/'.$a;
+	$estado = 'Inactivo';
 
-	$sel = $con -> prepare("SELECT * FROM padron WHERE propietario = ?");
-		$sel -> bind_param('i',$num);
+	$sel = $con -> prepare("SELECT p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, pro.email, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, cu.baseImponible, p.anioModelo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id INNER JOIN cuota as cu ON p.dominio = cu.imp WHERE p.propietario = ?");
+		$sel -> bind_param('i', $num);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dom,$mar,$mod,$tipo,$ano,$falta,$pro);
+		$sel -> bind_result($dom,$cod_ve,$falta,$pro,$email,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$monto,$ano);
 		$row = $sel -> num_rows();
+
 		while ($sel -> fetch()){
 
 			$ins = $con -> prepare("INSERT INTO bajavehiculo VALUES (?,?,?,?,?,?,?,?) ");
-				$ins -> bind_param('ssssissi',$dom,$mar,$mod,$tipo,$ano,$falta,$fbaja,$pro);
+				$ins -> bind_param('ssssissi',$dom,$marca,$desc,$tipo,$ano,$falta,$fbaja,$pro);
 				$ins -> execute();
 			}
 
 	if ($ins){
 
-		$del = $con -> prepare("DELETE FROM propietario WHERE num=? ");
-		$del -> bind_param('i',$num);
-		$del -> execute();
+		$up = $con -> prepare("UPDATE persona SET estado = ? WHERE apellido = ? AND email = ?");
+		$up -> bind_param('sss',$estado,$pro,$email);
+		$up -> execute();		
 
-		$del = $con -> prepare("DELETE FROM vehiculo WHERE propietario=? ");
-		$del -> bind_param('i',$num);
-		$del -> execute();
-		
-
-		if($del){
-				header('location:../extend/alerta.php?msj=El propietario ha sido eliminado, con todos sus vehiculos asociados y los vehiculos fueron a baja de vehiculos&c=cl&p=lic&t=success');
+		if($up){
+				header('location:../extend/alerta.php?msj=El propietario ha sido desactivado, y los vehiculos fueron a baja de vehiculos&c=cl&p=lic&t=success');
 			}else{
 				header('location:../extend/alerta.php?msj=El propietario no ha podido ser eliminado&c=cl&p=lic&t=error');
 			}	

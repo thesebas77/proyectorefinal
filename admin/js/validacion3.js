@@ -1,4 +1,4 @@
-$('#cuil').change(function(){
+$('#cuit').change(function(){
 	$.post('ajax_validacion_num.php', {
 		cuit:$('#cuit').val(),
 

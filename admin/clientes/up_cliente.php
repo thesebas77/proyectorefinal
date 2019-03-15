@@ -16,12 +16,12 @@
 
 		if ($dni){
 			$tipo = 'Juridica';
-			$ins = $con -> prepare("UPDATE propietario SET  razonSocial=?, cuit=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
+			$ins = $con -> prepare("UPDATE persona SET  razonSocial=?, cuit=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
 			$ins -> bind_param('sissssissi',$razon,$cuit,$dire,$email,$ciu,$tipo,$gru,$est,$obs,$nume);
 			$ins -> execute();
 		}else{
 			$tipo = 'Humana';
-			$ins = $con -> prepare("UPDATE propietario SET  nombre=?, apellido=?,  dni=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
+			$ins = $con -> prepare("UPDATE persona SET  nombre=?, apellido=?,  dni=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
 			$ins -> bind_param('ssissssissi',$nom,$ape,$dni,$dire,$email,$ciu,$tipo,$gru,$est,$obs,$nume);
 			$ins -> execute();
 		}

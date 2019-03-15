@@ -52,12 +52,15 @@
 									  </div>
 
 									  <div id="pjuridica">
-
-									  	<div class="input-field">
-											<input type="number" name="cuit" title="Ingrese el CUIT" id="cuit" min="1000000000" max="100000000000">
-											<label for="cuit">CUIT:</label>				
+										
+										<div class="input-field">
+											<input type="number" name="cuil" title="Ingrese el CUIL" id="cuil" min="10000000000" max="100000000000">
+											<label for="cuil">CUIL:</label>				
 										</div>
-											 <div class="valid3"></div>
+
+										<div class="valid3"></div>
+
+
 											<!-- Input razon Scocial -->
 										<div class="input-field">
 											<input type="text" name="razon" title="Ingrese Razon Social" id="razon" pattern="[A-Za-z/s ]+">
@@ -96,6 +99,7 @@
 										<label for="ciu">Localidad:</label>
 																			
 									</div>
+
 									<div class="input-field col s12">
 											<select name="grupo"  id="grupo" required>
 												<option value="" disabled selected>Seleccione Grupo</option>

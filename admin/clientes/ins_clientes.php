@@ -12,22 +12,22 @@
 		$email = htmlentities($_POST['email']);
 		$gru= htmlentities($_POST['grupo']);
 		$obs = htmlentities($_POST['observacion']);
-		$fecha=date("d-m-Y");
+		$fecha=date("Y-m-d");
 		$estado="Regular";
 		$usuario=$_SESSION['user'];
 	
 		if (empty($dni))
 		{	
 			$tipo = 'Juridica';
-			$ins=$con->prepare("INSERT INTO propietario (razonSocial,cuit,domicilio,email,localidad,tipo,grupo,estado,observaciones) 
-			VALUES ('$razon',$cuit,'$dire','$email','$ciu','$tipo',$gru,'$estado','$obs') ");
+			$ins=$con->prepare("INSERT INTO persona (razonSocial,cuit,domicilio,email,fechaAlta,localidad,tipo,grupo,estado,observaciones) 
+			VALUES ('$razon',$cuit,'$dire','$email','$fecha','$ciu','$tipo',$gru,'$estado','$obs') ");
 			$ins -> execute();
 		}
 		else{
 			$tipo = 'Humana';
 			echo $tipo."<br>";
-			$ins = $con -> prepare("INSERT INTO propietario(nombre,apellido,dni,domicilio,email,localidad,tipo,grupo,estado,observaciones)
-			 VALUES ('$nom','$ape',$dni,'$dire','$email','$ciu','$tipo',$gru,'$estado','$obs') ");
+			$ins = $con -> prepare("INSERT INTO persona (nombre,apellido,dni,domicilio,email,fechaAlta,localidad,tipo,grupo,estado,observaciones)
+			 VALUES ('$nom','$ape',$dni,'$dire','$email','$fecha','$ciu','$tipo',$gru,'$estado','$obs') ");
 			 $ins -> execute();
 		}
 

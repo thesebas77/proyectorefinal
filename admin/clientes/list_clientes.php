@@ -20,7 +20,7 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT id,razonSocial,dni,cuit,tipo,nombre,apellido,domicilio,grupo,localidad FROM propietario WHERE estado LIKE '%Regular%' ");
+		$sel = $con -> prepare("SELECT id,razonSocial,dni,cuit,tipo,nombre,apellido,domicilio,grupo,localidad FROM persona WHERE estado LIKE '%Regular%' ");
 
 		$sel -> execute();
 		$sel -> store_result();
@@ -95,8 +95,8 @@
 						<td class="center"> 
 		          			<a href="#" class="btn-floating red" onclick="
 		          				swal({
-								  title: 'Estas seguro que desea eliminar al propietario?',
-								  text: 'Al eliminarlo se borraran todos los vehiculos asociados y no podra recuperarlos!',
+								  title: 'Esta seguro que desea eliminar al propietario?',
+								  text: 'Al hacerlo se desativaria el propietario!',
 								  type: 'warning',
 								  showCancelButton: true,
 								  confirmButtonColor: '#3085d6',

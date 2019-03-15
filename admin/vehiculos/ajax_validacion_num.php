@@ -3,7 +3,7 @@
 	$cuil = htmlentities($_POST['cuil']);
 	
 
-	$sel = $con -> prepare("SELECT id FROM propietario WHERE razonSocial = ?");
+	$sel = $con -> prepare("SELECT id FROM persona WHERE cuit = ?");
 	$sel -> bind_param('i',$cuil);
 	$sel -> execute();
 	$sel -> bind_result($num);
