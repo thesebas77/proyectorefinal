@@ -3,7 +3,9 @@
 	<br>
 	<div class="row">
 
-		<div class="col s2 m2 l2 xl2"></div>
+		<div class="col s2 m2 l2 xl2">
+			<a href="list_inactivos_clientes.php" class=" col s12 m12 l12 xl12 btn waves-effects red right">Lista</a>
+		</div>
 
 		<div class="col s8 m8 l8 xl8">
 			<nav class="blue darken-3">
@@ -18,6 +20,8 @@
 		</div>
 	</div>
 
+	<h4 class="center">Propietarios activos</h4>
+	
 	<?php 
 
 		$sel = $con -> prepare("SELECT id,razonSocial,dni,cuit,tipo,nombre,apellido,domicilio,grupo,localidad FROM persona WHERE estado LIKE '%Regular%' ");

@@ -2,12 +2,13 @@
 	include '../conexion/conexion.php';
 	include '../extend/permiso.php';
 	$dom = htmlentities($_GET['dom']);
+	$sit = 'Inactivo';
 
-	$sel = $con -> prepare("SELECT * FROM vehiculo WHERE dominio = ?");
-		$sel -> bind_param('s',$dom);
+	$sel = $con -> prepare("SELECT p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, pro.email, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, cu.baseImponible, p.anioModelo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id INNER JOIN cuota as cu ON p.dominio = cu.imp WHERE p.dominio = ?");
+		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dom,$mar,$mod,$tipo,$ano,$falta,$pro);
+		$sel -> bind_result($dom,$cod_ve,$falta,$pro,$email,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$monto,$ano);
 		$row = $sel -> num_rows();
 		if ($sel -> fetch()){}
 
@@ -17,21 +18,16 @@
 	$fbaja = $d.'/'.$m.'/'.$a;
 
 	$ins = $con -> prepare("INSERT INTO bajavehiculo VALUES (?,?,?,?,?,?,?,?) ");
-		$ins -> bind_param('ssssissi',$dom,$mar,$mod,$tipo,$ano,$falta,$fbaja,$pro);
-		$ins -> execute();
+				$ins -> bind_param('ssssisss',$dom,$marca,$desc,$tipo,$ano,$falta,$fbaja,$pro);
+				$ins -> execute();
 
 	if($ins){
 
-	$del = $con -> prepare("DELETE FROM vehiculo WHERE dominio=? ");
-	$del -> bind_param('s',$dom);
+	$del = $con -> prepare("UPDATE padron SET situacion = ? WHERE dominio=? ");
+	$del -> bind_param('ss',$sit,$dom);
 	$del -> execute();
 	
 	if($del){
-
-			$del = $con -> prepare("DELETE FROM baseimponible WHERE dom=? ");
-			$del -> bind_param('s',$dom);
-			$del -> execute();
-
 			$del = $con -> prepare("DELETE FROM cuota WHERE imp=? ");
 			$del -> bind_param('s',$dom);
 			$del -> execute();
