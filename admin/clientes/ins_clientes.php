@@ -12,10 +12,7 @@
 		$email = htmlentities($_POST['email']);
 		$gru= htmlentities($_POST['grupo']);
 		$obs = htmlentities($_POST['observacion']);
-		$d = date('d');
-			$m = date('n');
-			$a = date('Y');
-			$fecha = $d.'/'.$m.'/'.$a;
+		$fecha = Date('Y-m-d');
 
 		$estado="Regular";
 		$usuario=$_SESSION['user'];
@@ -40,11 +37,11 @@ $valor="nombre: $nom|apellido:$ape|DNI:$dni|Domicilio:$dire|Mail:$email|Ciudad:$
 
 
 		if($ins){
-			$registro=mysqli_query($con,"SELECT propietario.id FROM propietario  ORDER BY 1 DESC LIMIT 1");
+			$registro=mysqli_query($con,"SELECT persona.id FROM persona  ORDER BY 1 DESC LIMIT 1");
 			while($reg_id=mysqli_fetch_array($registro))
 			{	
 				$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
-				VALUES('INSERT','Propietario',$reg_id[0],'$valor','$fecha','$usuario')");
+				VALUES('INSERT','persona',$reg_id[0],'$valor','$fecha','$usuario')");
 			}
 			
 			header('location:../extend/alerta.php?msj=Se ha registrado el propietario con exito&c=cl&p=in&t=success');

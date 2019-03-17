@@ -27,21 +27,16 @@
 
 	if ($ins){
 
-<<<<<<< HEAD
 		$up = $con -> prepare("UPDATE persona SET estado = ? WHERE id = ?");
 		$up -> bind_param('si',$estado,$num);
 		$up -> execute();		
-=======
-		$up = $con -> prepare("UPDATE persona SET estado = ? WHERE apellido = ? AND email = ?");
-		$up -> bind_param('sss',$estado,$pro,$email);
-		$up -> execute();
+
 		$registro=mysqli_query($con,"SELECT bajavehiculo.id FROM bajavehiculo  ORDER BY 1 DESC LIMIT 1");
 		while($reg_id=mysqli_fetch_array($registro))
 		{	
 			$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
 			VALUES('INSERT','bajavehiculo',$reg_id[0],'$valor','$fbaja','$usuario')");
 		}	
->>>>>>> 3d016d243ee503a5f6668bdcb571972e57eda72e
 
 		if($up){
 			$valor="ESTADO: Inactivo";
