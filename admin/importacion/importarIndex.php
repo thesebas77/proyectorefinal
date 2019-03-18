@@ -1,11 +1,14 @@
-<?php 
-	  include '../extend/header.php';
-	  include '../extend/permiso.php';
-				  
+<?php
+include '../extend/header.php';
+include '../extend/permiso.php';
+
 ?>
-<title>Importar Valuacion</title>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Actualizar Tipos</title>
 </head>
-<br>
+<body >
 <br>
 <br>
 <br>
@@ -42,11 +45,9 @@
 		</div>
 	</div>
 
-	<div class="col s2 m2 l2 xl2">
-		
-	</div>
-</div>
+	<div class="col s2 m2 ">
+	</div></div>
+
 <?php include '../extend/scripts.php'; ?>
-                 
-</body>	
+</body>
 </html>

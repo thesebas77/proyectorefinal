@@ -24,6 +24,10 @@
 	<li><div class="divider"></div></li>
 
 	<li><a href="../importacion/importarIndex.php"><i class="material-icons pink-text">publish</i>Cotización fiscal nacional</a></li>
+	<li><a href="../importacion/actualizarTipos.php"><i class="material-icons pink-text">update</i>Actualizar Tipos</a></li>
+	<li><a href="../importacion/actualizarMarcas.php"><i class="material-icons pink-text">update</i>Actualizar  Marcas</a></li>
+	<li><a href="../importacion/actualizarvehiculos.php"><i class="material-icons pink-text">update</i>Actualizar vehÍculos</a></li>
+	<li><a href="../importacion/actualizarPrecios.php"><i class="material-icons pink-text">update</i>Actualizar Precios</a></li>
 
 	<li><div class="divider"></div></li>
 

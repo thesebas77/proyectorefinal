@@ -16,21 +16,19 @@
 		$sel -> bind_result($dom,$cod_ve,$falta,$pro,$email,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$monto,$ano);
 		$row = $sel -> num_rows();
 		
-		$valor="$dom,$cod_ve,$falta,$pro,$email,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$monto,$ano";
+		$valor="$dom  $cod_ve  $falta $pro $email $id_ve $id_mar $id_tip $desc $marca $tipo $monto $ano";
 		while ($sel -> fetch()){
 
 			$ins = $con -> prepare("INSERT INTO bajavehiculo VALUES (?,?,?,?,?,?,?,?) ");
-				$ins -> bind_param('ssssisss',$dom,$marca,$desc,$tipo,$ano,$falta,$fbaja,$pro);
+				$ins -> bind_param('ssssissi',$dom,$marca,$desc,$tipo,$ano,$falta,$fbaja,$pro);
 				$ins -> execute();
-
 			}
 
 	if ($ins){
 
-		$up = $con -> prepare("UPDATE persona SET estado = ? WHERE id = ?");
-		$up -> bind_param('si',$estado,$num);
-		$up -> execute();		
-
+		$up = $con -> prepare("UPDATE persona SET estado = ? WHERE apellido = ? AND email = ?");
+		$up -> bind_param('sss',$estado,$pro,$email);
+		$up -> execute();
 		$registro=mysqli_query($con,"SELECT bajavehiculo.id FROM bajavehiculo  ORDER BY 1 DESC LIMIT 1");
 		while($reg_id=mysqli_fetch_array($registro))
 		{	
@@ -44,18 +42,10 @@
 	        VALUES('UPDATE','persona',$num,'$valor','$fbaja','$usuario')");
 				header('location:../extend/alerta.php?msj=El propietario ha sido desactivado, y los vehiculos fueron a baja de vehiculos&c=cl&p=lic&t=success');
 			}else{
-				header('location:../extend/alerta.php?msj=El propietario no ha podido ser desactivado&c=cl&p=lic&t=error');
+				header('location:../extend/alerta.php?msj=El propietario no ha podido ser eliminado&c=cl&p=lic&t=error');
 			}	
 	}else{
-		$up = $con -> prepare("UPDATE persona SET estado = ? WHERE id = ?");
-		$up -> bind_param('si',$estado,$num);
-		$up -> execute();		
-
-		if($up){
-				header('location:../extend/alerta.php?msj=El propietario ha sido desactivado&c=cl&p=lic&t=success');
-			}else{
-				header('location:../extend/alerta.php?msj=El propietario no ha podido ser desactivado&c=cl&p=lic&t=error');
-			}	
+		header('location:../extend/alerta.php?msj=El propietario no ha podido ser eliminado&c=cl&p=lic&t=error');
 	}
 
 	
