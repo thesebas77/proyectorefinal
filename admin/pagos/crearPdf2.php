@@ -4,41 +4,39 @@
 	$dom = htmlentities($_GET['dom']);
 	$num = htmlentities($_GET['num']);
 
-	# Proietario
-	$sel = $con -> prepare("SELECT num,tipo,nom,ape,domicilio,localidad FROM propietario WHERE num = ?");
-		$sel -> bind_param('d',$num);
-		$sel -> execute();
-		$sel -> store_result();
-		$sel -> bind_result($num,$tipo,$nom,$ape,$domi,$loca);
-		$row = $sel -> num_rows();
-		if ($sel -> fetch()){}
+    # Proietario
+    $sel = $con -> prepare("SELECT tipo,nombre,apellido,razonSocial,dni,cuit,domicilio,localidad FROM persona WHERE id = ?");
+        $sel -> bind_param('i',$num);
+        $sel -> execute();
+        $sel -> store_result();
+        $sel -> bind_result($tipo,$nom,$ape,$razon,$dni,$cuit,$domi,$loca);
+        $row = $sel -> num_rows();
+        if ($sel -> fetch()){}
 
 
-	# Vehiculo
-	$sel = $con -> prepare("SELECT marca, modelo, tipo, ano FROM vehiculo WHERE dominio = ?");
-		$sel -> bind_param('s',$dom);
-		$sel -> execute();
-		$sel -> store_result();
-		$sel -> bind_result($mar, $mod, $tip, $ano);
-		$row = $sel -> num_rows();
-		if ($sel -> fetch()){}
+    # Vehiculo
+    $sel = $con -> prepare("SELECT v.descripcion, m.marca, tv.tipo, p.anioModelo FROM padron as p INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id  WHERE p.dominio = ?");
+        $sel -> bind_param('s', $dom);
+        $sel -> execute();
+        $sel -> store_result();
+        $sel -> bind_result($mod, $mar, $tip, $ano);
+        $row = $sel -> num_rows();
+        if ($sel -> fetch()){}
 
 
     $pag = 2;
     $m = 0;
-    # Cuota
-
-        $sel = $con -> prepare('SELECT * FROM cuota WHERE imp = ? AND paga = ?');
-    
-    
-            $sel -> bind_param('si', $dom, $pag);
+        # Cuota
+    $sel = $con -> prepare('SELECT * FROM cuota WHERE imp = ? AND paga = ?');
+            $sel -> bind_param('si', $dom,$pag);
             $sel -> execute();
             $sel -> store_result();
-            $sel -> bind_result($imp,$numc, $valor, $fven, $fven2, $paga);
-            $row_cuo = $sel -> num_rows();
+            $sel -> bind_result($id_cuota,$imp, $valor, $fven, $fven2, $paga, $usuario, $fpago);
+            $row = $sel -> num_rows();
+            
             while ($sel -> fetch()){
 
-                $numc1[$m] = $numc;
+                $numc1[$m] = $id_cuota;
                 $valor1[$m] = $valor;
                 $fven1[$m] = $fven;
                 $fven11[$m] = $fven2;
@@ -105,12 +103,29 @@ ob_start() ?>
 <tbody>
 <tr style="page-break-inside: avoid; height: 7.0pt;">
 <td style="width: 519.25pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.0pt;" colspan="2" width="692">
-<p><strong>Nombre del propietario: </strong><?php echo $nom; ?> <?php echo $ape; ?></p>
+<p><strong>Nombre del propietario: </strong>
+    <?php if (empty($razon)): ?>
+    <?php echo $nom; ?> <?php echo $ape; ?>
+    <?php else: ?>
+    <?php echo $razon; ?>
+    <?php endif; ?>
+</p>
 </td>
 </tr>
 <tr style="height: 7.4pt;">
 <td style="width: 259.65pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.4pt;" width="346">
-<p><strong>D.N.I/Cuil:</strong> <?php echo $num; ?> </p>
+<p><strong>D.N.I/Cuil:</strong> <?php 
+    if (empty($dni)){
+        echo $cuit;
+    }else{
+        echo $dni; 
+        
+    }
+    
+
+
+    ?> 
+</p>
 </td>
 <td style="width: 259.55pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 0cm 0cm; height: 7.4pt;" width="346">
 <p><strong>Domicilio:</strong> <?php echo $domi; ?> </p>
@@ -151,7 +166,7 @@ ob_start() ?>
             
             <td  height="10">
                 <p align="center">
-                 <font size=1> <strong>Cuota</strong></font>
+                 <font size=1> <strong>ID-Cuota</strong></font>
                 </p>
             </td>
             <td  height="10">
