@@ -153,6 +153,7 @@
 	          			<?php  	
 	          			else:
 	          				$ban = 1;?>
+	          				<?php if ($_SESSION['tipo'] == 1): ?>
 	          				<a href="#" class="btn-floating blue center" onclick="
 	          				swal({
 							  title: 'Seguro que quiere modificar el pago?',
@@ -166,7 +167,9 @@
 									location.href='../pagos/upcuota.php?&imp=<?php echo $imp_cu; ?>&num=<?php echo $id_cu; ?>&pa=<?php echo $paga; ?>';		      
 							})
 	          			">Si</a> 
-
+	          				<?php else: ?>
+	          					<div class="center">Si</div>
+	          				<?php endif; ?>
 	          			<?php endif; ?>
 	          			
 

@@ -6,7 +6,7 @@
 
 
 
-		$sel = $con -> prepare(" SELECT valor, fven, fven2 FROM cuota WHERE paga = ? ");
+		$sel = $con -> prepare(" SELECT valor, vencimiento1, vencimiento2 FROM cuota WHERE paga = ? ");
 
 		$sel -> bind_param('i',$pa);
 		$sel -> execute();
@@ -14,7 +14,8 @@
 		$sel -> bind_result($valor, $fven, $fven2);
 		$row = $sel -> num_rows();
 
-
+		if (empty($fdes) && empty($fhas)):
+		else:
 			 ?>
 
 
@@ -24,26 +25,22 @@
 	          <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-		          		<th class="center">D.N.I/CUIL</th>
-		          		<th class="center">Tipo</th>
-		          		<th class="center">Nombre</th>
-		          		<th class="center">Apellido</th>
-		          		<th class="center">Domicilio</th>
-		          		<th class="center">Localidad</th>
+		          		<th class="center">Total Recaudado</th>
+		          		<th class="center">F.vencimiento 1</th>
+		          		<th class="center">F.vencimiento 2</th>
 	          		</tr>
 	          	</thead>
 
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td class="center"><?php echo $valor; ?></td>
+	          		<td class="center">$<?php echo $valor; ?></td>
 	          		<td class="center"><?php echo $fven; ?></td>
 	          		<td class="center"><?php echo $fven2; ?></td>
-	          		<td class="center"><?php echo ''; ?></td>
-	          		<td class="center"><?php echo ''; ?></td>
-	          		<td class="center"><?php echo ''; ?></td>
 	          	</tr>
 
 	          	<?php }
+
+	          endif;
 	          	$sel -> close();
 	          	 ?>
 	         </table>
