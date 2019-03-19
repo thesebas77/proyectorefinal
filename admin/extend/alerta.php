@@ -77,7 +77,7 @@
 		if ($t == "error"){
 			$titulo = "Error";
 		}else{
-			$titulo = "Buen trabajo!";
+			$titulo = "Proceso exitoso!";
 		}
 
 	 ?>

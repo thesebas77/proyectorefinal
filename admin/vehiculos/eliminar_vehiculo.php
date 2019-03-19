@@ -4,7 +4,7 @@
 	$dom = htmlentities($_GET['dom']);
 	$sit = 'Inactivo';
 
-	$sel = $con -> prepare("SELECT p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, pro.email, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, cu.baseImponible, p.anioModelo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id INNER JOIN cuota as cu ON p.dominio = cu.imp WHERE p.dominio = ?");
+	$sel = $con -> prepare("SELECT p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, pro.email, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, p.baseImponible, p.anioModelo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
 		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();
@@ -26,20 +26,9 @@
 	$del = $con -> prepare("UPDATE padron SET situacion = ? WHERE dominio=? ");
 	$del -> bind_param('ss',$sit,$dom);
 	$del -> execute();
-	
-	if($del){
-			$del = $con -> prepare("DELETE FROM cuota WHERE imp=? ");
-			$del -> bind_param('s',$dom);
-			$del -> execute();
-
-			$del = $con -> prepare("DELETE FROM impuesto WHERE dom=? ");
-			$del -> bind_param('s',$dom);
-			$del -> execute();
 
 			header('location:../extend/alerta.php?msj=El vehiculo ha sido eliminado y se ha registrado en bajas de vehiculos&c=ve&p=liv&t=success');
-		}else{
-			header('location:../extend/alerta.php?msj=El vehiculo no ha podido ser eliminado&c=ve&p=liv&t=error');
-		}
+
 	}else{
 		header('location:../extend/alerta.php?msj=El vehiculo no ha podido ser eliminado&c=ve&p=liv&t=error');
 	}

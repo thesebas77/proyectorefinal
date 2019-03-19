@@ -31,11 +31,11 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT usuario,accion,tabla,fecha FROM auditoria ");
+		$sel = $con -> prepare("SELECT accion,tabla,fecha,usuario_id FROM auditoria ");
 
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($usu,$acc,$tabla,$fe);
+		$sel -> bind_result($acc,$tabla,$fe,$usu);
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">
@@ -55,10 +55,10 @@
 
 	          	<?php while($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td class="center"><?php echo $dom; ?></td>
-	          		<td class="center"><?php echo $mar; ?></td>
-	          		<td class="center"><?php echo $mod; ?></td>
-	          		<td class="center"><?php echo $tipo; ?></td>
+	          		<td class="center"><?php echo $usu; ?></td>
+	          		<td class="center"><?php echo $acc; ?></td>
+	          		<td class="center"><?php echo $tabla; ?></td>
+	          		<td class="center"><?php echo $fe; ?></td>
 	          	</tr>
 	          	<?php }
 	          	$sel -> close();

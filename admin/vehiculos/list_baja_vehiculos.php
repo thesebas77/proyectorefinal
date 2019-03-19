@@ -43,6 +43,10 @@
 		          		<th class="center">F. alta</th>
 		          		<th class="center">F. baja</th>
 		          		<th class="center">Propietario</th>
+		          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          		<?php else: ?>
+		          		<th class="center">Recuperar</th>
+		          		<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
@@ -56,6 +60,24 @@
 	          		<td class="center"><?php echo $falta; ?></td>
 	          		<td class="center"><?php echo $fbaja; ?></td>
 	          		<td class="center"><p><?php echo $pro; ?></p></td>
+	          		<?php if ($_SESSION['tipo'] == 3): ?>
+		          	<?php else: ?>
+	          		<td class="center"> 
+	          			<a href="#" class="btn-floating green" onclick="
+	          				swal({
+							  title: 'Desea recuperar el vehiculo?',
+							  text: 'Al hacerlo, se recuperara y volvera a la lista de vehiculos!',
+							  type: 'question',
+							  showCancelButton: true,
+							  confirmButtonColor: '#3085d6',
+							  cancelButtonColor: '#d33',
+							  confirmButtonText: 'Si, Recuperar!'
+							}).then(function () {
+									location.href='recuperar_vehiculo.php?dom=<?php echo $dom; ?>';		      
+							})
+	          			"><i class="material-icons">directions_car</i></a> 
+	          		</td>
+	          	<?php endif; ?>
 	          	</tr>
 	          	<?php }
 	          	$sel -> close();

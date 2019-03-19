@@ -3,12 +3,12 @@
 
 	$cod = htmlentities($_GET['dom']);
 
-	$sel = $con -> prepare("SELECT p.anioModelo, p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
+	$sel = $con -> prepare("SELECT p.baseImponible, p.anioModelo, p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
 
 		$sel -> bind_param('s',$cod);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($am,$dom,$cod_ve,$falta,$pro,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo);
+		$sel -> bind_result($base, $am,$dom,$cod_ve,$falta,$pro,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo);
 		$row = $sel -> num_rows();
 		if ($sel -> fetch()){}
 ?>
@@ -17,16 +17,13 @@
 					<div class="col s12">
 						<div class="card">
 							<div class="card-content">
-								
-								<p>
-										Si el propietario del vehiculo que va a registrar, no esta registrado. hacer click <a href="../clientes/index.php">aqui</a>
-								</p>
+							
 
-								<span class="card-title">Registro de vehiculo</span>	
-					<form class="form" action="../vehiculos/ins_vehiculo.php" method="post">
+								<span class="card-title">Modificar vehiculo</span>	
+					<form class="form" action="../vehiculos/up_vehiculo.php" method="post">
 
 									
-									<!-- Persona humano o persona juridica -->
+									<!-- Persona humano o persona juridica 
 
 									  
 								      <p>
@@ -63,14 +60,13 @@
 										
 
 									  </div>
+-->
 
-
-									<span class="card-title">Datos del vehiculo</span>
 
 									<!-- Input Dominio -->
 
 									<div class="input-field">
-										<input type="text" name="dom" title="Ingrese la patente del vehiculo" id="dom" required>
+										<input type="text" name="dom" title="Ingrese la patente del vehiculo" id="dom" value="<?php echo $cod; ?>" required>
 										<label for="dom">Dominio:</label>
 																			
 									</div>
@@ -236,21 +232,21 @@
 										<!-- Año del auto -->								
 
 										<div class="input-field col s12">
-											<input type="number" name="anomodelo">
+											<input type="number" value="<?php echo $am; ?>" name="anomodelo">
 											<label for="anomodelo">Año del modelo: </label>
 										</div>
 
 										<!-- date fecha de alta -->
 
 										<div class="input-field col s12">
-											<input type="text" class="datepicker" name="falta">
+											<input type="text" value="<?php echo $falta; ?>" class="datepicker" name="falta">
 											<label for="falta">Ingrese la fecha de alta:</label>
 										</div>
 
 										<!-- input base imponible -->
 										
 										<div class="input-field col s12">
-											<input type="number" name="base">
+											<input type="number" value="<?php echo $base; ?>" name="base">
 											<label for="base">Base imponible: $</label>
 										</div>
 
@@ -258,7 +254,7 @@
 										
 										<!-- Input boton -->
 
-										  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar">Registrar
+										  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar">Actualizar
 										    <i class="material-icons right">send</i>
 										  </button>
 									

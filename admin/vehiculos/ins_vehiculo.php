@@ -10,36 +10,43 @@
 		$falta = htmlentities($_POST['falta']);
 		$anmo = htmlentities($_POST['anomodelo']);
 
-		$mont = ($base*10)/100;
+		if ($dni == 0){
+
+					$sel = $con -> prepare("SELECT id,grupo FROM persona WHERE cuit = ?");
+					$sel -> bind_param('i',$cuil);
+					$sel -> execute();
+					$sel -> bind_result($num,$gru);
+					$sel -> store_result();
+					$row = $sel -> num_rows();
+					if($sel -> fetch()){}					
+
+		}else{
+					$sel = $con -> prepare("SELECT id,grupo FROM persona WHERE dni = ?");
+					$sel -> bind_param('i',$dni);
+					$sel -> execute();
+					$sel -> bind_result($num,$gru);
+					$sel -> store_result();
+					$row = $sel -> num_rows();
+					if($sel -> fetch()){}								
+		}
+
+
+		if ($gru == 3){
+			$cuenta = ($base*6)/100;	
+			$mont = $cuenta/2;
+		}else{
+			$mont = ($base*6)/100;
+		}
+		
 		$c = $mont/6; 
 		$cuo = round($c,2);
 		$no = 2;
 		$id_im = '';
 		$activo = 'Activo';
 
-		if ($dni == 0){
-
-					$sel = $con -> prepare("SELECT id FROM persona WHERE cuit = ?");
-					$sel -> bind_param('i',$cuil);
-					$sel -> execute();
-					$sel -> bind_result($num);
-					$sel -> store_result();
-					$row = $sel -> num_rows();
-					if($sel -> fetch()){}					
-
-		}else{
-					$sel = $con -> prepare("SELECT id FROM persona WHERE dni = ?");
-					$sel -> bind_param('i',$dni);
-					$sel -> execute();
-					$sel -> bind_result($num);
-					$sel -> store_result();
-					$row = $sel -> num_rows();
-					if($sel -> fetch()){}								
-		}
-
 		$ins = $con -> prepare("INSERT INTO padron VALUES (?,?,?,?,?,?,?,?,?) ");
 		
-		$ins -> bind_param('sisiiddds',$dom,$id_modelo,$falta,$num,$anmo,$base,$id_im,$id_im,$activo);
+		$ins -> bind_param('sisiiddds',$dom,$id_modelo,$falta,$num,$anmo,$base,$id_im,$cuo,$activo);
 		$ins -> execute();
 		
 
@@ -78,15 +85,15 @@
 											
 
 					if ($au2 == 13){
-						$fven2 = '20/01/2020';						
+						$fven2 = '20/01/'.date('Y', strtotime($aa."+ 1 year"));						
 					}
 
 					$id_cuo = '';
 					$id_use = '';
 					$fpago = '';
 
-					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?,?,?,?) ");
-					$ins -> bind_param('isddssiis',$id_cuo,$dom,$cuo,$base,$fven,$fven2,$no,$id_use,$fpago);
+					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?,?,?) ");
+					$ins -> bind_param('isdssiis',$id_cuo,$dom,$cuo,$fven,$fven2,$no,$id_use,$fpago);
 					$ins -> execute();	
 				}
 				
@@ -110,7 +117,7 @@
 		
 		return false;
 	}else{
-		header('location:../extend/alerta.php?msj=Utiliza el formulario&c=salir&p=salir&t=error');
+		header('location:../extend/alerta.php?msj=Utilice el formulario&c=salir&p=salir&t=error');
 	}
 
 	$con -> close();

@@ -46,6 +46,10 @@
 		          		<th class="center">Domicilio</th>
 		          		<th class="center">Localidad</th>
                         <th class="center">Tipo</th>
+                        <?php if ($_SESSION['tipo'] == 3): ?>
+		          		<?php else: ?>
+                        <th class="center">Recuperar</th>
+                    	<?php endif; ?>
 	          		</tr>
 	          	</thead>
 
@@ -67,6 +71,24 @@
 	          		<td class="center"><?php echo $domi; ?></td>
 	          		<td class="center"><?php echo $loca; ?></td>
                     <td class="center"><?php echo $tipo; ?></td>
+                    <?php if ($_SESSION['tipo'] == 3): ?>
+		          	<?php else: ?>
+	          		<td class="center"> 
+	          			<a href="#" class="btn-floating green" onclick="
+	          				swal({
+							  title: 'Desea recuperar el propietario?',
+							  text: 'Al hacerlo, se recuperara y volvera a la lista de propietarios activos!',
+							  type: 'question',
+							  showCancelButton: true,
+							  confirmButtonColor: '#3085d6',
+							  cancelButtonColor: '#d33',
+							  confirmButtonText: 'Si, Recuperar!'
+							}).then(function () {
+									location.href='recuperar_propietario.php?id=<?php echo $id_pro; ?>';		      
+							})
+	          			"><i class="material-icons">supervised_user_circle</i></a> 
+	          		</td>
+	          	<?php endif; ?>
 	          	</tr>
 
 	          	<?php }
