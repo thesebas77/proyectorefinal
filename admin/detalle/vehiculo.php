@@ -97,16 +97,19 @@
 	   		$sel -> bind_param('s', $dom);
 	   		$sel -> execute();
 	   		$sel -> store_result();
-	   		$sel -> bind_result($id_cu,$imp_cu, $valor, $fven, $fven2, $paga, $usu, $fpago);
+	   		$sel -> bind_result($id_cu,$imp_cu,$numpe, $valor, $fven, $fven2, $paga, $usu, $fpago);
 
 	    ?>
 	   <table class="highlight">
 	          	<thead>
 	          		<tr class="cabecera">
-	          			<th class="center">Id</th>
+	          			<th class="center">Numero</th>
 		          		<th class="center">Cuota</th>
 		          		<th class="center">Fecha V1.</th>
 		          		<th class="center">Fecha V2.</th>
+		          		<?php if ($_SESSION['tipo'] != 3): ?>
+		          		<th class="center">Modificar</th>
+		          		<?php endif; ?>
 		          		<th class="center">Pagada</th>
 		          		<th class="center">Boleta</th> 
 	          		</tr>
@@ -114,7 +117,7 @@
 
 	          	<?php while ($sel -> fetch()){ ?>
 	          	<tr>
-	          		<td class="center"><?php echo $id_cu; ?></td>
+	          		<td class="center"><?php echo $numpe; ?></td>
 	          		<td class="center"><?php echo $valor; ?></td>
 	          		<td class="center"><?php echo $fven; ?></td>
 	          		<td class="center"><?php echo $fven2; ?></td>
@@ -132,12 +135,28 @@
 	          		
 	          		<?php else: ?>
 
+	          		<td class="center">
+	          			<a href="#" class="btn-floating blue" onclick="
+	          				swal({
+							  title: 'Estas seguro que desea modificar la cuota?',
+							  text: 'Al hacerlo cambiara solo la de este periodo!',
+							  type: 'question',
+							  showCancelButton: true,
+							  confirmButtonColor: '#3085d6',
+							  cancelButtonColor: '#d33',
+							  confirmButtonText: 'Si, Modificar!'
+							}).then(function () {
+									location.href='../pagos/modificar_cuota.php?id=<?php echo $id_cu;?>';		      
+							})
+	          			"><i class="material-icons">autorenew</i></a> 
+	          		</td>
+
 	          		<td class="center"><?php 
 	          			 
 
 	          			if ($paga == 2):
 	          				$ban = 0;?>
-	          				<a href="#" class="btn-floating blue center" onclick="
+	          				<a href="#" class="btn-floating red center" onclick="
 	          				swal({
 							  title: 'Seguro que la boleta esta pagada?',
 							  text: 'Si esta seguro continue!',
@@ -154,7 +173,7 @@
 	          			else:
 	          				$ban = 1;?>
 	          				<?php if ($_SESSION['tipo'] == 1): ?>
-	          				<a href="#" class="btn-floating blue center" onclick="
+	          				<a href="#" class="btn-floating orange center" onclick="
 	          				swal({
 							  title: 'Seguro que quiere modificar el pago?',
 							  text: 'Si esta seguro continue!',
@@ -192,7 +211,7 @@
 							  cancelButtonColor: '#d33',
 							  confirmButtonText: 'Si, Emitir!'
 							}).then(function () {
-									location.href='../pagos/crearPdf.php?dom=<?php echo $dom; ?>&num=<?php echo $id_pro; ?>&ncuo=<?php echo $id_cu; ?>';		      
+									location.href='../pagos/crearPdf.php?dom=<?php echo $dom; ?>&num=<?php echo $id_pro; ?>&ncuo=<?php echo $numpe; ?>';		      
 							})
 	          			"><i class="material-icons">picture_as_pdf</i></a> 
 	          		</td>

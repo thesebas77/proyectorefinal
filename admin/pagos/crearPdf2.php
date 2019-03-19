@@ -31,12 +31,12 @@
             $sel -> bind_param('si', $dom,$pag);
             $sel -> execute();
             $sel -> store_result();
-            $sel -> bind_result($id_cuota,$imp, $valor, $fven, $fven2, $paga, $usuario, $fpago);
+            $sel -> bind_result($id_cuota,$imp,$numpe, $valor, $fven, $fven2, $paga, $usuario, $fpago);
             $row = $sel -> num_rows();
             
             while ($sel -> fetch()){
 
-                $numc1[$m] = $id_cuota;
+                $numc1[$m] = $numpe;
                 $valor1[$m] = $valor;
                 $fven1[$m] = $fven;
                 $fven11[$m] = $fven2;
@@ -166,7 +166,7 @@ ob_start() ?>
             
             <td  height="10">
                 <p align="center">
-                 <font size=1> <strong>ID-Cuota</strong></font>
+                 <font size=1> <strong>Cuota</strong></font>
                 </p>
             </td>
             <td  height="10">
@@ -187,7 +187,7 @@ ob_start() ?>
             </td>
             <td  height="10">
                 <p align="center">
-                   <font size=1> <?php echo $valor1[$i]; ?>
+                   <font size=1> $<?php echo $valor1[$i]; ?>
                 </p>
             </td>
            
@@ -208,7 +208,7 @@ ob_start() ?>
             </td>
             <td  height="10">
                 <p align="center">
-                   <font size=1> <?php echo $res; ?>
+                   <font size=1> $<?php echo $res; ?>
                 </p>
             </td>
            

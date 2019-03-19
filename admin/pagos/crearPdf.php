@@ -25,11 +25,11 @@
 		if ($sel -> fetch()){}
 
 	# Cuota
-	$sel = $con -> prepare('SELECT * FROM cuota WHERE id = ?');
+	$sel = $con -> prepare('SELECT * FROM cuota WHERE numPeriodo = ?');
 	   		$sel -> bind_param('i', $ncuo);
 	   		$sel -> execute();
 	   		$sel -> store_result();
-	   		$sel -> bind_result($id_cuota,$imp, $valor, $fven, $fven2, $paga, $usuario, $fpago);
+	   		$sel -> bind_result($id_cuota,$imp,$numpe, $valor, $fven, $fven2, $paga, $usuario, $fpago);
 	   		$row = $sel -> num_rows();
 			if ($sel -> fetch()){}
 
@@ -57,7 +57,7 @@ ob_start() ?>
             </td>
             <td  colspan="3"  height="10">
                 <p align="center">
-                  <font size=1>  --- <?php //echo $numc; ?>
+                  <font size=1>  <?php echo $numpe; ?>
                 </p>
             </td>
         </tr>
@@ -159,7 +159,7 @@ ob_start() ?>
             
             <td  height="10">
                 <p align="center">
-                 <font size=1> <strong>ID-Cuota</strong></font>
+                 <font size=1> <strong>Cuota</strong></font>
                 </p>
             </td>
             <td  height="10">
@@ -179,18 +179,18 @@ ob_start() ?>
             
             <td  height="10">
                 <p align="center">
-                 <font size=1> <?php echo $id_cuota; ?></font>
+                 <font size=1> <?php echo $numpe; ?></font>
                 </p>
             </td>
             <td  height="10">
                 <p align="center">
-                   <font size=1> <?php echo $valor; ?>
+                   <font size=1> $<?php echo $valor; ?>
                 </p>
             </td>
            
             <td  colspan="3"  height="10">
                 <p align="center">
-                  <font size=1>  <strong><?php echo $valor; ?></strong>
+                  <font size=1>  <strong>$<?php echo $valor; ?></strong>
                 </p>
             </td>
         </tr>
