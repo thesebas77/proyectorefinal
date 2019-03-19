@@ -31,11 +31,11 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT accion,tabla,fecha,usuario_id FROM auditoria ");
+		$sel = $con -> prepare("SELECT usuario_id,accion,tabla,id_registro,valor,fecha FROM auditoria ");
 
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($acc,$tabla,$fe,$usu);
+		$sel -> bind_result($usu,$acc,$tabla,$idreg,$valor,$fe);
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">
@@ -49,7 +49,9 @@
 		          		<th class="center">Usuario</th>
 		          		<th class="center">Accion</th>
 		          		<th class="center">Tabla</th>
+		          		<th class="center">ID Registro</th>
 		          		<th class="center">Fecha</th>
+		          		<th class="center">Valor</th>
 	          		</tr>
 	          	</thead>
 
@@ -58,7 +60,10 @@
 	          		<td class="center"><?php echo $usu; ?></td>
 	          		<td class="center"><?php echo $acc; ?></td>
 	          		<td class="center"><?php echo $tabla; ?></td>
+	          		<td class="center"><?php echo $idreg; ?></td>
 	          		<td class="center"><?php echo $fe; ?></td>
+	          		<td class="center"><?php echo $valor; ?></td>
+
 	          	</tr>
 	          	<?php }
 	          	$sel -> close();

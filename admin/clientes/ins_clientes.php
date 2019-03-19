@@ -12,7 +12,10 @@
 		$email = htmlentities($_POST['email']);
 		$gru= htmlentities($_POST['grupo']);
 		$obs = htmlentities($_POST['observacion']);
-		$fecha = Date('Y-m-d');
+		$d = date('d');
+			$m = date('n');
+			$a = date('Y');
+			$fecha = $d.'/'.$m.'/'.$a;
 
 		$estado="Regular";
 		$usuario=$_SESSION['user'];
@@ -20,19 +23,19 @@
 		if (empty($dni))
 		{	
 			$tipo = 'Juridica';
-			$ins=$con->prepare("INSERT INTO persona (razonSocial,cuit,domicilio,email,fechaAlta,localidad,tipo,grupo,estado,observaciones) 
+			$ins=$con->prepare("INSERT INTO persona (razonSocial,cuit,direccion,email,fechaAlta,localidad,tipo,grupo,estado,observaciones) 
 			VALUES ('$razon',$cuit,'$dire','$email','$fecha','$ciu','$tipo',$gru,'$estado','$obs') ");
 			$ins -> execute();
-			$valor="Razon Social: $razon|Cuit:$cuit|Domicilio:$dire|Mail:$email|Ciudad:$ciu|tipo:$tipo|Grupo:$gru|estado:$estado|Obs:$obs";
+			$valor="$razon $cuit $dire $email $ciu $tipo $gru $estado $obs";
 		}
 		else{
 			$tipo = 'Humana';
 			echo $tipo."<br>";
-			$ins = $con -> prepare("INSERT INTO persona (nombre,apellido,dni,domicilio,email,fechaAlta,localidad,tipo,grupo,estado,observaciones)
+			$ins = $con -> prepare("INSERT INTO persona (nombre,apellido,dni,direccion,email,fechaAlta,localidad,tipo,grupo,estado,observaciones)
 			 VALUES ('$nom','$ape',$dni,'$dire','$email','$fecha','$ciu','$tipo',$gru,'$estado','$obs') ");
 			 $ins -> execute();
 			 
-$valor="nombre: $nom|apellido:$ape|DNI:$dni|Domicilio:$dire|Mail:$email|Ciudad:$ciu|tipo:$tipo|Grupo:$gru|estado:$estado|Obs:$obs";
+$valor="$nom $ape $dni $dire $email $ciu $tipo $gru $estado $obs";
 		}
 
 
@@ -41,7 +44,7 @@ $valor="nombre: $nom|apellido:$ape|DNI:$dni|Domicilio:$dire|Mail:$email|Ciudad:$
 			while($reg_id=mysqli_fetch_array($registro))
 			{	
 				$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
-				VALUES('INSERT','persona',$reg_id[0],'$valor','$fecha','$usuario')");
+				VALUES('INSERT','Persona',$reg_id[0],'$valor','$fecha','$usuario')");
 			}
 			
 			header('location:../extend/alerta.php?msj=Se ha registrado el propietario con exito&c=cl&p=in&t=success');

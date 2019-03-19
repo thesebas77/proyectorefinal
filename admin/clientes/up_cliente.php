@@ -18,29 +18,30 @@
 			$m = date('n');
 			$a = date('Y');
 			$fecha = $d.'/'.$m.'/'.$a;
-		if ($dni){
+			
+		if (empty($dni)){
 			$tipo = 'Juridica';
-			$ins = $con -> prepare("UPDATE persona SET  razonSocial=?, cuit=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
+			$ins = $con -> prepare("UPDATE persona SET  razonSocial=?, cuit=?, direccion=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
 			$ins -> bind_param('sissssissi',$razon,$cuit,$dire,$email,$ciu,$tipo,$gru,$est,$obs,$nume);
 			$ins -> execute();
-			$valor="Razon Social: $razon|Cuit:$cuit|Domicilio:$dire|Mail:$email|Ciudad:$ciu|tipo:$tipo|Grupo:$gru|estado:$estado|Obs:$obs";
+			$valor="$razon $cuit $dire $email $ciu $tipo $gru $estado $obs";
 		}else{
 			$tipo = 'Humana';
-			$ins = $con -> prepare("UPDATE persona SET  nombre=?, apellido=?,  dni=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
+			$ins = $con -> prepare("UPDATE persona SET  nombre=?, apellido=?,  dni=?, direccion=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
 			$ins -> bind_param('ssissssissi',$nom,$ape,$dni,$dire,$email,$ciu,$tipo,$gru,$est,$obs,$nume);
 			$ins -> execute();
-			$valor="nombre: $nom|apellido:$ape|DNI:$dni|Domicilio:$dire|Mail:$email|Ciudad:$ciu|tipo:$tipo|Grupo:$gru|estado:$estado|Obs:$obs";
+			$valor="$nom $ape $dni $dire $email $ciu $tipo $gru $estado $obs";
 		}
 		
 		
 
 		if($ins){
-			$registro=mysqli_query($con,"SELECT propietario.id FROM propietario  ORDER BY 1 DESC LIMIT 1");
-		while($reg_id=mysqli_fetch_array($registro))
-		{	
-			$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
-			VALUES('INSERT','Propietario',$reg_id[0],'$valor','$fecha','$usuario')");
-		}
+			$registro=mysqli_query($con,"SELECT persona.id FROM persona  ORDER BY 1 DESC LIMIT 1");
+			while($reg_id=mysqli_fetch_array($registro))
+			{	
+				$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
+				VALUES('INSERT','Persona',$reg_id[0],'$valor','$fecha','$usuario')");
+			}
 			header('location:../extend/alerta.php?msj=Se ha actualizado el propietario con exito&c=cl&p=lic&t=success');
 			//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 
 			
