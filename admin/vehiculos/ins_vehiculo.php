@@ -93,7 +93,7 @@
 					$fpago = '';
 
 					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?,?,?,?) ");
-					$ins -> bind_param('isidssiis',$id_cuo,$dom,$res,$cuo,$fven,$fven2,$no,$id_use,$fpago);
+					$ins -> bind_param('isidssiis',$id_cuo,$dom,$num,$cuo,$fven,$fven2,$no,$id_use,$fpago);
 					$ins -> execute();	
 				}
 				

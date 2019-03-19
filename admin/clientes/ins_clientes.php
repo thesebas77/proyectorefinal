@@ -23,7 +23,7 @@
 		if (empty($dni))
 		{	
 			$tipo = 'Juridica';
-			$ins=$con->prepare("INSERT INTO persona (razonSocial,cuit,direccion,email,fechaAlta,localidad,tipo,grupo,estado,observaciones) 
+			$ins=$con->prepare("INSERT INTO persona (razonSocial,cuit,domicilio,email,fechaAlta,localidad,tipo,grupo,estado,observaciones) 
 			VALUES ('$razon',$cuit,'$dire','$email','$fecha','$ciu','$tipo',$gru,'$estado','$obs') ");
 			$ins -> execute();
 			$valor="$razon $cuit $dire $email $ciu $tipo $gru $estado $obs";
@@ -31,7 +31,7 @@
 		else{
 			$tipo = 'Humana';
 			echo $tipo."<br>";
-			$ins = $con -> prepare("INSERT INTO persona (nombre,apellido,dni,direccion,email,fechaAlta,localidad,tipo,grupo,estado,observaciones)
+			$ins = $con -> prepare("INSERT INTO persona (nombre,apellido,dni,domicilio,email,fechaAlta,localidad,tipo,grupo,estado,observaciones)
 			 VALUES ('$nom','$ape',$dni,'$dire','$email','$fecha','$ciu','$tipo',$gru,'$estado','$obs') ");
 			 $ins -> execute();
 			 
