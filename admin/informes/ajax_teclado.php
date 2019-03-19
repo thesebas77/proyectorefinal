@@ -5,16 +5,18 @@
 	$pa = 1;	
 
 
+		$sel = $con -> prepare(" SELECT valor, vencimiento1, vencimiento2 FROM cuota WHERE vencimiento1 BETWEEN ? AND ? AND paga = ?");
 
-		$sel = $con -> prepare(" SELECT valor, vencimiento1, vencimiento2 FROM cuota WHERE paga = ? ");
-
-		$sel -> bind_param('i',$pa);
+		$sel -> bind_param('ssi',$fdes,$fhas,$pa);
 		$sel -> execute();
 		$sel -> store_result();
 		$sel -> bind_result($valor, $fven, $fven2);
 		$row = $sel -> num_rows();
 
 		if (empty($fdes) && empty($fhas)):
+			?>
+		<P style='text-align: center; color: red;'>Ingrese las fecha</P>
+		<?php
 		else:
 			 ?>
 
