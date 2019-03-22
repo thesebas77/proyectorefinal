@@ -3,7 +3,7 @@
 
 	  	$cod = htmlentities($_GET['id']);
 
-		$sel = $con -> prepare("SELECT nombre,apellido,razonSocial,dni,cuit,direccion,email,localidad,tipo,grupo,estado,observaciones FROM persona where id = ?");
+		$sel = $con -> prepare("SELECT nombre,apellido,razonSocial,dni,cuit,domicilio,email,localidad,tipo,grupo,estado,observaciones FROM persona where id = ?");
 
 		$sel -> bind_param('i',$cod);
 		$sel -> execute();
@@ -141,7 +141,7 @@
 									
 									<!-- Input boton -->
 
-									  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar">Modificar
+									  <button class="btn waves-effect waves-light" type="submit" id="btn_registrar_modi">Modificar
 									    <i class="material-icons right">send</i>
 									  </button>
 

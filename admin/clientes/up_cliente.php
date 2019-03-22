@@ -18,6 +18,7 @@
 			$m = date('n');
 			$a = date('Y');
 			$fecha = $d.'/'.$m.'/'.$a;
+		$est = 'Regular';
 			
 		if (empty($dni)){
 			$tipo = 'Juridica';
@@ -27,7 +28,7 @@
 			$valor="$razon $cuit $dire $email $ciu $tipo $gru $estado $obs";
 		}else{
 			$tipo = 'Humana';
-			$ins = $con -> prepare("UPDATE persona SET  nombre=?, apellido=?,  dni=?, direccion=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
+			$ins = $con -> prepare("UPDATE persona SET  nombre=?, apellido=?,  dni=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
 			$ins -> bind_param('ssissssissi',$nom,$ape,$dni,$dire,$email,$ciu,$tipo,$gru,$est,$obs,$nume);
 			$ins -> execute();
 			$valor="$nom $ape $dni $dire $email $ciu $tipo $gru $estado $obs";
@@ -40,7 +41,7 @@
 			while($reg_id=mysqli_fetch_array($registro))
 			{	
 				$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
-				VALUES('INSERT','Persona',$reg_id[0],'$valor','$fecha','$usuario')");
+				VALUES('UPDATE','Persona',$reg_id[0],'$valor','$fecha','$usuario')");
 			}
 			header('location:../extend/alerta.php?msj=Se ha actualizado el propietario con exito&c=cl&p=lic&t=success');
 			//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 

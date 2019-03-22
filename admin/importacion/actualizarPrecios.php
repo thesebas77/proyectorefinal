@@ -19,7 +19,7 @@ while ($vec=mysqli_fetch_array($sql)) {
 	$sql2=mysqli_query($con,"SELECT vehiculo.id FROM vehiculo
 		JOIN marca ON marca.id=vehiculo.id_marca
 		JOIN tipo_vehiculo ON tipo_vehiculo.id=vehiculo.id_tipo
-		WHERE marca.origen='$vec[1]' AND marca.marcas='$vec[7]'
+		WHERE marca.origen='$vec[1]' AND marca.marca='$vec[7]'
 		AND tipo_vehiculo.tv='$vec[6]' AND tipo_vehiculo.tipo='$vec[9]'
 		AND vehiculo.descripcion='$vec[8]'");
 

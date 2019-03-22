@@ -46,7 +46,7 @@
 
 	<li><a class="subheader center">Informes</a></li>
 	<li><a href="../informes/recaudacion.php"><i class="material-icons orange-text">insert_chart_outlined</i>Recaudación</a></li>
-	<li><a href="../informes/deuda.php"><i class="material-icons orange-text">insert_chart_outlined</i>Deuda Fiscal</a></li>
+	<!--<li><a href="../informes/deuda.php"><i class="material-icons orange-text">insert_chart_outlined</i>Deuda Fiscal</a></li>-->
 	<li><a href="../informes/auditoria.php"><i class="material-icons orange-text">insert_chart_outlined</i>Auditoria</a></li>
     
 

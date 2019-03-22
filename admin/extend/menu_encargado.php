@@ -38,7 +38,7 @@
 
 	<li><a class="subheader center">Informes</a></li>
 	<li><a href="../informes/index.php"><i class="material-icons orange-text">info</i>Recaudación</a></li>
-	<li><a href="../vehiculos/list_vehiculos.php"><i class="material-icons orange-text">info</i>Deuda Fiscal</a></li>
+	<!--<li><a href="../informes/deuda.php"><i class="material-icons orange-text">insert_chart_outlined</i>Deuda Fiscal</a></li>-->
 	<li><a href="../vehiculos/list_baja_vehiculos.php"><i class="material-icons orange-text">info</i>Cotización fiscal nacional</a></li>
 
 	<li><div class="divider"></div></li>

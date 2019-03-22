@@ -31,7 +31,7 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT usuario_id,accion,tabla,id_registro,valor,fecha FROM auditoria ");
+		$sel = $con -> prepare("SELECT usuario,accion,tabla,id_registro,valor,fecha FROM auditoria ");
 
 		$sel -> execute();
 		$sel -> store_result();

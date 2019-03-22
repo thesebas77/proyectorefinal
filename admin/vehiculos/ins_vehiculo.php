@@ -10,6 +10,13 @@
 		$falta = htmlentities($_POST['falta']);
 		$anmo = htmlentities($_POST['anomodelo']);
 
+		$valor = $dom.' '.$cuil.' '.$dni.' '.$tipo;
+		$d = date('d');
+			$m = date('n');
+			$a = date('Y');
+			$fecha = $d.'/'.$m.'/'.$a;
+		$usuario = $_SESSION['user'];
+
 		if ($dni == 0){
 
 					$sel = $con -> prepare("SELECT id,grupo FROM persona WHERE cuit = ?");
@@ -97,6 +104,15 @@
 					$ins -> execute();	
 				}
 				
+				$registro=mysqli_query($con,"SELECT padron.dominio FROM padron  ORDER BY 1 DESC LIMIT 1");
+			while($reg_id=mysqli_fetch_array($registro))
+			{	
+				$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
+				VALUES('INSERT','Vehiculo',$reg_id[0],'$valor','$fecha','$usuario')");
+			}
+			header('location:../extend/alerta.php?msj=Se ha actualizado el propietario con exito&c=cl&p=lic&t=success');
+			//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 
+
 
 				header('location:../extend/alerta.php?msj=Se ha registrado el vehiculo con exito&c=ve&p=in&t=success');
 				//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 

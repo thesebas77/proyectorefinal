@@ -80,7 +80,7 @@
 						          	<!-- Input Email -->
 									
 						          	<div class="input-field">
-							            <input name="email" id="email" type="email" class="validate">
+							            <input name="email" id="email" type="email" class="validate" required>
 							            <label for="email">Email:</label>
 							            <span class="helper-text" data-error="wrong" data-success="right"></span>
 							          </div>

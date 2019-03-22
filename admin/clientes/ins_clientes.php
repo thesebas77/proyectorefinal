@@ -12,10 +12,7 @@
 		$email = htmlentities($_POST['email']);
 		$gru= htmlentities($_POST['grupo']);
 		$obs = htmlentities($_POST['observacion']);
-		$d = date('d');
-			$m = date('n');
-			$a = date('Y');
-			$fecha = $d.'/'.$m.'/'.$a;
+			$fecha = date('Y-m-d');
 
 		$estado="Regular";
 		$usuario=$_SESSION['user'];
