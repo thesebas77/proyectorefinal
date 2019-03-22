@@ -4,7 +4,7 @@
 	$periodo = htmlentities($_POST['periodo']);
 	$valor = htmlentities($_POST['valor']);
 
-	$up = $con -> prepare("UPDATE cuota SET valor=? WHERE id = ? ");
+	$up = $con -> prepare("UPDATE cuota SET importe=? WHERE id = ? ");
 		$up -> bind_param('di',$valor,$id);
 		$up -> execute();
 		$up -> close();

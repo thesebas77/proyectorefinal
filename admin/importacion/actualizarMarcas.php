@@ -21,11 +21,11 @@ Si tv y tipo ya estan registrados en la tabla tipos_vehiculos omite el insert de
 $res=mysqli_query($con,"SELECT DISTINCT(v.origen),v.marca  from valuacion v ");
 while($v=mysqli_fetch_array($res))
 {
-	$sql=$con->prepare("INSERT INTO marca (origen, marca)
+	$sql=$con->prepare("INSERT INTO marca (origen, marcas)
             SELECT '$v[0]', '$v[1]'
                 FROM dual
-                WHERE NOT EXISTS (SELECT origen,marca FROM marca
-                                      WHERE origen='$v[0]' and marca='$v[1]')");
+                WHERE NOT EXISTS (SELECT origen,marcas FROM marca
+                                      WHERE origen='$v[0]' and marcas='$v[1]')");
 	$sql->execute();
 }
 $affected = (int) (mysqli_affected_rows($con));

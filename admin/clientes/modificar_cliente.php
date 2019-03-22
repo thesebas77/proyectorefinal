@@ -3,12 +3,12 @@
 
 	  	$cod = htmlentities($_GET['id']);
 
-		$sel = $con -> prepare("SELECT nombre,apellido,razonSocial,dni,cuit,domicilio,email,localidad,tipo,grupo,estado,observaciones FROM persona where id = ?");
+		$sel = $con -> prepare("SELECT nombre,apellido,razonSocial,dni,cuit,direccion,email,localidad,tipo,grupo,estado,observaciones FROM persona where id = ?");
 
 		$sel -> bind_param('i',$cod);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($nom,$ape,$razon, $dni,$cuit,$domi,$email,$loca,$tipo,$gru,$est,$obs);
+		$sel -> bind_result($nom,$ape,$razon, $dni,$cuit,$domi,$email,$loca,$gru,$est,$tipo,$obs);
 		$row = $sel -> num_rows();
 
 		if($sel -> fetch()){}
@@ -34,51 +34,30 @@
 									  	<label for="tp">Tipo:</label>
 									  	<input type="text" value="Persona <?php echo $tipo ?>" name="tp" readonly>	
 									  </p>
-
-									  <p class="red-text">
-									  	Estos datos debe ingresarlos nuevamente para modificar: PERSONA (HUMANA/JURIDICA), (D.N.I/CUIT).
-									  </p>
-
 									  <br>
 
 								      <p>
-										 <input class="with-gap" name="persona" type="radio" id="humana" checked/>
+										 <input class="with-gap" name="tipo" type="radio" id="humana"value="Humana" checked/>
 										  <label for="humana">Persona humana</label>
 									  </p>
 
 									  <p>
-										 <input class="with-gap" name="persona" type="radio" id="juridica" />
+										 <input class="with-gap" name="tipo" type="radio" id="juridica" value="Juridica" />
 										  <label for="juridica">Persona juridica</label>
 									  </p>
 
 									  <div id="phumana">
 
 									  	<div class="input-field">
-											<input value="<?php echo $num ?>" type="number" name="dni" title="Ingrese el D.N.I" id="dni" min="10000000" max="100000000">
+											<input value="<?php if(!empty($dni)){echo $dni;}  ?>" type="number" name="dni" title="Ingrese el D.N.I" id="dni" min="10000000" max="100000000" >
 											<label for="dni">D.N.I:</label>				
 										</div>
 
-											<div class="valid4"></div>
-
-									  </div>
-
-									  <div id="pjuridica">
-
-									  	<div class="input-field">
-											<input type="number" name="cuit" title="Ingrese el CUIT" id="cuit" min="1000000000" max="100000000000">
-											<label for="cuit">CUIT:</label>				
-										</div>
-
-											<div class="valid3"></div>
-
-									  </div>
-
-									<span class="card-title">Datos personales</span>
-
-									<!-- Input nombre -->
+								
+										<!-- Input nombre -->
 
 									<div class="input-field">
-										<input type="text" name="nom" title="Ingrese tu nombre" id="nom" pattern="[A-Za-z/s ]+" value="<?php echo $nom ?>" required>
+										<input type="text" name="nom" title="Ingrese tu nombre" id="nom" pattern="[A-Za-z/s ]+" value="<?php echo $nom ?>" >
 										<label for="nom">Nombre:</label>
 																			
 									</div>
@@ -86,10 +65,34 @@
 									<!-- Input apellido -->
 
 									<div class="input-field">
-										<input type="text" name="ape" title="Ingrese su apellido" id="ape" pattern="[A-Za-z/s ]+" value="<?php echo $ape ?>" required>
+										<input type="text" name="ape" title="Ingrese su apellido" id="ape" pattern="[A-Za-z/s ]+" value="<?php echo $ape ?>" >
 										<label for="ape">Apellido:</label>
 																			
 									</div>
+
+									  </div>
+
+									  <div id="pjuridica">
+
+									  	<div class="input-field">
+											<input value="<?php if(!empty($cuit)){echo $cuit;}?>"type="number" name="cuit" title="Ingrese el CUIT" id="cuit" min="1000000000" max="100000000000">
+											<label for="cuit">CUIT:</label>				
+										</div>
+
+											
+										<!-- Input nombre -->
+
+									<div class="input-field">
+										<input type="text" name="razon" title="Ingrese Razon Social" id="razon" pattern="[A-Za-z/s ]+" value="<?php echo $razon ?>">
+										<label for="razon">Razon Social:</label>
+																			
+									</div>
+
+									  </div>
+
+									<span class="card-title">Datos personales</span>
+
+									
 
 									<!-- Select telefono 
 									<div class="input-field">
@@ -131,6 +134,32 @@
 									</div>
 									
 									-->
+									<div class="input-field col s12">
+										<select name="grupo"  id="grupo" required>
+											<option value="" disabled selected>
+												<?php 
+													if($gru==1){echo"Es Contribuyente ";}
+											 		else{echo"Es Contribuyente-Empleado ";} 
+											 	?>Seleccione nuevo Grupo</option>
+											<?php
+											$sel = $con -> prepare('SELECT id, nombre FROM persona_grupo');
+											$sel -> execute();
+											$sel -> bind_result($id, $nombre);
+											$sel -> store_result();
+
+											while($sel -> fetch()){
+
+											 ?>
+											 <option value="<?php echo $id; ?>"> <?php echo $nombre; ?></option>
+											 <?php 
+									 
+											}
+
+								  ?>
+												 
+												
+											</select>
+										</div>
 
 									<div class="input-field col s12">
 							          <textarea name="observacion" id="textarea1" class="materialize-textarea"><?php echo $obs; ?></textarea>

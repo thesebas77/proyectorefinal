@@ -6,7 +6,7 @@
 	$ncuo = htmlentities($_GET['ncuo']);
 
 	# Proietario
-	$sel = $con -> prepare("SELECT tipo,nombre,apellido,razonSocial,dni,cuit,domicilio,localidad FROM persona WHERE id = ?");
+	$sel = $con -> prepare("SELECT tipo,nombre,apellido,razonSocial,dni,cuit,direccion,localidad FROM persona WHERE id = ?");
 		$sel -> bind_param('i',$num);
 		$sel -> execute();
 		$sel -> store_result();
@@ -16,7 +16,7 @@
 
 
 	# Vehiculo
-	$sel = $con -> prepare("SELECT v.descripcion, m.marca, tv.tipo, p.anioModelo FROM padron as p INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id  WHERE p.dominio = ?");
+	$sel = $con -> prepare("SELECT v.descripcion, m.marcas, tv.tipo, p.anioModelo FROM padron as p INNER JOIN vehiculo as v ON p.codVehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id  WHERE p.dominio = ?");
         $sel -> bind_param('s', $dom);
         $sel -> execute();
 		$sel -> store_result();
@@ -29,7 +29,7 @@
 	   		$sel -> bind_param('i', $ncuo);
 	   		$sel -> execute();
 	   		$sel -> store_result();
-	   		$sel -> bind_result($id_cuota,$imp,$numpe, $valor, $fven, $fven2, $paga, $usuario, $fpago);
+	   		$sel -> bind_result($id_cuota,$imp,$numpe, $valor, $fven, $fven2, $paga, $fpago);
 	   		$row = $sel -> num_rows();
 			if ($sel -> fetch()){}
 
@@ -199,7 +199,7 @@ ob_start() ?>
 
  <p style="text-align: center;">codigo:  </p>
  <p style="text-align: center; font-weight: bold;"><?php echo $num, $id_cuota, $dom; ?></p>
- <p style="text-align: center;">Digale al vendedor los numeros </p>
+ <p style="text-align: center;">Informe el codigo al vendedor </p>
 
 </td>
 </tr>

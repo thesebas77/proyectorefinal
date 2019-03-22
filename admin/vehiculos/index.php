@@ -91,7 +91,7 @@
 												<?php 
 												$ori = 'N';
 												
-												$sel = $con -> prepare('SELECT id, marca FROM marca WHERE origen = ?');
+												$sel = $con -> prepare('SELECT id, marcas FROM marca WHERE origen = ?');
 												$sel -> bind_param('s',$ori);
 												$sel -> execute();
 												$sel -> bind_result($id_marca, $marca);
@@ -161,7 +161,7 @@
 												<?php 
 												$orin = 'I';
 												
-												$sel = $con -> prepare('SELECT id, marca FROM marca WHERE origen = ?');
+												$sel = $con -> prepare('SELECT id, marcas FROM marca WHERE origen = ?');
 												$sel -> bind_param('s',$orin);
 												$sel -> execute();
 												$sel -> bind_result($id_marca, $marca);

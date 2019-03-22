@@ -28,7 +28,7 @@
 			$valor="$razon $cuit $dire $email $ciu $tipo $gru $estado $obs";
 		}else{
 			$tipo = 'Humana';
-			$ins = $con -> prepare("UPDATE persona SET  nombre=?, apellido=?,  dni=?, domicilio=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
+			$ins = $con -> prepare("UPDATE persona SET  nombre=?, apellido=?,  dni=?, direccion=?, email=?, localidad=?, tipo=?,grupo=?,estado=?, observaciones=? WHERE id = ?");
 			$ins -> bind_param('ssissssissi',$nom,$ape,$dni,$dire,$email,$ciu,$tipo,$gru,$est,$obs,$nume);
 			$ins -> execute();
 			$valor="$nom $ape $dni $dire $email $ciu $tipo $gru $estado $obs";

@@ -6,7 +6,7 @@
 	   		$sel -> bind_param('i', $id_cu);
 	   		$sel -> execute();
 	   		$sel -> store_result();
-	   		$sel -> bind_result($id_cu,$imp_cu,$numpe, $valor, $fven, $fven2, $paga, $usu, $fpago);
+	   		$sel -> bind_result($id_cu,$imp_cu,$numpe, $valor, $fven, $fven2, $paga, $fpago);
 	   		if ($sel -> fetch()){}
 ?>
 

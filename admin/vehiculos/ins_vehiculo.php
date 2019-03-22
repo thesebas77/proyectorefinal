@@ -10,13 +10,6 @@
 		$falta = htmlentities($_POST['falta']);
 		$anmo = htmlentities($_POST['anomodelo']);
 
-		$valor = $dom.' '.$cuil.' '.$dni.' '.$tipo;
-		$d = date('d');
-			$m = date('n');
-			$a = date('Y');
-			$fecha = $d.'/'.$m.'/'.$a;
-		$usuario = $_SESSION['user'];
-
 		if ($dni == 0){
 
 					$sel = $con -> prepare("SELECT id,grupo FROM persona WHERE cuit = ?");
@@ -38,7 +31,7 @@
 		}
 
 
-		if ($gru == 3){
+		if ($gru == 2){
 			$cuenta = ($base*6)/100;	
 			$mont = $cuenta/2;
 		}else{
@@ -51,16 +44,16 @@
 		$id_im = '';
 		$activo = 'Activo';
 
-		$ins = $con -> prepare("INSERT INTO padron VALUES (?,?,?,?,?,?,?,?,?) ");
+		$ins = $con -> prepare("INSERT INTO padron VALUES (?,?,?,?,?,?,?) ");
 		
-		$ins -> bind_param('sisiiddds',$dom,$id_modelo,$falta,$num,$anmo,$base,$id_im,$cuo,$activo);
+		$ins -> bind_param('isisiis',$id_im,$dom,$id_modelo,$falta,$num,$anmo,$activo);
 		$ins -> execute();
 		
 
 		if($ins){
 
-			$ins = $con -> prepare("INSERT INTO impuesto VALUES (?,?,?,?) ");
-			$ins -> bind_param('isds',$id_im,$dom,$mont,$anmo);
+			$ins = $con -> prepare("INSERT INTO impuesto VALUES (?,?,?,?,?) ");
+			$ins -> bind_param('isdis',$id_im,$dom,$mont,$anmo,$base);
 			$ins -> execute();
 			
 			$au = 0;
@@ -91,28 +84,19 @@
 							}
 											
 
-					if ($au2 == 13){
-						$fven2 = '20/01/'.date('Y', strtotime($aa."+ 1 year"));						
-					}
+					//if ($au2 == 13){
+					//	$fven2 = '20/01/'.date('Y', strtotime($aa."+ 1 year"));						
+					//}
 
 					$id_cuo = '';
 					$id_use = '';
 					$fpago = '';
 
-					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?,?,?,?) ");
-					$ins -> bind_param('isidssiis',$id_cuo,$dom,$num,$cuo,$fven,$fven2,$no,$id_use,$fpago);
+					$ins = $con -> prepare("INSERT INTO cuota VALUES (?,?,?,?,?,?,?,?) ");
+					$ins -> bind_param('isidssis',$id_cuo,$dom,$num,$cuo,$fven,$fven2,$no,$fpago);
 					$ins -> execute();	
 				}
 				
-				$registro=mysqli_query($con,"SELECT padron.dominio FROM padron  ORDER BY 1 DESC LIMIT 1");
-			while($reg_id=mysqli_fetch_array($registro))
-			{	
-				$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
-				VALUES('INSERT','Vehiculo',$reg_id[0],'$valor','$fecha','$usuario')");
-			}
-			header('location:../extend/alerta.php?msj=Se ha actualizado el propietario con exito&c=cl&p=lic&t=success');
-			//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 
-
 
 				header('location:../extend/alerta.php?msj=Se ha registrado el vehiculo con exito&c=ve&p=in&t=success');
 				//print "<meta http-equiv=Refresh content=\"0 ; url=\">"; 

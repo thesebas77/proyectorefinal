@@ -4,21 +4,19 @@
 	$dom = htmlentities($_GET['dom']);
 	$sit = 'Inactivo';
 
-	$sel = $con -> prepare("SELECT p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, pro.email, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, p.baseImponible, p.anioModelo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
+	$sel = $con -> prepare("SELECT p.dominio, p.codVehiculo,p.fechaAlta,pro.apellido, pro.email, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marcas, tv.tipo, p.anioModelo,pro.id FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.codVehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
 		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($dom,$cod_ve,$falta,$pro,$email,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$monto,$ano);
+		$sel -> bind_result($dom,$cod_ve,$falta,$pro,$email,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$ano,$id_pro);
 		$row = $sel -> num_rows();
 		if ($sel -> fetch()){}
 
-	$d = date('d');
-	$m = date('n');
-	$a = date('Y');
-	$fbaja = $d.'/'.$m.'/'.$a;
+	$fbaja = date('Y/m/d');
+	$nop = '';
 
-	$ins = $con -> prepare("INSERT INTO bajavehiculo VALUES (?,?,?,?,?,?,?,?) ");
-				$ins -> bind_param('ssssisss',$dom,$marca,$desc,$tipo,$ano,$falta,$fbaja,$pro);
+	$ins = $con -> prepare("INSERT INTO bajavehiculo VALUES (?,?,?,?,?,?) ");
+				$ins -> bind_param('issiis',$nop,$dom,$id_ve,$id_pro,$ano,$fbaja);
 				$ins -> execute();
 
 	if($ins){

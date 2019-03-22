@@ -21,7 +21,7 @@ $id_v=0;
  	{	
  		
  		$flag=1;
- 		$selmarca=mysqli_query($con,"SELECT marca.id FROM marca WHERE marca.origen='$vec[0]' AND marca.marca='$vec[2]'");
+ 		$selmarca=mysqli_query($con,"SELECT marca.id FROM marca WHERE marca.origen='$vec[0]' AND marca.marcas='$vec[2]'");
 		while ($vecMarc=mysqli_fetch_array($selmarca))
 		{
 				$id_marca=$vecMarc[0];

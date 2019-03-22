@@ -2,11 +2,11 @@
 
 		$dom = htmlentities($_GET['dominio']);
 
-		$sel = $con -> prepare("SELECT p.cod_vehiculo,p.fechaAlta,pro.id,pro.apellido,pro.razonSocial, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, p.baseImponible, p.anioModelo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
+		$sel = $con -> prepare("SELECT p.id,p.codVehiculo,p.fechaAlta,pro.id,pro.apellido,pro.razonSocial, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marcas, tv.tipo, p.anioModelo, im.baseImponible FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.codVehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id INNER JOIN impuesto as im ON p.dominio = im.dom WHERE p.dominio = ?");
 		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($cod_ve,$falta,$id_pro,$pro,$razon,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$base,$ano);
+		$sel -> bind_result($id_padron,$cod_ve,$falta,$id_pro,$pro,$razon,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$ano,$base);
 		$row = $sel -> num_rows();
 
 		if ($sel -> fetch()){}
@@ -51,7 +51,7 @@
 	          		<td class="center"><?php echo $tipo; ?></td>
 	          		<td class="center"><?php echo $ano; ?></td>
 	          		<td class="center"><?php echo $falta; ?></td>
-	          		<td class="center"> <?php echo $base; ?> </td>		
+	          		<td class="center"> $<?php echo $base; ?> </td>		
 	          		
 
 	   </table>
@@ -59,11 +59,11 @@
 
 	   <?php 
 
-	   		$sel = $con -> prepare('SELECT monto FROM impuesto WHERE dom = ?');
+	   		$sel = $con -> prepare('SELECT id,monto FROM impuesto WHERE dom = ?');
 	   		$sel -> bind_param('s', $dom);
 	   		$sel -> execute();
 	   		$sel -> store_result();
-	   		$sel -> bind_result($monto);
+	   		$sel -> bind_result($id_impuesto,$monto);
 
 	   		if ($sel -> fetch()){}
 
@@ -97,11 +97,11 @@
 
 		 <?php 
 
-	   		$sel = $con -> prepare('SELECT * FROM cuota WHERE imp = ?');
+	   		$sel = $con -> prepare('SELECT * FROM cuota WHERE dom = ?');
 	   		$sel -> bind_param('s', $dom);
 	   		$sel -> execute();
 	   		$sel -> store_result();
-	   		$sel -> bind_result($id_cu,$imp_cu,$numpe, $valor, $fven, $fven2, $paga, $usu, $fpago);
+	   		$sel -> bind_result($id_cu,$imp_cu,$numpe, $valor, $fven, $fven2, $paga, $fpago);
 
 	    ?>
 	   <table class="highlight">

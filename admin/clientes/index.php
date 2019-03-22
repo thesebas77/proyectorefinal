@@ -24,7 +24,7 @@
 										  <label for="juridica">Persona juridica</label>
 									  </p>
 
-									  <div id="phumana">
+									 <div id="phumana">
 
 									  	<div class="input-field">
 											<input type="number" name="dni" title="Ingrese el D.N.I" id="dni" min="10000000" max="100000000">
@@ -49,7 +49,7 @@
 										</div>
 
 
-									  </div>
+									 </div>
 
 									  <div id="pjuridica">
 										

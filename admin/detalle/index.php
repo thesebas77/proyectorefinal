@@ -104,7 +104,7 @@ $row = $sel -> num_rows();
 	          	</thead>
 
 	          	<?php 
-						$sel = $con -> prepare("SELECT padron.dominio,padron.fechaAlta, vehiculo.descripcion  FROM padron INNER JOIN vehiculo ON padron.cod_vehiculo = vehiculo.id WHERE padron.propietario = ?");
+						$sel = $con -> prepare("SELECT padron.dominio,padron.fechaAlta, vehiculo.descripcion  FROM padron INNER JOIN vehiculo ON padron.codVehiculo = vehiculo.id WHERE padron.propietario = ?");
 						$sel -> bind_param('i', $num);
 						$sel -> execute();
 						$sel -> store_result();

@@ -3,12 +3,12 @@
 
 	$cod = htmlentities($_GET['dom']);
 
-	$sel = $con -> prepare("SELECT p.baseImponible, p.anioModelo, p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido, pro.id, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
+	$sel = $con -> prepare("SELECT p.anioModelo, p.dominio, p.codVehiculo,p.fechaAlta,pro.apellido, pro.id, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marcas, tv.tipo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.codVehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
 
 		$sel -> bind_param('s',$cod);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($base, $am,$dom,$cod_ve,$falta,$pro,$pro_id,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo);
+		$sel -> bind_result($am,$dom,$cod_ve,$falta,$pro,$pro_id,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo);
 		$row = $sel -> num_rows();
 		if ($sel -> fetch()){}
 ?>
@@ -67,7 +67,7 @@
 									<!-- Input Dominio -->
 
 									<div class="input-field">
-										<input type="text" name="dom" title="Ingrese la patente del vehiculo" id="dom" value="<?php echo $cod; ?>" required>
+										<input type="text" name="dom" title="Ingrese la patente del vehiculo" id="dom" value="<?php echo $cod; ?>" readonly>
 										<label for="dom">Dominio:</label>
 																			
 									</div>
@@ -79,15 +79,15 @@
 										<!-- Año del auto -->								
 
 										<div class="input-field col s12">
-											<input type="number" value="<?php echo $am; ?>" name="anomodelo">
+											<input type="number" value="<?php echo $am; ?>" name="anomodelo" readonly>
 											<label for="anomodelo">Año del modelo: </label>
 										</div>
 
 										<?php 
-										$sel = $con -> prepare('SELECT id, dni, cuit FROM persona WHERE id = ?');
+										$sel = $con -> prepare('SELECT id, dni, cuit, apellido, razonSocial FROM persona WHERE id = ?');
 												$sel -> bind_param('i',$pro_id);
 												$sel -> execute();
-												$sel -> bind_result($id_per1, $dni1, $cuit1);
+												$sel -> bind_result($id_per1, $dni1, $cuit1,$ape1,$razon1);
 												$sel -> store_result();
 
 												if($sel -> fetch()){} ?>
@@ -96,7 +96,7 @@
 										<div class="input-field col s12">
 											<select name="persona" id="persona">
 												<option value="<?php echo $pro_id; ?>" disabled selected>
-													<?php 
+													<?php echo $id_per1; ?> - <?php  
 
 														if (empty($dni1)){
 															echo $cuit1;
@@ -104,14 +104,22 @@
 															echo $dni1;
 														}
 
+														echo " - ";
+
+														if (empty($ape1)){
+															echo $razon1;
+														}else{
+															echo $ape1;
+														}
+
 													 ?>
 												</option>
 												<?php 
 												
 												
-												$sel = $con -> prepare('SELECT id, dni, cuit FROM persona');
+												$sel = $con -> prepare('SELECT id, dni, cuit, apellido, razonSocial FROM persona');
 												$sel -> execute();
-												$sel -> bind_result($id_per, $dni2, $cuit2);
+												$sel -> bind_result($id_per, $dni2, $cuit2,$ape2,$razon2);
 												$sel -> store_result();
 
 												while($sel -> fetch()){
@@ -126,6 +134,13 @@
 															echo $dni2;
 														}
 
+														echo " - ";
+
+														if (empty($ape2)){
+															echo $razon2;
+														}else{
+															echo $ape2;
+														}
 
 												  ?></option>
 

@@ -21,7 +21,7 @@
 	<?php 
 		$act = 'Activo';
 
-		$sel = $con -> prepare("SELECT p.anioModelo, p.dominio, p.cod_vehiculo,p.fechaAlta,pro.apellido,pro.dni,pro.cuit, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.situacion = ?");
+		$sel = $con -> prepare("SELECT p.anioModelo, p.dominio, p.codVehiculo,p.fechaAlta,pro.apellido,pro.dni,pro.cuit, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marcas, tv.tipo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.codVehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.situacion = ?");
 
 		$sel -> bind_param('s',$act);
 		$sel -> execute();
@@ -92,8 +92,8 @@
 					<td class="center"> 
 	          			<a href="#" class="btn-floating red" onclick="
 	          				swal({
-							  title: 'Estas seguro que desea eliminar al usuario?',
-							  text: 'Al eliminarlo no podra recuperarlo!',
+							  title: 'Estas seguro que desea eliminar el vehiculo?',
+							  text: 'Al eliminarlo estara en la lista bajas de vehiculos!',
 							  type: 'warning',
 							  showCancelButton: true,
 							  confirmButtonColor: '#3085d6',
