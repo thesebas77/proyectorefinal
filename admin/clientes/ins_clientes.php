@@ -15,7 +15,7 @@
 		$d = date('d');
 			$m = date('n');
 			$a = date('Y');
-			$fecha = $d.'/'.$m.'/'.$a;
+			$fecha = $a.'/'.$m.'/'.$d;
 
 		$estado="Regular";
 		$usuario=$_SESSION['user'];
@@ -23,19 +23,19 @@
 		if (empty($dni))
 		{	
 			$tipo = 'Juridica';
-			$ins=$con->prepare("INSERT INTO persona (razonSocial,cuit,domicilio,email,fechaAlta,localidad,tipo,grupo,estado,observaciones) 
-			VALUES ('$razon',$cuit,'$dire','$email','$fecha','$ciu','$tipo',$gru,'$estado','$obs') ");
+			$ins=$con->prepare("INSERT INTO persona (razonSocial,cuit,direccion,email,fechaAlta,localidad,grupo,estado,tipo,observaciones) 
+			VALUES ('$razon',$cuit,'$dire','$email','$fecha','$ciu',$gru,'$estado','$tipo','$obs') ");
 			$ins -> execute();
-			$valor="$razon $cuit $dire $email $ciu $tipo $gru $estado $obs";
+			$valor="$razon $cuit $dire $email $ciu  $gru $estado $tipo $obs";
 		}
 		else{
 			$tipo = 'Humana';
 			echo $tipo."<br>";
-			$ins = $con -> prepare("INSERT INTO persona (nombre,apellido,dni,domicilio,email,fechaAlta,localidad,tipo,grupo,estado,observaciones)
-			 VALUES ('$nom','$ape',$dni,'$dire','$email','$fecha','$ciu','$tipo',$gru,'$estado','$obs') ");
+			$ins = $con -> prepare("INSERT INTO persona (nombre,apellido,dni,direccion,email,fechaAlta,localidad,grupo,estado,tipo,observaciones)
+			 VALUES ('$nom','$ape',$dni,'$dire','$email','$fecha','$ciu',$gru,'$estado','$tipo','$obs') ");
 			 $ins -> execute();
 			 
-$valor="$nom $ape $dni $dire $email $ciu $tipo $gru $estado $obs";
+			$valor="$nom $ape $dni $dire $email $ciu $tipo $gru $estado $obs";
 		}
 
 

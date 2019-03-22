@@ -18,14 +18,11 @@
 		
 		$valor="$dom  $cod_ve  $falta $pro $email $id_ve $id_mar $id_tip $desc $marca $tipo $monto $ano";
 		while ($sel -> fetch()){
-
 			$ins = $con -> prepare("INSERT INTO bajavehiculo VALUES (?,?,?,?,?,?,?,?) ");
 				$ins -> bind_param('ssssissi',$dom,$marca,$desc,$tipo,$ano,$falta,$fbaja,$pro);
 				$ins -> execute();
 			}
-
 	if ($ins){
-
 		$up = $con -> prepare("UPDATE persona SET estado = ? WHERE apellido = ? AND email = ?");
 		$up -> bind_param('sss',$estado,$pro,$email);
 		$up -> execute();
@@ -35,7 +32,6 @@
 			$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
 			VALUES('INSERT','bajavehiculo',$reg_id[0],'$valor','$fbaja','$usuario')");
 		}	
-
 		if($up){
 			$valor="ESTADO: Inactivo";
 			$log= mysqli_query($con,"INSERT INTO auditoria (accion,tabla,id_registro,valor,fecha,usuario_id)
@@ -47,9 +43,7 @@
 	}else{
 		header('location:../extend/alerta.php?msj=El propietario no ha podido ser eliminado&c=cl&p=lic&t=error');
 	}
-
 	
-
 	$ins -> close();
 	$del -> close();
 	$con -> close();

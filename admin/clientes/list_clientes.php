@@ -22,11 +22,11 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT id,razonSocial,dni,cuit,tipo,nombre,apellido,domicilio,grupo,localidad FROM persona WHERE estado LIKE '%Regular%' ");
+		$sel = $con -> prepare("SELECT id,nombre,apellido,razonSocial,dni,cuit,direccion,email,fechaAlta,localidad,grupo,tipo,observaciones FROM persona WHERE estado LIKE '%Regular%' ");
 
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($id_pro,$razon,$dni,$cuit,$tipo,$nom,$ape,$domi,$gru,$loca);
+		$sel -> bind_result($id_pro,$nom,$ape,$razon,$dni,$cuit,$domi,$mail,$fecha,$loca,$gru,$tipo,$obs);
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">

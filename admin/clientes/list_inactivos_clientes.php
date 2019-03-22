@@ -25,11 +25,11 @@
 
 	<?php 
 
-		$sel = $con -> prepare("SELECT id,razonSocial,dni,cuit,tipo,nombre,apellido,domicilio,grupo,localidad FROM persona WHERE estado LIKE '%Inactivo%' ");
+		$sel = $con -> prepare("SELECT id,nombre,apellido,razonSocial,dni,cuit,direccion,email,localidad ,grupo,tipo,observaciones FROM persona WHERE estado LIKE '%Inactivo%' ");
 
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($id_pro,$razon,$dni,$cuit,$tipo,$nom,$ape,$domi,$gru,$loca);
+		$sel -> bind_result($id_pro,$nom,$ape,$razon,$dni,$cuit,$domi,$mail,$loca,$gru,$tipo,$obs);
 		$row = $sel -> num_rows();
 			 ?>
 	  <div class="row">
@@ -44,8 +44,11 @@
                         <th class="center">Apellido/Razon Social</th>
 		          		<th class="center">Nombre</th>
 		          		<th class="center">Domicilio</th>
+		          		<th class="center">Email</th>
 		          		<th class="center">Localidad</th>
+		          		<th class="center">Grupo</th>
                         <th class="center">Tipo</th>
+                        <th class="center">Observaciones</th>
                         <?php if ($_SESSION['tipo'] == 3): ?>
 		          		<?php else: ?>
                         <th class="center">Recuperar</th>
@@ -69,7 +72,9 @@
 	          		}?></td>
                     <td class="center"><?php echo $nom; ?></td>
 	          		<td class="center"><?php echo $domi; ?></td>
+	          		<td class="center"><?php echo $mail; ?></td>
 	          		<td class="center"><?php echo $loca; ?></td>
+	          		<td class="center"><?php echo $gru; ?></td>
                     <td class="center"><?php echo $tipo; ?></td>
                     <?php if ($_SESSION['tipo'] == 3): ?>
 		          	<?php else: ?>
