@@ -2,11 +2,11 @@
 
 		$dom = htmlentities($_GET['dominio']);
 
-		$sel = $con -> prepare("SELECT p.cod_vehiculo,p.fechaAlta,pro.id,pro.apellido, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, p.baseImponible, p.anioModelo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
+		$sel = $con -> prepare("SELECT p.cod_vehiculo,p.fechaAlta,pro.id,pro.apellido,pro.razonSocial, v.id, v.id_marca, v.id_tipo, v.descripcion, m.marca, tv.tipo, p.baseImponible, p.anioModelo FROM padron as p INNER JOIN persona as pro ON p.propietario = pro.id INNER JOIN vehiculo as v ON p.cod_vehiculo = v.id INNER JOIN marca as m ON v.id_marca = m.id INNER JOIN tipo_vehiculo as tv ON v.id_tipo = tv.id WHERE p.dominio = ?");
 		$sel -> bind_param('s', $dom);
 		$sel -> execute();
 		$sel -> store_result();
-		$sel -> bind_result($cod_ve,$falta,$id_pro,$pro,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$base,$ano);
+		$sel -> bind_result($cod_ve,$falta,$id_pro,$pro,$razon,$id_ve,$id_mar,$id_tip,$desc,$marca,$tipo,$base,$ano);
 		$row = $sel -> num_rows();
 
 		if ($sel -> fetch()){}
@@ -41,7 +41,11 @@
 	          	</thead>
 
 	          	<tr>
-	          		<td class="center"><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
+	          		<?php if(empty($pro)): ?>
+	          			<td class="center"><a href="../clientes/list_clientes.php"><?php echo $razon; ?></a></td>
+	          		<?php else: ?>
+	          			<td class="center"><a href="../clientes/list_clientes.php"><?php echo $pro; ?></a></td>
+	          		<?php endif; ?>
 	          		<td class="center"><?php echo $marca; ?></td>
 	          		<td class="center"><?php echo $desc; ?></td>
 	          		<td class="center"><?php echo $tipo; ?></td>

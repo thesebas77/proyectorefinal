@@ -2,17 +2,15 @@
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
+		$cod = htmlentities($_POST['codigo']);
 		$dom = htmlentities($_POST['dom']);
-		$marca = htmlentities($_POST['marca']);
-		$modelo = htmlentities($_POST['modelo']);
-		$tipo = htmlentities($_POST['tipo']);
-		$ano = htmlentities($_POST['ano']);
-		$base = htmlentities($_POST['base']);
-		$falta = htmlentities($_POST['falta']);
+		$ano = htmlentities($_POST['anomodelo']);
+		$persona = htmlentities($_POST['persona']);
+		
 
 
-		$ins = $con -> prepare("UPDATE padron SET dominio=?, fechaAlta=?, anioModelo=?, baseImponible=? WHERE dominio = ?");
-		$ins -> bind_param('sssds',$falta,$ano,$falta,$base,$dom);
+		$ins = $con -> prepare("UPDATE padron SET dominio=?, propietario=?, anioModelo=? WHERE dominio = ?");
+		$ins -> bind_param('siii',$dom,$persona,$ano,$cod);
 		$ins -> execute();
 		$ins -> close();
 
